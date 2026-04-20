@@ -1,0 +1,58 @@
+@media (max-width: 1024px) {
+  :root {
+    --container-padding: 24px;
+    --section-padding: 96px;
+    --font-hero: 36px;
+    --font-section: 28px;
+    --font-sub: 18px;
+  }
+
+  .mega-menu-content,
+  .card-grid-4,
+  .finder-step-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .card-grid-3,
+  .finder-result-list,
+  .filter-sort-wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 20px;
+    --section-padding: 80px;
+    --font-hero: 32px;
+    --font-section: 28px;
+    --font-body: 14px;
+  }
+
+  .header-content {
+    min-height: 0;
+    padding: 14px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-12);
+  }
+
+  .gnb-list { flex-wrap: wrap; justify-content: center; gap: var(--space-12) var(--space-16); }
+  .mega-menu { display: none !important; }
+
+  .hero, .hero-content { min-height: 82vh; }
+  .hero-cta-group { flex-direction: column; align-items: flex-start; }
+
+  .card-grid-2,
+  .card-grid-3,
+  .card-grid-4,
+  .finder-step-grid,
+  .finder-result-list,
+  .filter-sort-wrap { grid-template-columns: 1fr; }
+
+  .finder-control-row { flex-direction: column; }
+  .gift-form { flex-direction: column; }
+
+  .sticky-content {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px var(--container-padding);
+  }
+  .sticky-button { width: 100%; }
+}
