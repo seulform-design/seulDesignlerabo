@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <title>cart</title>
+  <meta name="description" content="르라보 체크아웃 - 배송지와 결제 정보를 입력하고 주문을 완료하세요.">
+  <meta name="theme-color" content="#1a2421">
+  <meta name="format-detection" content="telephone=no">
+  <title>Checkout | LE LABO · Forest Laboratory</title>
   <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/common.css">
   <link rel="stylesheet" href="./styles/index.css">
@@ -14,12 +15,10 @@
   <script src="./scripts/layout-system.js" defer></script>
 </head>
 
-<body>
+<body class="page-checkout">
   <div id="wrap">
     <a href="#main-content" class="skip-nav">본문 바로가기</a>
-
     <!-- Header & Announcement Bar injected by layout-system.js -->
-
     <main id="main-content">
       <!-- PAGE HEADER -->
       <header class="page-header">
@@ -34,7 +33,6 @@
           </div>
         </div>
       </header>
-
       <div class="container">
         <div class="checkout-layout">
           <div class="checkout-main">
@@ -47,11 +45,9 @@
                 <button type="button" class="btn btn-secondary">Naver Pay</button>
               </div>
             </div>
-
             <div class="checkout-divider">
               <span>OR CONTINUE WITH MANUAL DETAILS</span>
             </div>
-
             <form action="order-complete.html" class="checkout-form">
               <!-- CONTACT -->
               <section class="checkout-section">
@@ -67,7 +63,6 @@
                   </div>
                 </div>
               </section>
-
               <!-- SHIPPING -->
               <section class="checkout-section">
                 <h2 class="checkout-section-title">02. Shipping Destination</h2>
@@ -90,7 +85,6 @@
                   </div>
                 </div>
               </section>
-
               <!-- PAYMENT -->
               <section class="checkout-section">
                 <h2 class="checkout-section-title">03. Secure Payment</h2>
@@ -109,11 +103,9 @@
                   </div>
                 </div>
               </section>
-
               <button type="submit" class="btn btn-primary checkout-submit-btn">Authorize Payment · ₩ 457,600</button>
             </form>
           </div>
-
           <!-- SIDEBAR -->
           <aside class="checkout-sidebar">
             <h2 class="summary-title">Selection Review</h2>
@@ -152,7 +144,6 @@
                 <span>₩ 457,600</span>
               </div>
             </div>
-
             <div class="checkout-trust">
               <p>Your transaction is encrypted with 256-bit SSL technology. By placing this order, you agree to our Terms of Service.</p>
             </div>
@@ -160,7 +151,6 @@
         </div>
       </div>
     </main>
-
     <!-- Footer injected by layout-system.js -->
   </div>
   <script src="./scripts/global.js"></script>

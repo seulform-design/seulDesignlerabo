@@ -1,146 +1,162 @@
 /**
  * LE LABO - shop.js
- * Handles product filtering, sorting, and comparison logic.
+ * Stable filtering / sorting / progressive reveal for shop grid.
  */
 
 class ShopSystem {
     constructor() {
-        this.compareList = [];
-        this.maxCompare = 3;
-        
-        this.elements = {
-            tray: document.getElementById('compare-tray'),
-            slots: document.querySelectorAll('.compare-slots .slot'),
-            clearBtn: document.getElementById('clear-compare'),
-            compareBtns: document.querySelectorAll('.btn-compare'),
-            filterChips: document.querySelectorAll('.filter-chip'),
-            productCards: document.querySelectorAll('.product-card')
+        this.state = {
+            scent: 'all',
+            situation: 'all',
+            sort: 'featured',
+            visibleCount: 8
         };
+
+        this.elements = {
+            chips: Array.from(document.querySelectorAll('.filter-chip-list .chip')),
+            productGrid: document.getElementById('shop-product-grid'),
+            productCards: Array.from(document.querySelectorAll('#shop-product-grid .product-card')),
+            totalCount: document.getElementById('shop-count'),
+            activeFilterCount: document.getElementById('shop-filter-count'),
+            resetButton: document.getElementById('shop-filter-reset'),
+            emptyState: document.getElementById('shop-empty'),
+            loadMoreButton: document.getElementById('shop-load-more')
+        };
+
+        this.initialOrder = new Map();
+        this.elements.productCards.forEach((card, idx) => this.initialOrder.set(card, idx));
     }
 
     init() {
+        if (!this.elements.productGrid || this.elements.productCards.length === 0) return;
         this.bindEvents();
-        this.updateTray();
+        this.applyViewState();
     }
 
     bindEvents() {
-        // Compare buttons on cards
-        this.elements.compareBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const card = btn.closest('.product-card');
-                const productName = card.querySelector('.card-title').textContent;
-                this.toggleCompare(productName, btn);
-            });
+        this.elements.chips.forEach((chip) => {
+            chip.addEventListener('click', () => this.handleChipClick(chip));
         });
 
-        // Clear all compare
-        if (this.elements.clearBtn) {
-            this.elements.clearBtn.addEventListener('click', () => this.clearCompare());
+        if (this.elements.resetButton) {
+            this.elements.resetButton.addEventListener('click', () => this.resetFilters());
         }
 
-        // Filter chips
-        this.elements.filterChips.forEach(chip => {
-            chip.addEventListener('click', () => {
-                const group = chip.closest('.filter-chip-list');
-                group.querySelectorAll('.filter-chip').forEach(c => c.setAttribute('aria-pressed', 'false'));
-                chip.setAttribute('aria-pressed', 'true');
-                this.applyFilters();
+        if (this.elements.loadMoreButton) {
+            this.elements.loadMoreButton.addEventListener('click', () => {
+                this.state.visibleCount += 4;
+                this.applyViewState();
             });
-        });
+        }
     }
 
-    toggleCompare(name, btn) {
-        const index = this.compareList.indexOf(name);
-        
-        if (index > -1) {
-            this.compareList.splice(index, 1);
-            btn.classList.remove('is-active');
-            btn.textContent = '비교';
+    handleChipClick(chip) {
+        const group = chip.dataset.filterGroup;
+        if (!group) return;
+
+        this.elements.chips
+            .filter((item) => item.dataset.filterGroup === group)
+            .forEach((item) => item.setAttribute('aria-pressed', 'false'));
+
+        chip.setAttribute('aria-pressed', 'true');
+
+        if (group === 'sort') {
+            this.state.sort = chip.dataset.sort || 'featured';
         } else {
-            if (this.compareList.length >= this.maxCompare) {
-                alert(`최대 ${this.maxCompare}개까지만 비교 가능합니다.`);
-                return;
-            }
-            this.compareList.push(name);
-            btn.classList.add('is-active');
-            btn.textContent = '제거';
+            this.state[group] = chip.dataset.filterValue || 'all';
         }
 
-        this.updateTray();
+        this.state.visibleCount = 8;
+        this.applyViewState();
     }
 
-    updateTray() {
-        if (!this.elements.tray) return;
+    resetFilters() {
+        this.state = { scent: 'all', situation: 'all', sort: 'featured', visibleCount: 8 };
 
-        // Show/Hide Tray
-        const isVisible = this.compareList.length > 0;
-        this.elements.tray.setAttribute('data-visible', isVisible);
+        this.elements.chips.forEach((chip) => {
+            const isDefault =
+                (chip.dataset.filterGroup === 'sort' && chip.dataset.sort === 'featured') ||
+                (chip.dataset.filterGroup !== 'sort' && chip.dataset.filterValue === 'all');
+            chip.setAttribute('aria-pressed', isDefault ? 'true' : 'false');
+        });
 
-        // Update Slots
-        this.elements.slots.forEach((slot, i) => {
-            const name = this.compareList[i];
-            if (name) {
-                slot.innerHTML = `${name} <button class="slot-remove" data-index="${i}">✕</button>`;
-                slot.classList.add('is-filled');
+        this.applyViewState();
+    }
+
+    getFilteredCards() {
+        return this.elements.productCards.filter((card) => {
+            const scent = card.dataset.scent || '';
+            const situations = (card.dataset.situation || '')
+                .split(',')
+                .map((item) => item.trim())
+                .filter(Boolean);
+
+            const scentMatch = this.state.scent === 'all' || this.state.scent === scent;
+            const situationMatch = this.state.situation === 'all' || situations.includes(this.state.situation);
+
+            return scentMatch && situationMatch;
+        });
+    }
+
+    getSortedCards(cards) {
+        const sorted = [...cards];
+
+        if (this.state.sort === 'best-sellers') {
+            sorted.sort((a, b) => Number(b.dataset.reviews || 0) - Number(a.dataset.reviews || 0));
+            return sorted;
+        }
+
+        if (this.state.sort === 'newest') {
+            sorted.sort((a, b) => Number(b.dataset.releaseOrder || 0) - Number(a.dataset.releaseOrder || 0));
+            return sorted;
+        }
+
+        sorted.sort((a, b) => (this.initialOrder.get(a) || 0) - (this.initialOrder.get(b) || 0));
+        return sorted;
+    }
+
+    applyViewState() {
+        const filtered = this.getFilteredCards();
+        const sorted = this.getSortedCards(filtered);
+
+        this.elements.productCards.forEach((card) => {
+            card.hidden = true;
+            card.classList.remove('is-visible');
+        });
+
+        sorted.forEach((card, index) => {
+            this.elements.productGrid.appendChild(card);
+            const shouldShow = index < this.state.visibleCount;
+            card.hidden = !shouldShow;
+            if (shouldShow) card.classList.add('is-visible');
+        });
+
+        if (this.elements.totalCount) {
+            this.elements.totalCount.textContent = String(filtered.length);
+        }
+
+        if (this.elements.activeFilterCount) {
+            const count = [this.state.scent, this.state.situation].filter((value) => value !== 'all').length;
+            this.elements.activeFilterCount.textContent = String(count);
+        }
+
+        if (this.elements.emptyState) {
+            this.elements.emptyState.hidden = filtered.length > 0;
+        }
+
+        if (this.elements.loadMoreButton) {
+            const canLoadMore = filtered.length > this.state.visibleCount;
+            this.elements.loadMoreButton.hidden = !canLoadMore;
+            if (canLoadMore) {
+                const remaining = filtered.length - this.state.visibleCount;
+                this.elements.loadMoreButton.textContent = `Load More (${Math.min(remaining, 4)})`;
             } else {
-                slot.innerHTML = `Slot ${i + 1}`;
-                slot.classList.remove('is-filled');
+                this.elements.loadMoreButton.textContent = 'Load More';
             }
-        });
-
-        // Bind remove buttons in tray
-        this.elements.tray.querySelectorAll('.slot-remove').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const idx = parseInt(btn.dataset.index);
-                const nameToRemove = this.compareList[idx];
-                
-                // Find and update card button
-                this.elements.productCards.forEach(card => {
-                    if (card.querySelector('.card-title').textContent === nameToRemove) {
-                        const cardBtn = card.querySelector('.btn-compare');
-                        if (cardBtn) {
-                            cardBtn.classList.remove('is-active');
-                            cardBtn.textContent = '비교';
-                        }
-                    }
-                });
-
-                this.compareList.splice(idx, 1);
-                this.updateTray();
-            });
-        });
-    }
-
-    clearCompare() {
-        this.compareList = [];
-        this.elements.compareBtns.forEach(btn => {
-            btn.classList.remove('is-active');
-            btn.textContent = '비교';
-        });
-        this.updateTray();
-    }
-
-    applyFilters() {
-        const activeFilters = Array.from(this.elements.filterChips)
-            .filter(c => c.getAttribute('aria-pressed') === 'true' && c.textContent !== 'All')
-            .map(c => c.textContent.toLowerCase());
-
-        this.elements.productCards.forEach(card => {
-            if (activeFilters.length === 0) {
-                card.style.display = '';
-                return;
-            }
-
-            const scent = card.getAttribute('data-scent');
-            const matches = activeFilters.includes(scent);
-            card.style.display = matches ? '' : 'none';
-        });
+        }
     }
 }
 
-// Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    const shop = new ShopSystem();
-    shop.init();
+    new ShopSystem().init();
 });

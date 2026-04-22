@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <title>cart</title>
+  <meta name="description" content="르라보 장바구니 - 선택한 향과 구성품을 확인하고 결제를 준비하세요.">
+  <meta name="theme-color" content="#1a2421">
+  <meta name="format-detection" content="telephone=no">
+  <title>Cart | LE LABO · Forest Laboratory</title>
   <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/common.css">
   <link rel="stylesheet" href="./styles/index.css">
@@ -13,19 +14,16 @@
   <link rel="stylesheet" href="./styles/responsive.css">
   <script src="./scripts/layout-system.js" defer></script>
 </head>
-<body>
+<body class="page-cart">
   <div id="wrap">
     <a href="#main-content" class="skip-nav">본문 바로가기</a>
-
     <!-- Header & Announcement Bar injected by layout-system.js -->
-
     <main id="main-content">
       <!-- PAGE HEADER -->
       <header class="page-header">
         <div class="container">
           <p class="section-eyebrow">Checkout Phase 01</p>
           <h1 class="page-title">Shopping Selection</h1>
-
           <div class="cart-shipping-meter">
             <p class="cart-shipping-tip"><strong>₩43,000</strong> until complimentary shipping</p>
             <div class="cart-progress-bar">
@@ -34,7 +32,6 @@
           </div>
         </div>
       </header>
-
       <div class="container">
         <div class="cart-layout">
           <!-- CART ITEMS -->
@@ -53,23 +50,20 @@
                     </div>
                     <div class="cart-item-price">₩ 198,000</div>
                   </div>
-
                   <div class="cart-signature">Complimentary Signature Gift Wrap Included</div>
-
                   <div class="cart-item-actions">
                     <div class="cart-item-qty-wrap">
                       <span class="qty-label">Quantity</span>
                       <div class="cart-item-qty">
-                        <button class="qty-btn" aria-label="Decrease quantity">−</button>
+                        <button type="button" class="qty-btn" aria-label="Decrease quantity">−</button>
                         <span class="qty-val">1</span>
-                        <button class="qty-btn" aria-label="Increase quantity">+</button>
+                        <button type="button" class="qty-btn" aria-label="Increase quantity">+</button>
                       </div>
                     </div>
-                    <button class="cart-item-remove">Remove</button>
+                    <button type="button" class="cart-item-remove">Remove</button>
                   </div>
                 </div>
               </article>
-
               <!-- Item 2 -->
               <article class="cart-item">
                 <div class="cart-item-img">
@@ -83,25 +77,22 @@
                     </div>
                     <div class="cart-item-price">₩ 218,000</div>
                   </div>
-
                   <div class="cart-signature">Personalized Labeling Available</div>
-
                   <div class="cart-item-actions">
                     <div class="cart-item-qty-wrap">
                       <span class="qty-label">Quantity</span>
                       <div class="cart-item-qty">
-                        <button class="qty-btn" aria-label="Decrease quantity">−</button>
+                        <button type="button" class="qty-btn" aria-label="Decrease quantity">−</button>
                         <span class="qty-val">1</span>
-                        <button class="qty-btn" aria-label="Increase quantity">+</button>
+                        <button type="button" class="qty-btn" aria-label="Increase quantity">+</button>
                       </div>
                     </div>
-                    <button class="cart-item-remove">Remove</button>
+                    <button type="button" class="cart-item-remove">Remove</button>
                   </div>
                 </div>
               </article>
             </div>
           </div>
-
           <!-- SUMMARY -->
           <aside class="cart-summary">
             <h2 class="summary-title">Selection Summary</h2>
@@ -121,9 +112,7 @@
               <span>Estimated Total</span>
               <span>₩ 457,600</span>
             </div>
-
             <a href="checkout.html" class="btn btn-primary checkout-btn">Proceed to Checkout</a>
-
             <div class="trust-badges">
               <div class="badge-item">
                 256-bit SSL Secure Transaction
@@ -134,7 +123,6 @@
             </div>
           </aside>
         </div>
-
         <!-- RECOMMENDATIONS -->
         <section class="section cross-category cart-related" aria-labelledby="cart-related-title">
           <div class="section-content">
@@ -202,7 +190,6 @@
         </section>
       </div>
     </main>
-
     <!-- Footer injected by layout-system.js -->
   </div>
   <script src="./scripts/global.js"></script>

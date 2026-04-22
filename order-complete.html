@@ -16,7 +16,7 @@
   <script src="./scripts/layout-system.js" defer></script>
 </head>
 
-<body>
+<body class="page-order-complete">
   <div id="wrap">
     <a href="#main-content" class="skip-nav">본문 바로가기</a>
     <!-- Header & Announcement Bar injected by layout-system.js -->
@@ -29,12 +29,11 @@
           <p class="order-batch-meta">BATCH NO. LL-2026-0417-8842 · April 17, 2026</p>
         </div>
       </header>
-
-      <section class="section">
+      <section class="section" aria-labelledby="order-summary-title">
         <div class="container order-complete-container">
           <!-- SUMMARY CARD -->
           <div class="order-summary-card">
-            <h2 class="order-summary-title">Order Summary</h2>
+            <h2 class="order-summary-title" id="order-summary-title">Order Summary</h2>
             <div class="order-summary-items">
               <div class="order-row">
                 <span class="order-item-name">SANTAL 33 · 50ml</span>
@@ -50,7 +49,6 @@
               <span class="total-value">₩ 625,000</span>
             </div>
           </div>
-
           <!-- DELIVERY STATUS -->
           <div class="delivery-tracking">
             <h2 class="delivery-title">Delivery Status · <span class="accent">Arriving April 19</span></h2>
@@ -74,7 +72,6 @@
               </div>
             </div>
           </div>
-
           <div class="order-complete-actions">
             <a href="index.html" class="btn btn-primary btn-wide">Continue Shopping</a>
             <a href="shop.html" class="text-link">Explore more scents</a>
@@ -82,7 +79,6 @@
         </div>
       </section>
     </main>
-
     <!-- Footer injected by layout-system.js -->
   </div>
   <script src="./scripts/global.js"></script>

@@ -190,6 +190,63 @@
 }
 
 /* ============================================================
+   Index Alignment System — section-level alignment consistency
+   ============================================================ */
+.page-index {
+  --index-head-max: 720px;
+}
+
+.page-index .section-head {
+  max-width: var(--index-head-max);
+}
+
+.page-index .section-head.section-head-center {
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  text-align: center;
+}
+
+.page-index .section-head:not(.section-head-center):not(.hero-head) {
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Keep CTA baseline aligned across product/service cards */
+.page-index .trending .card-grid,
+.page-index .cross-category .card-grid,
+.page-index .journal .card-grid {
+  align-items: stretch;
+}
+
+.page-index .trending .card-body,
+.page-index .cross-category .card-body,
+.page-index .journal .card-body {
+  align-content: start;
+}
+
+.page-index .trending .card-action,
+.page-index .cross-category .card-action,
+.page-index .journal .card-action {
+  margin-top: auto;
+  justify-content: flex-start;
+}
+
+.page-index .trending .product-head,
+.page-index .cross-category .product-head {
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .page-index .section-head.section-head-center {
+    margin-left: 0;
+    margin-right: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+/* ============================================================
    Product Grid — 상품/카테고리 카드 섹션 (Quick Entry · Trending · Cross Category)
    --container 1280 적용으로 content 1200 — 별도 max-width 불필요
    Header · Footer · Sticky 모두 1200 동일 폭으로 정렬 완성

@@ -1097,6 +1097,11 @@ body {
   font-weight: 700;
   letter-spacing: 0.01em;
   color: var(--color-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(1.35em * 2);
 }
 
 .section-eyebrow,
@@ -1116,6 +1121,14 @@ body {
   flex: 1;
 }
 
+.card-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(1.55em * 2);
+}
+
 .card-meta {
   font-size: var(--font-caption);
   line-height: 1.5;
@@ -1130,7 +1143,20 @@ body {
 
 .card-grid {
   display: grid;
-  gap: var(--grid-gap);
+  row-gap: var(--grid-gap);
+  column-gap: var(--grid-gap);
+  align-items: stretch; /* Keep every card in a row aligned to same height */
+}
+
+/* Normalize wrapped grid items (<li>, etc.) so card baselines stay consistent */
+.card-grid > li {
+  display: flex;
+}
+
+.card-grid > li > .card,
+.card-grid > .card {
+  flex: 1;
+  height: 100%;
 }
 
 .card-grid-2 {
@@ -1212,8 +1238,9 @@ body {
 .card-action {
   margin-top: var(--space-12);
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: var(--space-12);
+  min-height: 48px; /* Keep CTA baseline consistent across mixed card content */
 }
 
 /* 빈 액션 영역이 차지하는 불필요한 여백(Dead Space) 완벽 제거 */
@@ -1224,6 +1251,13 @@ body {
 .card-action .btn {
   flex: 1;
   width: 100%;
+  min-height: 48px;
+}
+
+.card-action .text-link {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
 }
 
 /* 이미지 시스템 비율 규칙 반영 */
@@ -1439,6 +1473,16 @@ input:focus {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .card-title {
+    min-height: 0;
+  }
+
+  .card-desc {
+    min-height: 0;
   }
 }
 

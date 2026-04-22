@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <title>cart</title>
+  <meta name="description" content="르라보 향기 탐색기 - 무드와 상황 기반 질문으로 당신의 시그니처 향을 추천합니다.">
+  <meta name="theme-color" content="#1a2421">
+  <meta name="format-detection" content="telephone=no">
+  <title>Finder | LE LABO · Forest Laboratory</title>
   <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/common.css">
   <link rel="stylesheet" href="./styles/index.css">
@@ -13,7 +14,7 @@
   <link rel="stylesheet" href="./styles/responsive.css">
   <script src="./scripts/layout-system.js" defer></script>
 </head>
-<body>
+<body class="page-finder">
   <div id="wrap">
     <a href="#main-content" class="skip-nav">본문 바로가기</a>
     <!-- Header & Announcement Bar injected by layout-system.js -->
@@ -25,7 +26,6 @@
           <li aria-current="page">Scent Finder</li>
         </ol>
       </nav>
-
       <!-- HERO -->
       <section class="section hero" aria-labelledby="finder-hero-title">
         <div class="hero-media">
@@ -50,7 +50,6 @@
           </div>
         </div>
       </section>
-
       <!-- FINDER STEPS -->
       <section class="section finder" id="finder" aria-labelledby="finder-title">
         <div class="container">
@@ -71,7 +70,6 @@
                     <span></span>
                   </div>
                 </div>
-
                 <div class="finder-step-grid">
                   <article class="card finder-step">
                     <div class="card-media card-media-note finder-step-media">
@@ -142,7 +140,6 @@
                     </div>
                   </article>
                 </div>
-
                 <div class="finder-result">
                   <div class="finder-state is-empty" data-ui="empty">
                     <div class="state-alert" role="alert">
@@ -155,7 +152,6 @@
                     <button type="button" class="btn btn-secondary" data-action="focus-first">첫 단계부터 시작</button>
                   </div>
                 </div>
-
                 <div class="finder-control-row">
                   <button type="button" class="btn btn-primary" id="recommend-btn">Get Recommendation</button>
                   <button type="button" class="btn btn-secondary" id="reset-btn">Reset</button>
@@ -165,7 +161,6 @@
           </div>
         </div>
       </section>
-
       <!-- DENSITY FILTER -->
       <section class="section filter-sort" aria-labelledby="density-title">
         <div class="container">
@@ -196,7 +191,6 @@
           </div>
         </div>
       </section>
-
       <!-- RESULT PREVIEW -->
       <section class="section why-this" aria-labelledby="finder-result-title">
         <div class="container">
@@ -246,7 +240,6 @@
           </div>
         </div>
       </section>
-
       <!-- CTA -->
       <section class="section final" aria-labelledby="finder-final-title">
         <div class="container">
@@ -266,8 +259,8 @@
         </div>
       </section>
     </main>
-
     <!-- Footer injected by layout-system.js -->
   </div>
+  <script src="./scripts/global.js"></script>
 </body>
 </html>

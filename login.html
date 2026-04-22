@@ -16,7 +16,7 @@
   <script src="./scripts/layout-system.js" defer></script>
 </head>
 
-<body>
+<body class="page-login">
   <div id="wrap">
     <a href="#main-content" class="skip-nav">본문 바로가기</a>
     <!-- Header & Announcement Bar injected by layout-system.js -->
@@ -30,49 +30,43 @@
           </div>
           <p class="login-visual-tag">BOTANICAL · LAB</p>
         </aside>
-
         <!-- FORM SIDE -->
         <div class="login-main">
           <div class="login-box">
             <h1 class="login-title" id="login-title">Welcome back</h1>
             <p class="login-subtitle">Sign in to track orders, save scents, and pick up where you left off.</p>
-
             <form class="login-form" action="index.html">
               <div class="form-group">
-                <input type="email" class="login-input" placeholder="Email address" required />
+                <label class="sr-only" for="login-email">이메일 주소</label>
+                <input type="email" id="login-email" class="login-input" placeholder="Email address" autocomplete="email" required />
               </div>
               <div class="form-group">
-                <input type="password" class="login-input" placeholder="Password" required />
-                <a href="#" class="forgot-link">Forgot password?</a>
+                <label class="sr-only" for="login-password">비밀번호</label>
+                <input type="password" id="login-password" class="login-input" placeholder="Password" autocomplete="current-password" required />
+                <a href="login.html" class="forgot-link">Forgot password?</a>
               </div>
               <button type="submit" class="btn btn-primary login-btn">Sign In →</button>
             </form>
-
             <div class="login-divider">or</div>
-
             <div class="social-btns">
               <button type="button" class="social-btn">Continue with Apple</button>
               <button type="button" class="social-btn">Continue with Google</button>
             </div>
-
             <div class="login-footer-links">
-              <p>New here? <a href="#">Create an account →</a></p>
+              <p>New here? <a href="finder.html">Create an account →</a></p>
               <p class="login-guest-divider">— 또는 계정 없이 —</p>
               <div class="login-guest-links">
                 <a href="checkout.html">비회원 주문 조회 →</a>
                 <a href="shop.html">비회원으로 구매 →</a>
               </div>
             </div>
-
             <p class="login-ssl-note">🔒 로그인 정보는 SSL 256bit로 암호화됩니다. 제3자와 공유되지 않습니다.</p>
           </div>
         </div>
       </section>
     </main>
-
     <!-- Footer injected by layout-system.js -->
   </div>
   <script src="./scripts/global.js"></script>
 </body>
-
 </html>
