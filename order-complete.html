@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="르라보 주문 완료 - 당신의 향기로운 여정이 시작되었습니다." />
+  <meta name="theme-color" content="#1a2421" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>Order Complete | LE LABO · Forest Laboratory</title>
+  <link rel="stylesheet" href="./styles/reset.css" />
+  <link rel="stylesheet" href="./styles/common.css" />
+  <link rel="stylesheet" href="./styles/index.css" />
+  <link rel="stylesheet" href="./styles/complete.css" />
+  <link rel="stylesheet" href="./styles/responsive.css" />
+  <script src="./scripts/layout-system.js" defer></script>
+</head>
+
+<body>
+  <div id="wrap">
+    <a href="#main-content" class="skip-nav">본문 바로가기</a>
+
+    <!-- Header & Announcement Bar injected by layout-system.js -->
+
+    <main id="main-content">
+      <!-- PAGE HEADER -->
+      <header class="page-header">
+        <div class="container">
+          <p class="section-eyebrow">Order Confirmed</p>
+          <h1 class="page-title">당신의 향이 출발할 준비를 마쳤습니다.</h1>
+          <p class="order-batch-meta">BATCH NO. LL-2026-0417-8842 · April 17, 2026</p>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="container order-complete-container">
+          <!-- SUMMARY CARD -->
+          <div class="order-summary-card">
+            <h2 class="order-summary-title">Order Summary</h2>
+            <div class="order-summary-items">
+              <div class="order-row">
+                <span class="order-item-name">SANTAL 33 · 50ml</span>
+                <span class="order-item-price">₩ 320,000</span>
+              </div>
+              <div class="order-row">
+                <span class="order-item-name">ROSE 31 · 50ml</span>
+                <span class="order-item-price">₩ 305,000</span>
+              </div>
+            </div>
+            <div class="order-total-row">
+              <span class="total-label">Total Amount</span>
+              <span class="total-value">₩ 625,000</span>
+            </div>
+          </div>
+
+          <!-- DELIVERY STATUS -->
+          <div class="delivery-tracking">
+            <h2 class="delivery-title">Delivery Status · <span class="accent">Arriving April 19</span></h2>
+            <div class="tracking-timeline">
+              <div class="tracking-line"></div>
+              <div class="tracking-step is-complete">
+                <div class="step-dot"></div>
+                <span class="step-label">Ordered</span>
+              </div>
+              <div class="tracking-step is-complete">
+                <div class="step-dot"></div>
+                <span class="step-label">Packing</span>
+              </div>
+              <div class="tracking-step">
+                <div class="step-dot"></div>
+                <span class="step-label">Shipping</span>
+              </div>
+              <div class="tracking-step">
+                <div class="step-dot"></div>
+                <span class="step-label">Delivered</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-complete-actions">
+            <a href="index.html" class="btn btn-primary btn-wide">Continue Shopping</a>
+            <a href="shop.html" class="text-link">Explore more scents</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer injected by layout-system.js -->
+  </div>
+  <script src="./scripts/global.js"></script>
+</body>
+</html>

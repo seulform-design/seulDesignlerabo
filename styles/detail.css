@@ -1,0 +1,823 @@
+/* =========================================================
+   LE LABO · detail.css
+   ========================================================= */
+
+/* Helpers */
+.bg-soft {
+  background: var(--color-surface-soft);
+}
+
+/* Breadcrumb styles moved to common.css (shared across all sub-pages) */
+
+/* ------------------------------------------------------------
+   Unified section-head → content rhythm across all detail sections.
+   Detail layouts don't wrap content in .section-content, so we apply
+   the head→body gap directly as a margin-bottom on .section-head.
+   ------------------------------------------------------------ */
+.detail-notes > .container > .section-head,
+.detail-why > .container > .section-head,
+.detail-comparison > .container > .section-head,
+.detail-gift > .container > .section-head,
+.detail-related > .container > .section-head {
+  margin-bottom: var(--section-head-gap);
+}
+
+/* Detail Hero Layout */
+.detail-hero {
+  padding-top: 0;
+  padding-bottom: var(--space-64);
+}
+
+.detail-hero-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-80);
+  align-items: flex-start;
+}
+
+/* Gallery (Left) */
+.detail-gallery {
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-40));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.detail-image-main {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--color-primary); /* Dark placeholder based on design */
+  overflow: hidden;
+}
+
+.detail-image-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.detail-thumbnails {
+  display: flex;
+  gap: var(--space-12);
+}
+
+.thumb-btn {
+  width: 80px;
+  height: 80px;
+  background: var(--color-surface-soft);
+  opacity: 0.6;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+}
+
+.thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb-btn:hover {
+  opacity: 1;
+}
+
+.thumb-btn.is-active {
+  opacity: 1;
+  border: 1px solid var(--color-primary);
+}
+
+/* Info (Right) */
+.detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+  padding-top: var(--space-24);
+}
+
+.detail-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.detail-title {
+  font-family: var(--font-family-display);
+  font-size: clamp(24px, 3vw, 32px);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.15;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.detail-subtitle {
+  font-family: var(--font-family-display);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--color-text-sub);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.detail-reviews {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.review-stars {
+  display: flex;
+  gap: 2px;
+  color: var(--color-accent);
+}
+
+.review-score {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-left: var(--space-4);
+}
+
+.review-count {
+  font-weight: 400;
+  color: var(--color-text-muted);
+  font-size: 11px;
+  margin-left: var(--space-4);
+}
+
+.detail-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.02em;
+}
+
+.detail-price-unit {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.accordion-paragraph {
+  margin-top: var(--space-12);
+}
+
+/* Size Options & Benefits */
+.detail-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.benefit-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding-top: var(--space-24);
+  border-top: 1px solid var(--color-line);
+}
+
+.benefit-bullets li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-text-sub);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.benefit-bullets svg {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.size-options {
+  display: flex;
+  gap: var(--space-8);
+}
+
+.btn-size {
+  min-width: 64px;
+  height: 44px;
+  border: 1px solid var(--color-line);
+  background: transparent;
+  font-size: var(--font-caption);
+  color: var(--color-text-sub);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-size:hover {
+  border-color: var(--color-primary);
+}
+
+.btn-size[aria-checked="true"] {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+/* Actions */
+.detail-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* Perks Box */
+.detail-perks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  border-top: 1px solid var(--color-line);
+  padding-top: var(--space-32);
+}
+
+.perk-box {
+  display: flex;
+  gap: var(--space-16);
+  padding: var(--space-20);
+  border: 1px solid var(--color-line);
+  background: var(--color-surface-soft);
+  transition: border-color 0.25s ease;
+}
+
+.perk-box:hover {
+  border-color: var(--color-line-strong);
+}
+
+.perk-icon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.perk-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-sub);
+}
+
+.perk-text strong {
+  color: var(--color-primary);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.formulation-certificate {
+  position: relative;
+  border: 1px dashed var(--color-line-strong);
+  background: var(--color-white);
+  margin-top: var(--space-8);
+}
+
+.certificate-badge {
+  position: absolute;
+  top: -10px;
+  right: var(--space-16);
+  padding: 3px 10px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* Product Description — smaller opening beat (hero already provided the big moment) */
+.detail-description {
+  padding-top: var(--space-64);
+  padding-bottom: var(--space-48);
+}
+
+.desc-content {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: var(--font-body);
+  line-height: 1.75;
+  color: var(--color-text-sub);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+  text-align: left;
+  word-break: keep-all;
+}
+
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-family-display);
+  font-size: clamp(40px, 4.5vw, 56px);
+  line-height: 0.85;
+  padding-top: var(--space-4);
+  padding-right: var(--space-12);
+  color: var(--color-primary);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Scent Notes */
+.detail-notes {
+  text-align: center;
+}
+
+.notes-list {
+  font-family: var(--font-family-display);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--color-primary);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.notes-breakdown {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: var(--space-32) var(--space-40);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  background: var(--color-surface-soft);
+  border-radius: 0;              /* sharp — brand identity */
+}
+
+/* Hover Focus Effect */
+@media (hover: hover) and (pointer: fine) {
+  .notes-breakdown:hover .note-row {
+    opacity: 0.4;
+  }
+  .notes-breakdown .note-row:hover {
+    opacity: 1;
+  }
+}
+
+.note-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: var(--space-24);
+  align-items: baseline;
+  padding: var(--space-20) 0;
+  border-bottom: 1px solid var(--color-line);
+  font-size: 14px;
+  transition: opacity 0.3s ease;
+}
+
+.note-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.note-row:first-child {
+  padding-top: 0;
+}
+
+.note-level {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+.note-desc {
+  color: var(--color-primary);
+  font-weight: 500;
+  line-height: 1.55;
+  font-size: 14px;
+}
+
+/* Why this scent */
+.why-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-48);
+}
+
+.why-icons li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+  font-size: var(--font-caption);
+  font-weight: 700;
+  color: var(--color-text-sub);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.why-icon {
+  color: var(--color-accent);
+}
+
+.why-text-box {
+  max-width: 620px;
+  margin: var(--space-32) auto 0;       /* sibling gap after why-icons */
+  padding: var(--space-32) var(--space-32);
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  text-align: center;
+  line-height: 1.65;
+  color: var(--color-text-sub);
+  font-size: 14px;
+}
+
+/* Comparison Section */
+.comparison-grid {
+  position: relative;
+}
+
+.comparison-card {
+  background: var(--color-white);
+}
+
+.comparison-card .card-body {
+  padding: var(--card-padding);
+  gap: var(--space-8);
+}
+
+.comparison-vs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Story Split */
+.story-split {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-64);
+  align-items: center;
+}
+
+.story-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--color-line);
+}
+
+.story-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-24);
+}
+
+.story-text .section-desc {
+  line-height: 1.7;
+}
+
+/* Manifesto / Ethos — uses the shared --section-padding token so tablet/mobile scale */
+.detail-ethos {
+  border-top: 1px solid var(--color-line);
+}
+
+.ethos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-48);
+}
+
+.ethos-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-16);
+}
+
+.ethos-title {
+  font-family: var(--font-family-display);
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.3;
+  color: var(--color-primary);
+}
+
+.ethos-desc {
+  font-size: 13px;
+  color: var(--color-text-sub);
+  line-height: 1.7;
+}
+
+/* Accordion — lets the shared --section-padding handle vertical rhythm */
+
+.accordion-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.accordion-item:first-child {
+  border-top: 1px solid var(--color-line);
+}
+
+.accordion-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-16);
+  padding: var(--space-20) 0;
+  font-family: var(--font-family-sans);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-primary);
+  cursor: pointer;
+  list-style: none;
+  transition: color 0.25s ease;
+}
+
+.accordion-title:hover {
+  color: var(--color-accent);
+}
+
+.accordion-title::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-icon {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.accordion-icon::before,
+.accordion-icon::after {
+  content: "";
+  position: absolute;
+  background: var(--color-primary);
+  transition: transform 0.3s ease;
+}
+
+.accordion-icon::before {
+  top: 6px;
+  left: 0;
+  width: 14px;
+  height: 1px;
+}
+
+.accordion-icon::after {
+  top: 0;
+  left: 6px;
+  width: 1px;
+  height: 14px;
+}
+
+.accordion-item[open] .accordion-icon::after {
+  transform: rotate(90deg);
+}
+
+.accordion-content {
+  padding: 0 0 var(--space-24);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--color-text-sub);
+}
+
+.accordion-content p + p {
+  margin-top: var(--space-12);
+}
+
+/* Related Products Elevation */
+.product-card .card-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-add-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--space-12) var(--space-16);
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  border: none;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.quick-add-btn:hover {
+  background: var(--color-primary-hover);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover .quick-add-btn {
+    transform: translateY(0);
+  }
+}
+
+/* Touch devices or non-hover: make it visible or handled differently */
+@media (hover: none) {
+  .quick-add-btn {
+    transform: translateY(0);
+    position: static;
+    padding: 12px;
+    font-size: 12px;
+  }
+}
+
+/* Detail page reuses the shared .product-card primitives —
+   no local overrides so Related Products match the rest of the site. */
+.card-price {
+  font-family: var(--font-family-display);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--color-primary);
+  letter-spacing: 0.02em;
+  margin-top: auto;
+}
+
+/* Gift Experience */
+.gift-customizer {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-20);
+}
+
+.gift-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--space-16);
+  border: 1px solid var(--color-line-strong);
+  font-family: var(--font-family-sans);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: var(--color-white);
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+
+.gift-input::placeholder {
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+}
+
+.gift-input:focus {
+  border-color: var(--color-primary);
+}
+
+.gift-preview {
+  width: 100%;
+  min-height: 88px;
+  padding: var(--space-20) var(--space-24);
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gift-preview-text {
+  font-family: var(--font-family-mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  text-shadow: 0 0 1px rgba(26, 36, 33, 0.15);
+}
+
+.gift-customizer .text-link {
+  align-self: center;
+  margin-top: var(--space-4);
+}
+
+/* Sticky Dark Theme */
+.sticky-dark {
+  background: var(--color-primary);
+  border-top: none;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.sticky-dark .sticky-eyebrow,
+.sticky-dark .sticky-price {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sticky-dark .sticky-product {
+  color: var(--color-white);
+}
+
+.sticky-dark .sticky-save {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.sticky-dark .sticky-save:hover {
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-white {
+  background: var(--color-white);
+  color: var(--color-primary);
+  border: 1px solid var(--color-white);
+}
+
+.btn-white:hover {
+  background: var(--color-surface-soft);
+}
+
+/* Responsive Overrides */
+@media (max-width: 1024px) {
+  .detail-hero-container {
+    gap: var(--space-40);
+  }
+  
+  .story-split {
+    grid-template-columns: 1fr;
+    gap: var(--space-32);
+  }
+}
+
+@media (max-width: 767px) {
+  .detail-hero-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .detail-gallery {
+    position: relative;
+    top: 0;
+  }
+  
+  /* Make main image full-bleed on mobile */
+  .detail-image-main {
+    width: 100vw;
+    margin-left: calc(var(--container-padding) * -1);
+  }
+  
+  .detail-info {
+    padding-top: 0;
+  }
+
+  .why-icons {
+    gap: var(--space-24);
+  }
+
+  .comparison-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+  }
+
+  .comparison-vs {
+    top: 50%;
+  }
+}
+
+/* Hover effects */
+@media (hover: hover) and (pointer: fine) {
+  .detail-image-main:hover img {
+    transform: scale(1.05);
+  }
+}

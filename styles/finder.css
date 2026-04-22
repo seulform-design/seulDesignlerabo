@@ -1,0 +1,9 @@
+/* =========================================================
+   LE LABO · finder.css
+   Finder reuses .section.hero / .section.finder / .card.finder-step
+   / .finder-options / .finder-progress / .filter-sort / .why-card
+   / .final — every primitive lives in common.css + index.css.
+   Only the breadcrumb spacing on the Finder page is tuned here.
+   ========================================================= */
+
+/* No finder-specific overrides required — every primitive is shared. */

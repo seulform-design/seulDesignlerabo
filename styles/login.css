@@ -1,0 +1,251 @@
+/* =========================================================
+   LE LABO · login.css
+   Split auth layout — editorial quote on the left, form on the right.
+   ========================================================= */
+
+.login-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  min-height: calc(100vh - var(--header-height));
+}
+
+/* Visual side ------------------------------------------------- */
+.login-visual {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-80);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(160deg, #2c3834 0%, var(--color-primary) 55%, #c98a53 100%);
+  color: var(--color-white);
+}
+
+.login-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.35) 60%,
+    rgba(0, 0, 0, 0.55) 100%);
+  pointer-events: none;
+}
+
+.login-quote {
+  position: relative;
+  z-index: 1;
+}
+
+.quote-text {
+  font-family: var(--font-family-display);
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-style: italic;
+  line-height: 1.2;
+  margin-bottom: var(--space-24);
+}
+
+.quote-author {
+  font-size: var(--font-caption);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.login-visual-tag {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--space-40);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* Form side --------------------------------------------------- */
+.login-main {
+  background: var(--color-bg);
+  padding: var(--space-80);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.login-title {
+  font-family: var(--font-family-display);
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  color: var(--color-primary);
+  margin-bottom: var(--space-8);
+}
+
+.login-subtitle {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-40);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+input[type="email"].login-input,
+input[type="password"].login-input,
+input[type="text"].login-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--space-16);
+  border: 1px solid var(--color-line-strong);
+  background: var(--color-white);
+  font-family: var(--font-family-sans);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+  transition: border-color 0.25s ease;
+}
+
+input[type="email"].login-input:focus,
+input[type="password"].login-input:focus,
+input[type="text"].login-input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.forgot-link {
+  display: block;
+  text-align: right;
+  margin-top: var(--space-8);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  transition: color 0.25s ease;
+}
+
+.forgot-link:hover,
+.forgot-link:focus-visible {
+  color: var(--color-primary);
+}
+
+.login-btn {
+  margin-top: var(--space-24);
+  height: 48px;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+}
+
+/* Divider ----------------------------------------------------- */
+.login-divider {
+  position: relative;
+  margin: var(--space-32) 0;
+  font-size: var(--font-caption);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 42%;
+  height: 1px;
+  background: var(--color-line);
+}
+
+.login-divider::before { left: 0; }
+.login-divider::after  { right: 0; }
+
+/* Social ------------------------------------------------------ */
+.social-btns {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.social-btn {
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-12);
+  background: var(--color-white);
+  border: 1px solid var(--color-line-strong);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary);
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.social-btn:hover,
+.social-btn:focus-visible {
+  border-color: var(--color-primary);
+  background: var(--color-surface-soft);
+}
+
+/* Footer links ------------------------------------------------ */
+.login-footer-links {
+  margin-top: var(--space-40);
+  font-size: 12px;
+  color: var(--color-text-sub);
+  line-height: 1.7;
+}
+
+.login-footer-links a {
+  color: var(--color-accent);
+  margin: 0 var(--space-8);
+  transition: color 0.25s ease;
+}
+
+.login-footer-links a:hover,
+.login-footer-links a:focus-visible {
+  color: var(--color-primary);
+}
+
+.login-guest-divider {
+  margin-top: var(--space-32);
+  font-size: var(--font-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.login-guest-links {
+  margin-top: var(--space-16);
+}
+
+.login-ssl-note {
+  margin-top: var(--space-48);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  opacity: 0.5;
+}
+
+/* Responsive -------------------------------------------------- */
+@media (max-width: 991px) {
+  .login-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .login-visual {
+    display: none;
+  }
+
+  .login-main {
+    padding: var(--space-48) var(--space-32);
+  }
+}

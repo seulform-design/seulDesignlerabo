@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="나만의 향을 찾는 여정 - 르라보 향수 추천 파인더" />
+  <meta name="theme-color" content="#1a2421" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Scent Finder | LE LABO" />
+  <title>Scent Finder - LE LABO · Forest Laboratory</title>
+  <link rel="stylesheet" href="./styles/reset.css" />
+  <link rel="stylesheet" href="./styles/common.css" />
+  <link rel="stylesheet" href="./styles/index.css" />
+  <link rel="stylesheet" href="./styles/finder.css" />
+  <link rel="stylesheet" href="./styles/responsive.css" />
+  <script src="./scripts/layout-system.js" defer></script>
+</head>
+
+<body>
+  <div id="wrap">
+    <a href="#main-content" class="skip-nav">본문 바로가기</a>
+
+    <!-- Header & Announcement Bar injected by layout-system.js -->
+
+    <main id="main-content">
+      <!-- BREADCRUMB -->
+      <nav class="breadcrumb container" aria-label="경로 탐색">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">Scent Finder</li>
+        </ol>
+      </nav>
+
+      <!-- HERO -->
+      <section class="section hero" aria-labelledby="finder-hero-title">
+        <div class="hero-media">
+          <img src="./img/hero-forest.jpg" alt="안개가 낀 숲과 르라보 향수가 놓인 비주얼" fetchpriority="high" decoding="async" />
+        </div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="container">
+          <div class="section-content hero-content">
+            <div class="section-head hero-head">
+              <p class="section-eyebrow hero-eyebrow">The Discovery</p>
+              <h1 id="finder-hero-title" class="hero-title">Find Your Signature Scent</h1>
+              <p class="section-desc hero-desc">
+                향은 선택하는 것이 아니라 당신의 무드에 이끌려 발견되는 것입니다. 네 단계의 질문을 지나면 당신의 향이 완성됩니다.
+              </p>
+            </div>
+            <div class="section-body hero-body">
+              <div class="hero-cta-group">
+                <a href="#finder" class="btn btn-primary">Start the Journey</a>
+                <a href="shop.html" class="btn btn-secondary btn-on-dark">View Collection</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINDER STEPS -->
+      <section class="section finder" id="finder" aria-labelledby="finder-title">
+        <div class="container">
+          <div class="section-content">
+            <div class="section-head section-head-center">
+              <p class="section-eyebrow">Mood & Context</p>
+              <h2 id="finder-title" class="section-title">자유로운 탐색</h2>
+              <p class="section-desc">분위기와 시간대, 당신의 상황에 맞게 정렬하세요</p>
+            </div>
+            <div class="section-body">
+              <div class="finder-wrap" data-state="empty">
+                <div class="finder-progress-wrap">
+                  <div class="finder-progress-head">
+                    <div class="finder-progress" id="finder-progress" aria-live="polite">Step 0 / 4</div>
+                    <div class="finder-progress-hint" id="finder-progress-hint">향 계열을 먼저 선택해주세요.</div>
+                  </div>
+                  <div class="finder-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0">
+                    <span></span>
+                  </div>
+                </div>
+
+                <div class="finder-step-grid">
+                  <article class="card finder-step">
+                    <div class="card-media card-media-note finder-step-media">
+                      <span class="finder-step-index">01</span>
+                      <span class="finder-step-label">SCENT</span>
+                    </div>
+                    <div class="card-body">
+                      <h3 class="card-title">향</h3>
+                      <p class="card-desc">가장 먼저 느끼고 싶은 향의 축을 선택하세요.</p>
+                      <p class="card-meta">Single choice</p>
+                      <div class="card-action finder-options" role="group" aria-label="향 선택">
+                        <button type="button" data-step="scent" data-value="woody" aria-pressed="false">Woody</button>
+                        <button type="button" data-step="scent" data-value="floral" aria-pressed="false">Floral</button>
+                        <button type="button" data-step="scent" data-value="citrus" aria-pressed="false">Citrus</button>
+                        <button type="button" data-step="scent" data-value="smoky" aria-pressed="false">Smoky</button>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="card finder-step">
+                    <div class="card-media card-media-note finder-step-media">
+                      <span class="finder-step-index">02</span>
+                      <span class="finder-step-label">SITUATION</span>
+                    </div>
+                    <div class="card-body">
+                      <h3 class="card-title">상황</h3>
+                      <p class="card-desc">향을 가장 자주 쓰는 상황을 고르세요.</p>
+                      <p class="card-meta">Daily context</p>
+                      <div class="card-action finder-options" role="group" aria-label="상황 선택">
+                        <button type="button" data-step="situation" data-value="daily" aria-pressed="false">Daily</button>
+                        <button type="button" data-step="situation" data-value="office" aria-pressed="false">Office</button>
+                        <button type="button" data-step="situation" data-value="date" aria-pressed="false">Date</button>
+                        <button type="button" data-step="situation" data-value="night" aria-pressed="false">Night</button>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="card finder-step">
+                    <div class="card-media card-media-note finder-step-media">
+                      <span class="finder-step-index">03</span>
+                      <span class="finder-step-label">SEASON</span>
+                    </div>
+                    <div class="card-body">
+                      <h3 class="card-title">계절</h3>
+                      <p class="card-desc">현재 체감 온도에 맞는 계절감을 선택하세요.</p>
+                      <p class="card-meta">Climate fit</p>
+                      <div class="card-action finder-options" role="group" aria-label="계절 선택">
+                        <button type="button" data-step="season" data-value="spring" aria-pressed="false">Spring</button>
+                        <button type="button" data-step="season" data-value="summer" aria-pressed="false">Summer</button>
+                        <button type="button" data-step="season" data-value="fall" aria-pressed="false">Fall</button>
+                        <button type="button" data-step="season" data-value="winter" aria-pressed="false">Winter</button>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="card finder-step">
+                    <div class="card-media card-media-note finder-step-media">
+                      <span class="finder-step-index">04</span>
+                      <span class="finder-step-label">MOOD</span>
+                    </div>
+                    <div class="card-body">
+                      <h3 class="card-title">무드</h3>
+                      <p class="card-desc">오늘 전달하고 싶은 감정 톤을 고르세요.</p>
+                      <p class="card-meta">Personal tone</p>
+                      <div class="card-action finder-options" role="group" aria-label="무드 선택">
+                        <button type="button" data-step="mood" data-value="warm" aria-pressed="false">Warm</button>
+                        <button type="button" data-step="mood" data-value="fresh" aria-pressed="false">Fresh</button>
+                        <button type="button" data-step="mood" data-value="calm" aria-pressed="false">Calm</button>
+                        <button type="button" data-step="mood" data-value="deep" aria-pressed="false">Deep</button>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="finder-result">
+                  <div class="finder-state is-empty" data-ui="empty">
+                    <div class="state-alert" role="alert">
+                      <span class="state-alert-icon" aria-hidden="true">!</span>
+                      <div class="state-alert-body">
+                        <span class="state-alert-label">GUIDANCE</span>
+                        <p class="state-message">선택이 아직 없습니다. 4개 단계를 선택하면 추천을 생성합니다.</p>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-action="focus-first">첫 단계부터 시작</button>
+                  </div>
+                </div>
+
+                <div class="finder-control-row">
+                  <button type="button" class="btn btn-primary" id="recommend-btn">Get Recommendation</button>
+                  <button type="button" class="btn btn-secondary" id="reset-btn">Reset</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DENSITY FILTER -->
+      <section class="section filter-sort" aria-labelledby="density-title">
+        <div class="container">
+          <div class="section-content">
+            <div class="section-head section-head-center">
+              <p class="section-eyebrow">Scent Character</p>
+              <h2 id="density-title" class="section-title">취향의 밀도</h2>
+              <p class="section-desc">피부에 남는 잔향의 밀도로 범위를 좁히세요</p>
+            </div>
+            <div class="section-body">
+              <div class="filter-toolbar" role="status" aria-live="polite">
+                <span class="filter-count">DENSITY<strong>0 / 5</strong></span>
+                <button type="button" class="filter-reset" aria-label="밀도 필터 초기화">Reset Density</button>
+              </div>
+              <div class="filter-sort-wrap">
+                <section class="filter-group" aria-labelledby="filter-density-title">
+                  <strong class="filter-label" id="filter-density-title">Density</strong>
+                  <div class="filter-chip-list">
+                    <button type="button" class="chip" data-filter-step="density" data-filter-value="light">Light</button>
+                    <button type="button" class="chip" data-filter-step="density" data-filter-value="soft">Soft</button>
+                    <button type="button" class="chip" data-filter-step="density" data-filter-value="balanced">Balanced</button>
+                    <button type="button" class="chip" data-filter-step="density" data-filter-value="deep">Deep</button>
+                    <button type="button" class="chip" data-filter-step="density" data-filter-value="intense">Intense</button>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULT PREVIEW -->
+      <section class="section why-this" aria-labelledby="finder-result-title">
+        <div class="container">
+          <div class="section-content">
+            <div class="section-head section-head-center">
+              <p class="section-eyebrow">The Match</p>
+              <h2 id="finder-result-title" class="section-title">당신을 위한 오직 하나의 향</h2>
+              <p class="section-desc">데이터가 분석한 최적의 향</p>
+            </div>
+            <div class="section-body">
+              <div class="card-grid card-grid-3" id="finder-why-grid">
+                <article class="card why-card">
+                  <div class="card-media card-media-note">
+                    <span class="why-index">REASON 01</span>
+                    <span class="why-tag">NOTE FIT</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-title">Scent Note Fit</h3>
+                    <p class="card-desc">노트 선택 전에는 향 노트 근거가 표시되지 않습니다.</p>
+                    <p class="card-meta">Top · Middle · Base</p>
+                  </div>
+                </article>
+                <article class="card why-card">
+                  <div class="card-media card-media-note">
+                    <span class="why-index">REASON 02</span>
+                    <span class="why-tag">USAGE</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-title">Usage Context</h3>
+                    <p class="card-desc">상황 선택 후 사용 시간대 근거가 표시됩니다.</p>
+                    <p class="card-meta">Day · Night Logic</p>
+                  </div>
+                </article>
+                <article class="card why-card">
+                  <div class="card-media card-media-note">
+                    <span class="why-index">REASON 03</span>
+                    <span class="why-tag">BATCH</span>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-title">Batch Character</h3>
+                    <p class="card-desc">계절과 무드 선택 시 배치 느낌 설명이 갱신됩니다.</p>
+                    <p class="card-meta">Small Batch Profile</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section final" aria-labelledby="finder-final-title">
+        <div class="container">
+          <div class="section-content section-content-narrow">
+            <div class="section-head section-head-center">
+              <p class="section-eyebrow">Claim Your Scent</p>
+              <h2 id="finder-final-title" class="section-title">당신의 향을 정의하세요</h2>
+              <p class="section-desc">선택이 끝났다면 지금 바로 르라보 컬렉션으로 이동하세요</p>
+            </div>
+            <div class="section-body final-body">
+              <div class="final-cta-group">
+                <a href="shop.html" class="btn btn-primary">View Collection</a>
+                <a href="detail.html" class="btn btn-ghost">View Santal 33</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer injected by layout-system.js -->
+  </div>
+</body>
+
+</html>

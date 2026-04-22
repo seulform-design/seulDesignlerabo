@@ -1,0 +1,11 @@
+/* =========================================================
+   LE LABO · gift.css
+   The Gift page reuses .page-header, .section.gift,
+   .pillar-card, .product-card, .gift-body, .gift-grid,
+   .gift-card, .gift-form, .gift-preview (all shared).
+   Only the B2B corporate row needs a small utility.
+   ========================================================= */
+
+.bg-soft {
+  background: var(--color-surface-soft);
+}

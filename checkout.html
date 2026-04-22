@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="르라보 결제 - 안전하고 빠른 주문 프로세스" />
+  <title>Checkout | LE LABO · Forest Laboratory</title>
+  <link rel="stylesheet" href="./styles/reset.css" />
+  <link rel="stylesheet" href="./styles/common.css" />
+  <link rel="stylesheet" href="./styles/index.css" />
+  <link rel="stylesheet" href="./styles/checkout.css" />
+  <link rel="stylesheet" href="./styles/responsive.css" />
+  <script src="./scripts/layout-system.js" defer></script>
+</head>
+
+<body>
+  <div id="wrap">
+    <a href="#main-content" class="skip-nav">본문 바로가기</a>
+
+    <!-- Header & Announcement Bar injected by layout-system.js -->
+
+    <main id="main-content">
+      <!-- PAGE HEADER -->
+      <header class="page-header">
+        <div class="container">
+          <p class="section-eyebrow">Checkout Phase 02</p>
+          <h1 class="page-title">Transaction Details</h1>
+          <div class="checkout-steps">
+            <div class="step"><span class="step-num">01</span> Cart</div>
+            <div class="step is-active"><span class="step-num">02</span> Shipping & Information</div>
+            <div class="step"><span class="step-num">03</span> Payment</div>
+            <div class="step"><span class="step-num">04</span> Confirmation</div>
+          </div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="checkout-layout">
+          <div class="checkout-main">
+            <!-- EXPRESS CHECKOUT -->
+            <div class="express-checkout">
+              <p class="express-title">Fast Lane Checkout</p>
+              <div class="express-btns">
+                <button type="button" class="btn btn-secondary btn-pay-kakao">KakaoPay</button>
+                <button type="button" class="btn btn-secondary btn-pay-apple">Apple Pay</button>
+                <button type="button" class="btn btn-secondary">Naver Pay</button>
+              </div>
+            </div>
+
+            <div class="checkout-divider">
+              <span>OR CONTINUE WITH MANUAL DETAILS</span>
+            </div>
+
+            <form action="order-complete.html" class="checkout-form">
+              <!-- CONTACT -->
+              <section class="checkout-section">
+                <h2 class="checkout-section-title">01. Contact Information</h2>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="input-label" for="checkout-email">Email Address</label>
+                    <input type="email" id="checkout-email" placeholder="email@example.com" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="input-label" for="checkout-phone">Mobile Number</label>
+                    <input type="tel" id="checkout-phone" placeholder="010-0000-0000" required />
+                  </div>
+                </div>
+              </section>
+
+              <!-- SHIPPING -->
+              <section class="checkout-section">
+                <h2 class="checkout-section-title">02. Shipping Destination</h2>
+                <div class="form-group">
+                  <label class="input-label" for="ship-name">Receiver Full Name</label>
+                  <input type="text" id="ship-name" required />
+                </div>
+                <div class="form-group">
+                  <label class="input-label" for="ship-addr">Street Address</label>
+                  <input type="text" id="ship-addr" required />
+                </div>
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label class="input-label" for="ship-city">City / District</label>
+                    <input type="text" id="ship-city" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="input-label" for="ship-zip">Postal Code</label>
+                    <input type="text" id="ship-zip" required />
+                  </div>
+                </div>
+              </section>
+
+              <!-- PAYMENT -->
+              <section class="checkout-section">
+                <h2 class="checkout-section-title">03. Secure Payment</h2>
+                <div class="form-group">
+                  <label class="input-label" for="card-num">Card Number</label>
+                  <input type="text" id="card-num" placeholder="0000 0000 0000 0000" required />
+                </div>
+                <div class="grid-2">
+                  <div class="form-group">
+                    <label class="input-label" for="card-date">Expiry (MM/YY)</label>
+                    <input type="text" id="card-date" placeholder="MM / YY" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="input-label" for="card-cvv">CVV</label>
+                    <input type="text" id="card-cvv" placeholder="123" required />
+                  </div>
+                </div>
+              </section>
+
+              <button type="submit" class="btn btn-primary checkout-submit-btn">Authorize Payment · ₩ 457,600</button>
+            </form>
+          </div>
+
+          <!-- SIDEBAR -->
+          <aside class="checkout-sidebar">
+            <h2 class="summary-title">Selection Review</h2>
+            <div class="checkout-items">
+              <div class="checkout-item">
+                <div class="checkout-item-main">
+                  <span class="checkout-item-name">Bergamot 22</span>
+                  <span class="checkout-item-meta">50ml · Qty 1</span>
+                </div>
+                <span class="checkout-item-price">₩ 198,000</span>
+              </div>
+              <div class="checkout-item">
+                <div class="checkout-item-main">
+                  <span class="checkout-item-name">Cedar 11</span>
+                  <span class="checkout-item-meta">50ml · Qty 1</span>
+                </div>
+                <span class="checkout-item-price">₩ 218,000</span>
+              </div>
+            </div>
+            
+            <div class="checkout-summary-calc">
+              <div class="summary-row">
+                <span>Subtotal</span>
+                <span>₩ 416,000</span>
+              </div>
+              <div class="summary-row">
+                <span>Shipping</span>
+                <span class="accent">Complimentary</span>
+              </div>
+              <div class="summary-row">
+                <span>VAT (10%)</span>
+                <span>₩ 41,600</span>
+              </div>
+              <div class="checkout-total-row">
+                <span>TOTAL</span>
+                <span>₩ 457,600</span>
+              </div>
+            </div>
+
+            <div class="checkout-trust">
+              <p>Your transaction is encrypted with 256-bit SSL technology. By placing this order, you agree to our Terms of Service.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer injected by layout-system.js -->
+  </div>
+  <script src="./scripts/global.js"></script>
+</body>
+</html>

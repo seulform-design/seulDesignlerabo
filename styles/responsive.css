@@ -1,58 +1,419 @@
-@media (max-width: 1024px) {
+/* =========================================================
+   LE LABO · responsive.css (Media Queries - REBUILT)
+   ========================================================= */
+
+/* Tablet: 768px ~ 1279px */
+@media (max-width: 1279px) {
   :root {
-    --container-padding: 24px;
-    --section-padding: 96px;
-    --font-hero: 36px;
-    --font-section: 28px;
-    --font-sub: 18px;
+    --container-padding: 32px;
+    --section-padding: 100px;
+    --section-gap: 32px;
+    --section-head-gap: 48px;
   }
 
-  .mega-menu-content,
+  /* 8 columns equivalent logic for Tablet (4-card grids become 2-col) */
   .card-grid-4,
-  .finder-step-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .finder-step-grid,
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-  .card-grid-3,
-  .finder-result-list,
-  .filter-sort-wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mega-menu-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-@media (max-width: 768px) {
+/* Tablet Portrait: 1024px and below */
+@media (max-width: 1024px) {
+
+  /* 3-card grids drop to 1 column from 1024px to avoid orphaned cards */
+  .card-grid-3,
+  .pillar-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1279px) {
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-20);
+  }
+
+  .gnb-list {
+    display: none;
+  }
+
+  .mega-primary {
+    display: flex;
+  }
+
+  /* Hero: Stack tighter on Tablet */
+  .hero-content {
+    gap: var(--space-48);
+    padding: var(--space-64) 0 var(--space-80);
+  }
+
+  .hero-head {
+    gap: 16px;
+  }
+
+  .process-grid>li+li::before {
+    display: none;
+  }
+
+  .comparison-vs {
+    width: 48px;
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: var(--space-48);
+  }
+
+  .footer-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-32);
+  }
+
+  .footer-col-news {
+    grid-column: span 2;
+  }
+}
+
+/* Mobile: 320px ~ 767px */
+@media (max-width: 767px) {
   :root {
     --container-padding: 20px;
     --section-padding: 80px;
-    --font-hero: 32px;
-    --font-section: 28px;
-    --font-body: 14px;
+    --section-gap: 24px;
+    --section-head-gap: 40px;
+    --grid-gap: 16px;
+    --card-padding: 20px;
   }
 
-  .header-content {
-    min-height: 0;
-    padding: 14px 0;
+  /* 4 columns equivalent -> 1 column full stack */
+  .card-grid-4,
+  .card-grid-3,
+  .card-grid-2,
+  .finder-step-grid,
+  .pillar-grid,
+  .process-grid,
+  .gift-grid,
+  .comparison-grid {
+    grid-template-columns: 1fr;
+    display: grid;
     flex-wrap: wrap;
-    justify-content: center;
+    overflow-x: visible;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Reset any residual scroll-snap from legacy config */
+  .card-grid-4>.card,
+  .card-grid-3>.card,
+  .finder-step-grid>.card,
+  .pillar-grid>li,
+  .process-grid>li {
+    flex: none;
+    scroll-snap-align: none;
+    width: 100%;
+  }
+
+  .announcement-bar {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+  }
+
+  .announcement-content {
+    min-height: 28px;
+    padding: var(--space-4) var(--space-32);
+  }
+
+  .announcement-close {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+
+  .header-actions {
     gap: var(--space-12);
   }
 
-  .gnb-list { flex-wrap: wrap; justify-content: center; gap: var(--space-12) var(--space-16); }
-  .mega-menu { display: none !important; }
+  .mega-primary-list a {
+    font-size: 24px;
+  }
 
-  .hero, .hero-content { min-height: 82vh; }
-  .hero-cta-group { flex-direction: column; align-items: flex-start; }
+  .hero {
+    min-height: calc(100vh - var(--header-height) - var(--announcement-height));
+  }
 
-  .card-grid-2,
-  .card-grid-3,
-  .card-grid-4,
-  .finder-step-grid,
-  .finder-result-list,
-  .filter-sort-wrap { grid-template-columns: 1fr; }
+  .hero-content {
+    gap: var(--space-40);
+    padding: var(--space-48) 0 var(--space-64);
+  }
 
-  .finder-control-row { flex-direction: column; }
-  .gift-form { flex-direction: column; }
+  .hero-head {
+    gap: 14px;
+    max-width: 100%;
+  }
 
-  .sticky-content {
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    gap: var(--space-16);
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+
+  /* Comparison VS Stacked centering */
+  .comparison-vs {
+    top: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 13px;
+  }
+
+  /* Footer */
+  .footer-nav {
+    grid-template-columns: 1fr;
+    gap: var(--space-32);
+  }
+
+  .footer-col-news {
+    grid-column: span 1;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-16);
+  }
+
+  .footer-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-16);
+    width: 100%;
+  }
+
+  .footer-legal {
+    flex-wrap: wrap;
+    gap: var(--space-16);
+  }
+
+  .final-trust {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-12);
+  }
+
+  .mega-menu-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-32);
+    padding: var(--space-24) 0;
+  }
+
+  .filter-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-12);
+    width: 100%;
+  }
+
+  .filter-chip-list {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .filter-chip-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gift-form {
     flex-direction: column;
     align-items: stretch;
-    padding: 12px var(--container-padding);
   }
-  .sticky-button { width: 100%; }
+
+  .gift-form .btn {
+    width: 100%;
+  }
+
+  /* Prevent iOS Safari Auto-Zoom */
+  input[type="text"],
+  input[type="email"] {
+    font-size: 16px;
+  }
+
+  /* Sticky Actions */
+  .sticky {
+    background: rgba(245, 243, 239, 0.85);
+    /* Use botanical bg color for glass */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .sticky-content {
+    padding: 12px var(--container-padding) calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .sticky-eyebrow,
+  .sticky-save {
+    display: none;
+  }
+
+  .sticky-product {
+    font-size: 15px;
+  }
+
+  .sticky-button {
+    min-height: 44px;
+    /* a11y min size */
+    padding: 0 16px;
+    font-size: 12px;
+  }
+
+  .filter-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-12);
+  }
+
+  .finder-progress-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .finder-state {
+    padding: var(--space-32) var(--space-20);
+  }
+
+  .finder-result-list {
+    grid-template-columns: 1fr;
+  }
+
+  .finder-control-row {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .finder-control-row .btn {
+    width: 100%;
+  }
+
+  .summary-progress {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .final-cta-group {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .final-cta-group .btn {
+    width: 100%;
+  }
+
+  /* Cart & Checkout Layout */
+  .checkout-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-48);
+  }
+
+  .cart-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-48);
+  }
+
+  .cart-summary,
+  .checkout-sidebar {
+    width: 100%;
+    position: static;
+  }
+
+  /* Journal & Ingredient Grid */
+  .journal-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-48);
+  }
+
+  .journal-item.large {
+    grid-column: auto;
+  }
+
+  .ing-item {
+    grid-template-columns: 1fr;
+    gap: var(--space-32);
+  }
+
+  .ing-item:nth-child(even) .ing-media {
+    order: 1;
+  }
+
+  .ing-item:nth-child(even) .ing-text {
+    order: 2;
+  }
+
+  .ing-metadata {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+  }
+
+  /* Page Header Mobile */
+  .page-header {
+    padding: var(--space-24) 0 var(--space-24);
+    text-align: center;
+  }
+
+  .page-header .section-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Form Grid Mobile */
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Buttons on Mobile */
+  .btn {
+    width: 100%;
+  }
+}
+
+/* Hover Constraints (Desktop only) */
+@media (hover: none) or (pointer: coarse) {
+  .card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--color-line);
+  }
+
+  .card:hover .card-media img {
+    transform: none;
+  }
+
+  .text-link:hover::after {
+    transform: none;
+  }
 }

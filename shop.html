@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="르라보 향수 컬렉션 - 숲속 연구소 상품 목록페이지" />
+  <meta name="theme-color" content="#1a2421" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Fragrance | LE LABO" />
+  <title>Fragrance - LE LABO · Forest Laboratory</title>
+  <link rel="stylesheet" href="./styles/reset.css" />
+  <link rel="stylesheet" href="./styles/common.css" />
+  <link rel="stylesheet" href="./styles/index.css" />
+  <link rel="stylesheet" href="./styles/shop.css" />
+  <link rel="stylesheet" href="./styles/responsive.css" />
+  <script src="./scripts/layout-system.js" defer></script>
+</head>
+
+<body>
+  <div id="wrap">
+    <a href="#main-content" class="skip-nav">본문 바로가기</a>
+
+    <!-- Header & Announcement Bar injected by layout-system.js -->
+
+    <main id="main-content">
+      <!-- BREADCRUMB -->
+      <nav class="breadcrumb container" aria-label="경로 탐색">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li aria-current="page">Fragrance</li>
+        </ol>
+      </nav>
+
+      <!-- PAGE HEADER -->
+      <header class="page-header">
+        <div class="container">
+          <p class="section-eyebrow">Discover Our Collection</p>
+          <h1 class="page-title">Fragrance</h1>
+          <p class="section-desc">연구소에서 숙성된 고유의 향. 당신의 일상에 스며들 가장 완벽한 노트를 발견하세요.</p>
+        </div>
+      </header>
+
+      <!-- FILTER + PRODUCT GRID (single narrative — one section head) -->
+      <section class="section trending" aria-labelledby="shop-grid-title">
+        <div class="container">
+          <div class="section-content">
+            <div class="section-head">
+              <p class="section-eyebrow">Collection</p>
+              <h2 id="shop-grid-title" class="section-title">전체 컬렉션</h2>
+              <p class="section-desc"><span id="shop-count">12</span>개의 향이 당신을 기다리고 있습니다</p>
+            </div>
+            <div class="section-body">
+              <!-- Filter toolbar — minimal, inline with the collection -->
+              <div class="filter-toolbar" role="status" aria-live="polite">
+                <span class="filter-count">ACTIVE FILTERS<strong id="shop-filter-count">0</strong></span>
+                <button type="button" class="filter-reset" id="shop-filter-reset" aria-label="모든 필터 초기화">Reset All</button>
+              </div>
+              <div class="filter-sort-wrap">
+                <section class="filter-group" aria-labelledby="filter-shop-scent">
+                  <strong class="filter-label" id="filter-shop-scent">Scent</strong>
+                  <div class="filter-chip-list">
+                    <button type="button" class="chip" aria-pressed="true">All</button>
+                    <button type="button" class="chip" data-filter-value="woody" aria-pressed="false">Woody</button>
+                    <button type="button" class="chip" data-filter-value="floral" aria-pressed="false">Floral</button>
+                    <button type="button" class="chip" data-filter-value="citrus" aria-pressed="false">Citrus</button>
+                    <button type="button" class="chip" data-filter-value="smoky" aria-pressed="false">Smoky</button>
+                  </div>
+                </section>
+                <section class="filter-group" aria-labelledby="filter-shop-situation">
+                  <strong class="filter-label" id="filter-shop-situation">Situation</strong>
+                  <div class="filter-chip-list">
+                    <button type="button" class="chip" aria-pressed="false">Daily</button>
+                    <button type="button" class="chip" aria-pressed="false">Office</button>
+                    <button type="button" class="chip" aria-pressed="false">Date</button>
+                    <button type="button" class="chip" aria-pressed="false">Night</button>
+                  </div>
+                </section>
+                <section class="filter-group" aria-labelledby="filter-shop-sort">
+                  <strong class="filter-label" id="filter-shop-sort">Sort</strong>
+                  <div class="filter-chip-list">
+                    <button type="button" class="chip" aria-pressed="true">Featured</button>
+                    <button type="button" class="chip" aria-pressed="false">Best Sellers</button>
+                    <button type="button" class="chip" aria-pressed="false">Newest</button>
+                  </div>
+                </section>
+              </div>
+
+              <div class="card-grid card-grid-4">
+                <article class="card product-card trending-card" data-scent="citrus">
+                  <a href="detail.html" class="card-link" aria-label="Bergamote 22 상세 보기">
+                    <div class="card-media">
+                      <span class="card-rank" aria-label="베스트셀러">BEST</span>
+                      <img src="./img/hero-forest.jpg" alt="Bergamote 22 제품 이미지" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="card-body">
+                      <div class="product-head">
+                        <h3 class="card-title">Bergamote 22</h3>
+                        <span class="product-price">₩305,000</span>
+                      </div>
+                      <p class="card-desc">Citrus · Bright</p>
+                      <p class="card-meta">Batch 22B · ★ 4.6 · 982 reviews</p>
+                      <div class="card-action">
+                        <button type="button" class="btn btn-secondary">Buy Now</button>
+                      </div>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="card product-card trending-card" data-scent="floral">
+                  <a href="detail.html" class="card-link" aria-label="Rose 31 상세 보기">
+                    <div class="card-media">
+                      <img src="./img/process-blend.jpg" alt="Rose 31 제품 이미지" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="card-body">
+                      <div class="product-head">
+                        <h3 class="card-title">Rose 31</h3>
+                        <span class="product-price">₩305,000</span>
+                      </div>
+                      <p class="card-desc">Floral · Green</p>
+                      <p class="card-meta">Batch 31R · ★ 4.8 · 982 reviews</p>
+                      <div class="card-action">
+                        <button type="button" class="btn btn-secondary">Buy Now</button>
+                      </div>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="card product-card trending-card" data-scent="woody">
+                  <a href="detail.html" class="card-link" aria-label="Vetiver 46 상세 보기">
+                    <div class="card-media">
+                      <img src="./img/hero-forest.jpg" alt="Vetiver 46 제품 이미지" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="card-body">
+                      <div class="product-head">
+                        <h3 class="card-title">Vetiver 46</h3>
+                        <span class="product-price">₩320,000</span>
+                      </div>
+                      <p class="card-desc">Woody · Earthy</p>
+                      <p class="card-meta">Batch 46V · ★ 4.5 · 743 reviews</p>
+                      <div class="card-action">
+                        <button type="button" class="btn btn-secondary">Buy Now</button>
+                      </div>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="card product-card trending-card" data-scent="woody">
+                  <a href="detail.html" class="card-link" aria-label="Cedar 11 상세 보기">
+                    <div class="card-media">
+                      <span class="card-rank" aria-label="베스트셀러">BEST</span>
+                      <img src="./img/curated-woody.jpg" alt="Cedar 11 제품 이미지" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="card-body">
+                      <div class="product-head">
+                        <h3 class="card-title">Cedar 11</h3>
+                        <span class="product-price">₩320,000</span>
+                      </div>
+                      <p class="card-desc">Woody · Warm</p>
+                      <p class="card-meta">Batch 11C · ★ 4.7 · 1,284 reviews</p>
+                      <div class="card-action">
+                        <button type="button" class="btn btn-secondary">Buy Now</button>
+                      </div>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="card product-card trending-card" data-scent="floral">
+                  <a href="detail.html" class="card-link" aria-label="Iris 39 상세 보기">
+                    <div class="card-media">
+                      <span class="card-rank" aria-label="신상품">NEW</span>
+                      <img src="./img/process-harvest.jpg" alt="Iris 39 제품 이미지" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="card-body">
+                      <div class="product-head">
+                        <h3 class="card-title">Iris 39</h3>
+                        <span class="product-price">₩340,000</span>
+                      </div>
+                      <p class="card-desc">Powdery · Soft</p>
+                      <p class="card-meta">Batch 39I · ★ 4.4 · 421 reviews</p>
+                      <div class="card-action">
+                        <button type="button" class="btn btn-secondary">Buy Now</button>
+                      </div>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="card product-card trending-card" data-scent="woody">
+                  <a href="detail.html" class="card-link" aria-label="Pine 22 상세 보기">
+                    <div class="card-media">
+                      <img src="./img/curated-citrus.jpg" alt="Pine 22 제품 이미지" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="card-body">
+                      <div class="product-head">
+                        <h3 class="card-title">Pine 22</h3>
+                        <span class="product-price">₩295,000</span>
+                      </div>
+                      <p class="card-desc">Woody · Resinous</p>
+                      <p class="card-meta">Batch 22P · ★ 4.3 · 308 reviews</p>
+                      <div class="card-action">
+                        <button type="button" class="btn btn-secondary">Buy Now</button>
+                      </div>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="card product-card trending-card" data-scent="citrus">
+                  <a href="detail.html" class="card-link" aria-label="Sage 17 상세 보기">
+                    <div class="card-media">
+                      <img src="./img/hero-forest.jpg" alt="Sage 17 제품 이미지" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="card-body">
+                      <div class="product-head">
+                        <h3 class="card-title">Sage 17</h3>
+                        <span class="product-price">₩295,000</span>
+                      </div>
+                      <p class="card-desc">Herbal · Fresh</p>
+                      <p class="card-meta">Batch 17S · ★ 4.2 · 267 reviews</p>
+                      <div class="card-action">
+                        <button type="button" class="btn btn-secondary">Buy Now</button>
+                      </div>
+                    </div>
+                  </a>
+                </article>
+
+                <article class="card product-card trending-card" data-scent="smoky">
+                  <a href="detail.html" class="card-link" aria-label="Tonka 04 상세 보기">
+                    <div class="card-media">
+                      <img src="./img/process-blend.jpg" alt="Tonka 04 제품 이미지" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="card-body">
+                      <div class="product-head">
+                        <h3 class="card-title">Tonka 04</h3>
+                        <span class="product-price">₩335,000</span>
+                      </div>
+                      <p class="card-desc">Gourmand · Sweet</p>
+                      <p class="card-meta">Batch 04T · ★ 4.5 · 612 reviews</p>
+                      <div class="card-action">
+                        <button type="button" class="btn btn-secondary">Buy Now</button>
+                      </div>
+                    </div>
+                  </a>
+                </article>
+              </div>
+
+              <div class="shop-load-more">
+                <button type="button" class="btn btn-secondary">Load More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CROSS CATEGORY CTA -->
+      <section class="section cross-category" aria-labelledby="shop-cross-title">
+        <div class="container">
+          <div class="section-content">
+            <div class="section-head">
+              <p class="section-eyebrow">Cross Category</p>
+              <h2 id="shop-cross-title" class="section-title">경험의 확장</h2>
+              <p class="section-desc">피부를 넘어 공간으로 향의 범위를 넓히세요</p>
+            </div>
+            <div class="section-body">
+              <div class="card-grid card-grid-3">
+                <article class="card product-card cross-card">
+                  <div class="card-media">
+                    <span class="cross-category-tag">BODY</span>
+                    <img src="./img/process-blend.jpg" alt="바디 로션 제품 이미지" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="card-body">
+                    <div class="product-head">
+                      <h3 class="card-title">Body Lotion</h3>
+                      <span class="product-price">₩85,000</span>
+                    </div>
+                    <p class="card-desc">같은 향을 바디 케어로 확장</p>
+                    <p class="card-meta">Body Care · Pre-layering</p>
+                    <div class="card-action">
+                      <button type="button" class="btn btn-secondary">Shop Body</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="card product-card cross-card">
+                  <div class="card-media">
+                    <span class="cross-category-tag">HOME</span>
+                    <img src="./img/curated-woody.jpg" alt="홈 프래그런스 제품 이미지" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="card-body">
+                    <div class="product-head">
+                      <h3 class="card-title">Home Fragrance</h3>
+                      <span class="product-price">₩120,000</span>
+                    </div>
+                    <p class="card-desc">공간 전체를 향으로 완성</p>
+                    <p class="card-meta">Home · 20m² Coverage</p>
+                    <div class="card-action">
+                      <button type="button" class="btn btn-secondary">Shop Home</button>
+                    </div>
+                  </div>
+                </article>
+                <article class="card product-card cross-card">
+                  <div class="card-media">
+                    <span class="cross-category-tag">TRAVEL</span>
+                    <img src="./img/curated-citrus.jpg" alt="트래블 사이즈 제품 이미지" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="card-body">
+                    <div class="product-head">
+                      <h3 class="card-title">Travel Size</h3>
+                      <span class="product-price">₩65,000</span>
+                    </div>
+                    <p class="card-desc">언제 어디서든 같은 향 유지</p>
+                    <p class="card-meta">Travel · 10ml Portable</p>
+                    <div class="card-action">
+                      <button type="button" class="btn btn-secondary">Shop Travel</button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer injected by layout-system.js -->
+
+    <!-- COMPARE TRAY -->
+    <div class="compare-tray" id="compare-tray">
+      <div class="container">
+        <div class="compare-tray-content">
+          <p class="compare-hint">Compare Tray · 최대 3개까지 비교 가능</p>
+          <ul class="compare-slots">
+            <li class="slot is-filled">Santal 33 <button type="button" class="slot-remove" aria-label="Santal 33 제거">✕</button></li>
+            <li class="slot is-filled">Rose 31 <button type="button" class="slot-remove" aria-label="Rose 31 제거">✕</button></li>
+            <li class="slot">Slot 3</li>
+          </ul>
+          <div class="compare-actions">
+            <button type="button" class="text-link" id="clear-compare">Clear all</button>
+            <button type="button" class="btn btn-on-primary">Open Compare</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./scripts/global.js"></script>
+  <script src="./scripts/shop.js"></script>
+</body>
+
+</html>
