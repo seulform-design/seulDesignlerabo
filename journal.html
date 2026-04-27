@@ -4,15 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="르라보 저널 - 향과 사람, 그리고 연구소의 기록들">
+  <meta name="description" content="르라보 저널 - 향과 사람, 그리고 연구소의 기록. 원료·조향·착용 맥락을 한 페이지에서 읽는 에디토리얼 아카이브.">
+  <meta name="keywords" content="LE LABO Journal, 향 에디토리얼, 원료 스토리, 조향 기록, 연구소 기록">
   <meta name="theme-color" content="#1a2421">
   <meta name="format-detection" content="telephone=no">
+  <meta name="author" content="LE LABO Forest Laboratory">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Journal | LE LABO">
+  <meta property="og:site_name" content="LE LABO">
+  <meta property="og:title" content="Journal · LE LABO Editorial Archive">
+  <meta property="og:description" content="원료와 사람, 향기에 얽힌 깊은 서사를 기록하는 르라보 저널.">
+  <meta property="og:image" content="./images/common/story.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <title>Journal - LE LABO · Forest Laboratory</title>
   <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/common.css">
   <link rel="stylesheet" href="./styles/index.css">
+  <link rel="stylesheet" href="./styles/journal.css">
   <link rel="stylesheet" href="./styles/responsive.css">
   <script src="./scripts/layout-system.js" defer></script>
 </head>
@@ -20,59 +27,182 @@
 <body class="page-journal">
   <div id="wrap">
     <a href="#main-content" class="skip-nav">본문 바로가기</a>
-    <!-- Header & Announcement Bar injected by layout-system.js -->
+    <!--==================================== Header & Announcement Bar injected by layout-system.js =========================== -->
     <main id="main-content">
-      <!-- BREADCRUMB -->
+      <!-- ================================== BREADCRUMB =================================================================== -->
       <nav class="breadcrumb container" aria-label="경로 탐색">
         <ol>
           <li><a href="index.html">Home</a></li>
           <li aria-current="page">Journal</li>
         </ol>
       </nav>
-      <!-- PAGE HEADER -->
-      <header class="page-header">
+      <!-- ================================ PAGE HEADER ================================================================= -->
+      <header class="page-header journal-page-header">
         <div class="container">
-          <p class="section-eyebrow">The JOURNAL</p>
+          <p class="section-eyebrow">The JOURNAL · VOL. 42</p>
           <h1 class="page-title">조향의 기록</h1>
-          <p class="section-desc">원료와 사람, 향기에 얽힌 깊은 서사를 기록합니다</p>
+          <p class="section-desc">원료 데이터, 조향 철학, 착용 맥락까지 한 페이지에서 읽는 르라보 에디토리얼 아카이브.</p>
+          <ul class="journal-header-meta" aria-label="저널 발행 정보">
+            <li><strong>Issue</strong> · 2026 Spring</li>
+            <li><strong>매월 1일</strong> 신규 발행 · 매주 화요일 아카이브 업데이트</li>
+            <li><strong>누적 아카이브</strong> · 6 토픽 기반 분류</li>
+            <li><strong>By</strong> Le Labo Editorial Team</li>
+          </ul>
+          <nav class="journal-topic-nav" aria-label="저널 토픽 바로가기">
+            <a href="#section-snapshot" class="chip">Snapshot</a>
+            <a href="#journal-filter-title" class="chip">Filter</a>
+            <a href="#journal-featured-title" class="chip">Featured</a>
+            <a href="#section-archive" class="chip">Archive</a>
+            <a href="#section-reading-path" class="chip">Reading Path</a>
+            <a href="#editor-note-title" class="chip">Editor's Note</a>
+            <a href="#journal-cta-title" class="chip">Subscribe</a>
+          </nav>
         </div>
       </header>
-      <!-- FEATURED ARTICLE -->
+      <!-- ================================== JOURNAL SNAPSHOT ================================================= -->
+      <section class="section journal journal-snapshot" id="section-snapshot" aria-labelledby="journal-snapshot-title">
+        <div class="container">
+          <div class="section-content">
+            <div class="section-head section-head-center">
+              <p class="section-eyebrow">Editorial Snapshot</p>
+              <h2 id="journal-snapshot-title" class="section-title">이번 시즌 에디토리얼 지표</h2>
+              <p class="section-desc">읽을거리 나열이 아닌, 현재 아카이브의 핵심 흐름을 먼저 제시합니다.</p>
+            </div>
+            <div class="section-body">
+              <dl class="card-grid card-grid-4 journal-kpi-grid" aria-label="에디토리얼 핵심 지표">
+                <div class="card journal-kpi-card" data-trend="up">
+                  <div class="card-body">
+                    <dt class="journal-kpi-label">New Stories</dt>
+                    <dd class="journal-kpi-value" aria-label="12편, 전월 대비 3편 증가">12<span class="journal-kpi-unit">편</span></dd>
+                    <p class="journal-kpi-delta is-up" aria-hidden="true">▲ +3 vs 지난달</p>
+                    <p class="card-meta">최근 30일 신규 발행</p>
+                  </div>
+                </div>
+                <div class="card journal-kpi-card" data-trend="flat">
+                  <div class="card-body">
+                    <dt class="journal-kpi-label">Avg Read Time</dt>
+                    <dd class="journal-kpi-value" aria-label="5.6분, 목표 구간 내 유지">5.6<span class="journal-kpi-unit">min</span></dd>
+                    <p class="journal-kpi-delta is-flat" aria-hidden="true">— 목표 5–7분 구간</p>
+                    <p class="card-meta">기사당 평균 체류 시간</p>
+                  </div>
+                </div>
+                <div class="card journal-kpi-card" data-trend="up">
+                  <div class="card-body">
+                    <dt class="journal-kpi-label">Most Read Topic</dt>
+                    <dd class="journal-kpi-value journal-kpi-value--text" aria-label="가장 많이 읽은 토픽은 Ingredient, 34퍼센트">Ingredient</dd>
+                    <p class="journal-kpi-delta is-up" aria-hidden="true">▲ 34% · 2위 Scent 22%</p>
+                    <p class="card-meta">원료 스토리 카테고리 비중</p>
+                  </div>
+                </div>
+                <div class="card journal-kpi-card" data-trend="up">
+                  <div class="card-body">
+                    <dt class="journal-kpi-label">Completion Rate</dt>
+                    <dd class="journal-kpi-value" aria-label="78퍼센트, 전월 대비 6퍼센트포인트 상승">78<span class="journal-kpi-unit">%</span></dd>
+                    <p class="journal-kpi-delta is-up" aria-hidden="true">▲ +6pt MoM</p>
+                    <p class="card-meta">스크롤 80%+ 도달 비율</p>
+                  </div>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ================================== TOPIC FILTER ================================================= -->
+      <section class="section journal journal-filter" aria-labelledby="journal-filter-title">
+        <div class="container">
+          <div class="section-content section-content-narrow">
+            <div class="section-head section-head-center">
+              <p class="section-eyebrow">Topic Filter</p>
+              <h2 id="journal-filter-title" class="section-title">관심 주제로 보기</h2>
+              <p class="section-desc">필터를 선택하면 아카이브 카드가 주제별로 정렬됩니다.</p>
+            </div>
+            <div class="section-body">
+              <div class="filter-chip-list journal-filter-chips" role="group" aria-label="저널 주제 필터">
+                <button type="button" class="chip is-selected" data-journal-filter="all" aria-pressed="true">All <span class="chip-count">8</span></button>
+                <button type="button" class="chip" data-journal-filter="craft" aria-pressed="false">Craft <span class="chip-count">1</span></button>
+                <button type="button" class="chip" data-journal-filter="lab" aria-pressed="false">Lab <span class="chip-count">2</span></button>
+                <button type="button" class="chip" data-journal-filter="ingredient" aria-pressed="false">Ingredient <span class="chip-count">1</span></button>
+                <button type="button" class="chip" data-journal-filter="scent" aria-pressed="false">Scent <span class="chip-count">2</span></button>
+                <button type="button" class="chip" data-journal-filter="seasonal" aria-pressed="false">Seasonal <span class="chip-count">1</span></button>
+                <button type="button" class="chip" data-journal-filter="material" aria-pressed="false">Material <span class="chip-count">1</span></button>
+              </div>
+              <p class="journal-filter-status" id="journal-filter-status" aria-live="polite"><strong>전체</strong> 아카이브를 표시 중입니다 · <strong>8</strong>편의 기록</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ======================================= FEATURED ARTICLE ======================================================= -->
       <section class="section journal" aria-labelledby="journal-featured-title">
         <div class="container">
           <div class="section-content">
             <div class="section-head">
               <p class="section-eyebrow">Featured · VOL. 42</p>
               <h2 id="journal-featured-title" class="section-title">이번 달의 기록</h2>
-              <p class="section-desc">조향사가 매일 아침 안개 속을 거닐며 기록한 숲의 노트들</p>
+              <p class="section-desc">이번 호 헤드라인 2편 · 조향 철학과 원료 현장이 교차하는 장면들</p>
             </div>
             <div class="section-body">
-              <div class="card-grid card-grid-2">
-                <article class="card journal-card">
-                  <div class="card-media">
-                    <span class="journal-tag">CRAFT</span>
-                    <img src="./img/process-blend.jpg" alt="연구소에서 향을 배합하는 모습" loading="lazy" decoding="async" />
-                  </div>
-                  <div class="card-body">
+              <div class="card-grid card-grid-2 journal-featured-grid">
+                <article class="card journal-card journal-card--feature" data-topic="craft">
+                  <figure class="card-media journal-card-media">
+                    <span class="journal-tag journal-tag--craft">CRAFT</span>
+                    <img src="./images/common/제조과정.jpg" alt="연구소에서 향을 배합하는 모습" width="800" height="520" loading="lazy" decoding="async" />
+                    <figcaption class="sr-only">핸드 블렌딩과 공정 기록을 다루는 피처 기사</figcaption>
+                  </figure>
+                  <div class="card-body journal-card-body">
+                    <p class="journal-card-meta-top"><time datetime="2026-04-18">2026.04.18</time> · Editorial · <strong>8</strong> min read</p>
                     <h3 class="card-title">완벽한 불완전함: 핸드-블렌딩 철학</h3>
                     <p class="card-desc">기계가 대체할 수 없는 인간의 손길, 그 미세한 온도가 향에 미치는 영향에 대하여.</p>
-                    <p class="card-meta">Editorial · 8 min read</p>
-                    <div class="card-action">
-                      <a href="detail.html" class="text-link" aria-label="핸드 블렌딩 철학 읽기">Explore</a>
+                    <div class="journal-author">
+                      <span class="journal-author-avatar" aria-hidden="true">H</span>
+                      <span class="journal-author-info">
+                        <span class="journal-author-name">Perfumer Hana</span>
+                        <span class="journal-author-role">Senior Perfumer · LE LABO Lab</span>
+                      </span>
+                    </div>
+                    <div class="card-action journal-card-action">
+                      <a href="detail.html" class="btn btn-secondary" aria-label="핸드 블렌딩 철학 전체 기사 읽기">Read Article</a>
+                      <div class="journal-card-utility">
+                        <button type="button" class="journal-icon-btn" data-save aria-label="핸드 블렌딩 철학 기사 저장" aria-pressed="false">
+                          <span aria-hidden="true">♡</span>
+                          <span class="journal-icon-btn-label">Save</span>
+                        </button>
+                        <button type="button" class="journal-icon-btn" data-share aria-label="핸드 블렌딩 철학 기사 공유">
+                          <span aria-hidden="true">↗</span>
+                          <span class="journal-icon-btn-label">Share</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </article>
-                <article class="card journal-card">
-                  <div class="card-media">
-                    <span class="journal-tag">LAB</span>
-                    <img src="./img/hero-forest.jpg" alt="새벽 숲의 안개" loading="lazy" decoding="async" />
-                  </div>
-                  <div class="card-body">
+                <article class="card journal-card journal-card--feature" data-topic="lab">
+                  <figure class="card-media journal-card-media">
+                    <span class="journal-tag journal-tag--lab">LAB</span>
+                    <img src="./images/common/라르보매장.jpg" alt="연구소와 매장의 라이트 무드" width="800" height="520" loading="lazy" decoding="async" />
+                    <figcaption class="sr-only">실험실과 숲의 공기를 연결하는 랩 스토리</figcaption>
+                  </figure>
+                  <div class="card-body journal-card-body">
+                    <p class="journal-card-meta-top"><time datetime="2026-04-12">2026.04.12</time> · Editorial · <strong>6</strong> min read</p>
                     <h3 class="card-title">새벽 숲에서 찾은 고요한 영감</h3>
-                    <p class="card-desc">조향사가 매일 아침 안개 속을 거닐며 기록한 숲의 노트들.</p>
-                    <p class="card-meta">Editorial · 6 min read</p>
-                    <div class="card-action">
-                      <a href="ingredient.html" class="text-link" aria-label="새벽 숲 기록 읽기">Read</a>
+                    <p class="card-desc">안개가 걷히기 전의 공기, 축축한 흙과 침엽수. 하루의 첫 조향이 시작되는 장면을 따라간 기록.</p>
+                    <div class="journal-author">
+                      <span class="journal-author-avatar" aria-hidden="true">LE</span>
+                      <span class="journal-author-info">
+                        <span class="journal-author-name">Lab Editor</span>
+                        <span class="journal-author-role">Editorial · Forest Lab</span>
+                      </span>
+                    </div>
+                    <div class="card-action journal-card-action">
+                      <a href="ingredient.html" class="btn btn-secondary" aria-label="새벽 숲 기록 전체 기사 읽기">Read Article</a>
+                      <div class="journal-card-utility">
+                        <button type="button" class="journal-icon-btn" data-save aria-label="새벽 숲 기사 저장" aria-pressed="false">
+                          <span aria-hidden="true">♡</span>
+                          <span class="journal-icon-btn-label">Save</span>
+                        </button>
+                        <button type="button" class="journal-icon-btn" data-share aria-label="새벽 숲 기사 공유">
+                          <span aria-hidden="true">↗</span>
+                          <span class="journal-icon-btn-label">Share</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </article>
@@ -81,128 +211,627 @@
           </div>
         </div>
       </section>
-      <!-- ARTICLE GRID -->
-      <section class="section journal" aria-labelledby="journal-list-title">
+      <!-- ==================================================== ARTICLE GRID ============================================== -->
+      <section class="section journal" id="section-archive" aria-labelledby="journal-list-title">
         <div class="container">
           <div class="section-content">
-            <div class="section-head">
-              <p class="section-eyebrow">Archive</p>
-              <h2 id="journal-list-title" class="section-title">지난 기록</h2>
-              <p class="section-desc">원료의 탄생부터 조향의 마지막 마침표까지</p>
+            <div class="section-head journal-archive-head">
+              <div>
+                <p class="section-eyebrow">Archive</p>
+                <h2 id="journal-list-title" class="section-title">지난 기록</h2>
+                <p class="section-desc">원료의 탄생부터 조향의 마지막 마침표까지 · 이번 호 기준 최근 6편</p>
+              </div>
+              <p class="journal-archive-count" aria-live="polite"><strong id="journal-visible-count">6</strong> of <span id="journal-total-count">6</span> shown</p>
             </div>
             <div class="section-body">
-              <div class="card-grid card-grid-3">
-                <article class="card journal-card">
-                  <div class="card-media">
-                    <span class="journal-tag">INGREDIENT</span>
-                    <img src="./img/curated-woody.jpg" alt="우디 계열 원료들" loading="lazy" decoding="async" />
-                  </div>
-                  <div class="card-body">
+              <div class="card-grid card-grid-3 journal-archive-grid">
+                <article class="card journal-card journal-card--archive" data-topic="ingredient">
+                  <figure class="card-media journal-card-media">
+                    <span class="journal-tag journal-tag--ingredient">INGREDIENT</span>
+                    <img src="./images/common/santal33.png" alt="샌달우드와 우디 원료의 질감" width="640" height="420" loading="lazy" decoding="async" />
+                    <figcaption class="sr-only">샌달우드 원료 스토리 아카이브</figcaption>
+                  </figure>
+                  <div class="card-body journal-card-body">
+                    <p class="journal-card-meta-top"><time datetime="2026-04-05">2026.04.05</time> · Editorial · <strong>5</strong> min read</p>
                     <h3 class="card-title">샌달우드, 그 깊은 울림의 역사</h3>
                     <p class="card-desc">호주 대륙의 거친 땅에서 자라난 나무가 당신의 살결에 닿기까지.</p>
-                    <p class="card-meta">Editorial · 5 min read</p>
-                    <div class="card-action">
-                      <a href="ingredient.html#key-ingredients-title" class="text-link" aria-label="샌달우드 이야기 읽기">Read</a>
+                    <div class="card-action journal-card-action">
+                      <a href="ingredient.html#key-ingredients-title" class="text-link journal-read-link" aria-label="샌달우드 이야기 읽기">Read Article →</a>
+                      <div class="journal-card-utility">
+                        <button type="button" class="journal-icon-btn" data-save aria-label="샌달우드 기사 저장" aria-pressed="false">
+                          <span aria-hidden="true">♡</span>
+                          <span class="journal-icon-btn-label">Save</span>
+                        </button>
+                        <button type="button" class="journal-icon-btn" data-share aria-label="샌달우드 기사 공유">
+                          <span aria-hidden="true">↗</span>
+                          <span class="journal-icon-btn-label">Share</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </article>
-                <article class="card journal-card">
-                  <div class="card-media">
-                    <span class="journal-tag">SEASONAL</span>
-                    <img src="./img/process-harvest.jpg" alt="꽃 수확 현장" loading="lazy" decoding="async" />
-                  </div>
-                  <div class="card-body">
+                <article class="card journal-card journal-card--archive" data-topic="seasonal">
+                  <figure class="card-media journal-card-media">
+                    <span class="journal-tag journal-tag--seasonal">SEASONAL</span>
+                    <img src="./images/common/로즈31.jpg" alt="장미 수확과 그라스의 아침 햇살" width="640" height="420" loading="lazy" decoding="async" />
+                    <figcaption class="sr-only">시즈널 플로럴 소싱 기록</figcaption>
+                  </figure>
+                  <div class="card-body journal-card-body">
+                    <p class="journal-card-meta-top"><time datetime="2026-03-28">2026.03.28</time> · Editorial · <strong>4</strong> min read</p>
                     <h3 class="card-title">장미가 가장 아름다운 시간, 오전 10시</h3>
                     <p class="card-desc">그라스의 태양이 절정에 달하기 전, 향이 가장 순수한 순간을 포착하는 방법.</p>
-                    <p class="card-meta">Editorial · 4 min read</p>
-                    <div class="card-action">
-                      <a href="ingredient.html#sourcing-title" class="text-link" aria-label="장미 수확 기록 읽기">Read</a>
+                    <div class="card-action journal-card-action">
+                      <a href="ingredient.html#sourcing-title" class="text-link journal-read-link" aria-label="장미 수확 기록 읽기">Read Article →</a>
+                      <div class="journal-card-utility">
+                        <button type="button" class="journal-icon-btn" data-save aria-label="장미 수확 기사 저장" aria-pressed="false">
+                          <span aria-hidden="true">♡</span>
+                          <span class="journal-icon-btn-label">Save</span>
+                        </button>
+                        <button type="button" class="journal-icon-btn" data-share aria-label="장미 수확 기사 공유">
+                          <span aria-hidden="true">↗</span>
+                          <span class="journal-icon-btn-label">Share</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </article>
-                <article class="card journal-card">
-                  <div class="card-media">
-                    <span class="journal-tag">SCENT</span>
-                    <img src="./img/curated-floral.jpg" alt="조향 과정 이미지" loading="lazy" decoding="async" />
-                  </div>
-                  <div class="card-body">
+                <article class="card journal-card journal-card--archive" data-topic="scent">
+                  <figure class="card-media journal-card-media">
+                    <span class="journal-tag journal-tag--scent">SCENT</span>
+                    <img src="./images/common/나만의향.jpg" alt="향과 기억을 연결하는 탐색 무드" width="640" height="420" loading="lazy" decoding="async" />
+                    <figcaption class="sr-only">후각과 정체성 에세이</figcaption>
+                  </figure>
+                  <div class="card-body journal-card-body">
+                    <p class="journal-card-meta-top"><time datetime="2026-03-20">2026.03.20</time> · Editorial · <strong>5</strong> min read</p>
                     <h3 class="card-title">향이 기억이 되는 방식</h3>
                     <p class="card-desc">후각은 감정의 언어. 향이 어떻게 감정과 정체성을 형성하는지에 대하여.</p>
-                    <p class="card-meta">Editorial · 5 min read</p>
-                    <div class="card-action">
-                      <a href="finder.html" class="text-link" aria-label="향과 기억 이야기 읽기">Read</a>
+                    <div class="card-action journal-card-action">
+                      <a href="finder.html" class="text-link journal-read-link" aria-label="향과 기억 이야기 읽기">Read Article →</a>
+                      <div class="journal-card-utility">
+                        <button type="button" class="journal-icon-btn" data-save aria-label="향과 기억 기사 저장" aria-pressed="false">
+                          <span aria-hidden="true">♡</span>
+                          <span class="journal-icon-btn-label">Save</span>
+                        </button>
+                        <button type="button" class="journal-icon-btn" data-share aria-label="향과 기억 기사 공유">
+                          <span aria-hidden="true">↗</span>
+                          <span class="journal-icon-btn-label">Share</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </article>
-                <article class="card journal-card">
-                  <div class="card-media">
-                    <span class="journal-tag">MATERIAL</span>
-                    <img src="./img/curated-citrus.jpg" alt="베르가못 과수원" loading="lazy" decoding="async" />
-                  </div>
-                  <div class="card-body">
+                <article class="card journal-card journal-card--archive" data-topic="material">
+                  <figure class="card-media journal-card-media">
+                    <span class="journal-tag journal-tag--material">MATERIAL</span>
+                    <img src="./images/common/베르가못2222.jpg" alt="칼라브리아 베르가못 과원의 새벽" width="640" height="420" loading="lazy" decoding="async" />
+                    <figcaption class="sr-only">시트러스 원료 머티리얼 기록</figcaption>
+                  </figure>
+                  <div class="card-body journal-card-body">
+                    <p class="journal-card-meta-top"><time datetime="2026-03-12">2026.03.12</time> · Editorial · <strong>4</strong> min read</p>
                     <h3 class="card-title">베르가못 과수원의 새벽</h3>
                     <p class="card-desc">칼라브리아 해안에서 베르가못이 익어가는 계절을 기록합니다.</p>
-                    <p class="card-meta">Editorial · 4 min read</p>
-                    <div class="card-action">
-                      <a href="shop.html" class="text-link" aria-label="베르가못 기록 읽기">Read</a>
+                    <div class="card-action journal-card-action">
+                      <a href="shop.html" class="text-link journal-read-link" aria-label="베르가못 기록 읽기">Read Article →</a>
+                      <div class="journal-card-utility">
+                        <button type="button" class="journal-icon-btn" data-save aria-label="베르가못 기사 저장" aria-pressed="false">
+                          <span aria-hidden="true">♡</span>
+                          <span class="journal-icon-btn-label">Save</span>
+                        </button>
+                        <button type="button" class="journal-icon-btn" data-share aria-label="베르가못 기사 공유">
+                          <span aria-hidden="true">↗</span>
+                          <span class="journal-icon-btn-label">Share</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </article>
-                <article class="card journal-card">
-                  <div class="card-media">
-                    <span class="journal-tag">LAB</span>
-                    <img src="./img/process-blend.jpg" alt="향의 숙성 과정" loading="lazy" decoding="async" />
-                  </div>
-                  <div class="card-body">
+                <article class="card journal-card journal-card--archive" data-topic="lab">
+                  <figure class="card-media journal-card-media">
+                    <span class="journal-tag journal-tag--lab">LAB</span>
+                    <img src="./images/common/bg3.png" alt="숙성과 안정화를 위한 실험실 환경" width="640" height="420" loading="lazy" decoding="async" />
+                    <figcaption class="sr-only">숙성 프로세스 랩 노트</figcaption>
+                  </figure>
+                  <div class="card-body journal-card-body">
+                    <p class="journal-card-meta-top"><time datetime="2026-02-22">2026.02.22</time> · Editorial · <strong>6</strong> min read</p>
                     <h3 class="card-title">숙성의 시간, 2주의 침묵</h3>
                     <p class="card-desc">병입 직후의 향이 당신의 선반에서 완성되어가는 조용한 여정.</p>
-                    <p class="card-meta">Editorial · 6 min read</p>
-                    <div class="card-action">
-                      <a href="detail.html#story-title" class="text-link" aria-label="숙성 기록 읽기">Read</a>
+                    <div class="card-action journal-card-action">
+                      <a href="detail.html#story-title" class="text-link journal-read-link" aria-label="숙성 기록 읽기">Read Article →</a>
+                      <div class="journal-card-utility">
+                        <button type="button" class="journal-icon-btn" data-save aria-label="숙성 기록 기사 저장" aria-pressed="false">
+                          <span aria-hidden="true">♡</span>
+                          <span class="journal-icon-btn-label">Save</span>
+                        </button>
+                        <button type="button" class="journal-icon-btn" data-share aria-label="숙성 기록 기사 공유">
+                          <span aria-hidden="true">↗</span>
+                          <span class="journal-icon-btn-label">Share</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </article>
-                <article class="card journal-card">
-                  <div class="card-media">
-                    <span class="journal-tag">SCENT</span>
-                    <img src="./img/curated-woody.jpg" alt="겨울의 우디 노트" loading="lazy" decoding="async" />
-                  </div>
-                  <div class="card-body">
+                <article class="card journal-card journal-card--archive" data-topic="scent">
+                  <figure class="card-media journal-card-media">
+                    <span class="journal-tag journal-tag--scent">SCENT</span>
+                    <img src="./images/common/noir29.png" alt="겨울 밤의 우디·티 어코드" width="640" height="420" loading="lazy" decoding="async" />
+                    <figcaption class="sr-only">시즌 우디 잔향 에디토리얼</figcaption>
+                  </figure>
+                  <div class="card-body journal-card-body">
+                    <p class="journal-card-meta-top"><time datetime="2026-01-30">2026.01.30</time> · Editorial · <strong>5</strong> min read</p>
                     <h3 class="card-title">겨울을 감싸는 우디 잔향</h3>
                     <p class="card-desc">계절의 온도와 체온이 만나 완성되는 우디 노트의 깊이.</p>
-                    <p class="card-meta">Editorial · 5 min read</p>
-                    <div class="card-action">
-                      <a href="shop.html" class="text-link" aria-label="겨울 우디 노트 읽기">Read</a>
+                    <div class="card-action journal-card-action">
+                      <a href="shop.html" class="text-link journal-read-link" aria-label="겨울 우디 노트 읽기">Read Article →</a>
+                      <div class="journal-card-utility">
+                        <button type="button" class="journal-icon-btn" data-save aria-label="겨울 우디 기사 저장" aria-pressed="false">
+                          <span aria-hidden="true">♡</span>
+                          <span class="journal-icon-btn-label">Save</span>
+                        </button>
+                        <button type="button" class="journal-icon-btn" data-share aria-label="겨울 우디 기사 공유">
+                          <span aria-hidden="true">↗</span>
+                          <span class="journal-icon-btn-label">Share</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </article>
+              </div>
+              <p class="journal-empty" id="journal-empty" hidden>선택한 주제의 아카이브가 없습니다. 다른 필터를 선택해 주세요.</p>
+              <div class="journal-load-more">
+                <a href="#section-archive" class="btn btn-secondary" id="journal-view-all" aria-label="전체 아카이브 페이지 보기">
+                  <span>View Full Archive</span>
+                  <span class="journal-load-badge" aria-hidden="true">→</span>
+                </a>
+                <p class="journal-load-note">월간 평균 신규 <strong>3–5편</strong> 발행 · 매월 1일 업데이트</p>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <!-- CTA -->
-      <section class="section final" aria-labelledby="journal-cta-title">
+      <!-- ================================== READING PATH ================================================= -->
+      <section class="section journal reading-path" id="section-reading-path" aria-labelledby="reading-path-title">
+        <div class="container">
+          <div class="section-content">
+            <div class="section-head section-head-center">
+              <p class="section-eyebrow">Reading Path</p>
+              <h2 id="reading-path-title" class="section-title">추천 읽기 순서</h2>
+              <p class="section-desc">이미지로 맥락을 잡은 뒤, 본문·CTA 순으로 읽으면 원료 → 취향 → 구매까지 끊기지 않습니다.</p>
+            </div>
+            <div class="section-body">
+              <ol class="journal-path-grid">
+                <li class="journal-path-item">
+                  <article class="card journal-path-card">
+                    <figure class="journal-path-visual">
+                      <img src="./images/common/샌달우드.jpg" width="720" height="420" alt="원료 산지와 추출 과정을 상징하는 장면" loading="lazy" decoding="async" />
+                      <figcaption class="journal-path-overlay">
+                        <span class="path-index" aria-hidden="true">01</span>
+                        <span class="path-label">INGREDIENT</span>
+                      </figcaption>
+                    </figure>
+                    <div class="card-body journal-path-body">
+                      <p class="journal-path-duration">약 6–8분 · Editorial</p>
+                      <h3 class="card-title">원료 이해부터 시작</h3>
+                      <p class="card-desc">산지·수확·추출을 먼저 읽으면 이후 모든 향 설명의 기준점이 생깁니다.</p>
+                      <p class="path-hint"><span class="path-hint-label">TIP</span>원료 페이지의 키 인그리디언트 섹션과 연결해 보세요.</p>
+                      <div class="card-action">
+                        <a href="ingredient.html" class="btn btn-primary" aria-label="원료 인그리디언트 페이지로 이동">원료 읽기</a>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <li class="journal-path-item">
+                  <article class="card journal-path-card">
+                    <figure class="journal-path-visual">
+                      <img src="./images/common/나만의향.jpg" width="720" height="420" alt="취향 탐색과 개인적 향 경험을 상징하는 장면" loading="lazy" decoding="async" />
+                      <figcaption class="journal-path-overlay">
+                        <span class="path-index" aria-hidden="true">02</span>
+                        <span class="path-label">FINDER</span>
+                      </figcaption>
+                    </figure>
+                    <div class="card-body journal-path-body">
+                      <p class="journal-path-duration">1–2분 · 4단계 선택</p>
+                      <h3 class="card-title">취향 좌표를 고정</h3>
+                      <p class="card-desc">감정·상황·계절·무드를 한 번에 정리하면 아카이브 글의 예시 향이 더 선명해집니다.</p>
+                      <p class="path-hint"><span class="path-hint-label">TIP</span>4단계 선택 후 추천 결과와 유사 향을 비교해 보세요.</p>
+                      <div class="card-action">
+                        <a href="finder.html" class="btn btn-secondary" aria-label="향 찾기 페이지로 이동">Finder 열기</a>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <li class="journal-path-item">
+                  <article class="card journal-path-card">
+                    <figure class="journal-path-visual">
+                      <img src="./images/common/베스트향수.jpg" width="720" height="420" alt="컬렉션과 제품 비교를 상징하는 장면" loading="lazy" decoding="async" />
+                      <figcaption class="journal-path-overlay">
+                        <span class="path-index" aria-hidden="true">03</span>
+                        <span class="path-label">COLLECTION</span>
+                      </figcaption>
+                    </figure>
+                    <div class="card-body journal-path-body">
+                      <p class="journal-path-duration">3–5분 · 12 scents</p>
+                      <h3 class="card-title">제품 비교로 확정</h3>
+                      <p class="card-desc">저널에서 얻은 언어를 실제 SKU와 맞추면 구매 리스크가 줄고, 레이어링까지 설계할 수 있습니다.</p>
+                      <p class="path-hint"><span class="path-hint-label">TIP</span>바디·홈 등 크로스 카테고리까지 함께 보세요.</p>
+                      <div class="card-action">
+                        <a href="shop.html" class="btn btn-ghost" aria-label="샵 컬렉션으로 이동">컬렉션 보기</a>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ================================== EDITOR NOTE ================================================= -->
+      <section class="section journal editor-note" aria-labelledby="editor-note-title">
+        <div class="container">
+          <div class="section-content">
+            <div class="section-head section-head-center">
+              <p class="section-eyebrow">Editor's Note · VOL. 42</p>
+              <h2 id="editor-note-title" class="section-title">이번 호 편집 기준</h2>
+              <p class="section-desc">이번 시즌은 향 자체보다 <strong>향이 쓰이는 장면과 맥락</strong>에 초점을 맞춰 콘텐츠를 구성했습니다.</p>
+            </div>
+            <div class="section-body">
+              <article class="card journal-editor-highlight">
+                <div class="journal-editor-visual">
+                  <figure class="journal-editor-cover">
+                    <img src="./images/common/라벨링.png" width="720" height="840" alt="조향 과정을 맥락과 장면으로 기록하는 에디토리얼 작업 장면" loading="lazy" decoding="async" />
+                    <figcaption class="journal-editor-visual-cap">
+                      <span class="journal-editor-visual-cap-kicker">Vol. 42 Cover</span>
+                      <span class="journal-editor-visual-cap-title">Context-first Storytelling</span>
+                    </figcaption>
+                    <span class="journal-editor-cover-badge" aria-label="2026년 봄 이슈">
+                      <span class="cover-badge-label">Issue</span>
+                      <span class="cover-badge-value">42</span>
+                      <span class="cover-badge-season">Spring 2026</span>
+                    </span>
+                  </figure>
+
+                  <dl class="journal-editor-stats" aria-label="이번 호 편집 프로덕션 지표">
+                    <div>
+                      <dt>편집 기간</dt>
+                      <dd><span class="stat-num">14</span><span class="stat-unit">일</span></dd>
+                    </div>
+                    <div>
+                      <dt>에디터 회의</dt>
+                      <dd><span class="stat-num">6</span><span class="stat-unit">회</span></dd>
+                    </div>
+                    <div>
+                      <dt>원료 현장 취재</dt>
+                      <dd><span class="stat-num">3</span><span class="stat-unit">곳</span></dd>
+                    </div>
+                  </dl>
+
+                  <ul class="journal-editor-strip" aria-label="이번 호 서브 이미지">
+                    <li>
+                      <figure class="journal-editor-strip-item">
+                        <img src="./images/common/샌달우드.jpg" width="300" height="300" alt="호주 샌달우드 원목 배치 샘플" loading="lazy" decoding="async" />
+                        <figcaption>
+                          <span class="strip-kicker">Source</span>
+                          <span class="strip-label">샌달우드 배치 샘플</span>
+                        </figcaption>
+                      </figure>
+                    </li>
+                    <li>
+                      <figure class="journal-editor-strip-item">
+                        <img src="./images/common/제조과정.jpg" width="300" height="300" alt="연구소 블렌딩 데스크에서 진행 중인 조향 기록" loading="lazy" decoding="async" />
+                        <figcaption>
+                          <span class="strip-kicker">Lab</span>
+                          <span class="strip-label">블렌딩 현장 기록</span>
+                        </figcaption>
+                      </figure>
+                    </li>
+                    <li>
+                      <figure class="journal-editor-strip-item">
+                        <img src="./images/common/기록.png" width="300" height="300" alt="에디터 노트와 교정지가 놓인 작업 데스크" loading="lazy" decoding="async" />
+                        <figcaption>
+                          <span class="strip-kicker">Desk</span>
+                          <span class="strip-label">에디터 교정지</span>
+                        </figcaption>
+                      </figure>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-body journal-editor-body">
+                  <blockquote class="journal-editor-quote">
+                    <p>향은 선택하는 것이 아니라, 자신이 어떤 장면에 놓이고 싶은지를 기록하는 일이다.</p>
+                    <cite>— Editorial Lead, LE LABO Journal</cite>
+                  </blockquote>
+
+                  <p class="card-desc journal-editor-body-copy">르라보 저널은 단순 브랜드 스토리 아카이브가 아니라, 실제 구매·사용 의사결정을 돕는 읽기 도구를 지향합니다. 이번 호는 원료의 출처 신뢰성, 조향 의도, 착용 장면을 한 흐름으로 연결해 배치했습니다.</p>
+
+                  <!-- Editorial Principles (NEW) -->
+                  <section class="journal-editor-principles" aria-labelledby="editor-principles-title">
+                    <h3 id="editor-principles-title" class="journal-editor-subtitle">
+                      <span class="journal-editor-subtitle-num">01</span>
+                      <span>이번 호 편집 원칙</span>
+                    </h3>
+                    <ul class="journal-editor-principles-list">
+                      <li>
+                        <span class="principle-chose">구체적 장면</span>
+                        <span class="principle-arrow" aria-hidden="true">›</span>
+                        <span class="principle-over">추상적 무드</span>
+                        <span class="principle-note">"봄의 싱그러움"이 아니라 "4월 새벽, 습기 전의 공기"</span>
+                      </li>
+                      <li>
+                        <span class="principle-chose">원료 출처·배치 이력</span>
+                        <span class="principle-arrow" aria-hidden="true">›</span>
+                        <span class="principle-over">마케팅 카피</span>
+                        <span class="principle-note">산지·수확기·공급자 정보 우선 공개</span>
+                      </li>
+                      <li>
+                        <span class="principle-chose">의사결정 도구</span>
+                        <span class="principle-arrow" aria-hidden="true">›</span>
+                        <span class="principle-over">브랜드 스토리</span>
+                        <span class="principle-note">읽은 직후 Finder · Shop으로 이어지는 동선 설계</span>
+                      </li>
+                    </ul>
+                  </section>
+
+                  <!-- This Issue Highlights (NEW) -->
+                  <section class="journal-editor-picks" aria-labelledby="editor-picks-title">
+                    <h3 id="editor-picks-title" class="journal-editor-subtitle">
+                      <span class="journal-editor-subtitle-num">02</span>
+                      <span>편집장이 고른 이번 호 3편</span>
+                    </h3>
+                    <ol class="journal-editor-picks-list">
+                      <li>
+                        <a class="journal-editor-pick" href="#journal-featured-title">
+                          <span class="pick-num">01</span>
+                          <span class="pick-body">
+                            <span class="pick-kicker">CRAFT · 8 min</span>
+                            <span class="pick-title">완벽한 불완전함: 핸드-블렌딩 철학</span>
+                            <span class="pick-reason">기계 블렌딩과의 차이를 실측 데이터로 제시</span>
+                          </span>
+                          <span class="pick-cue" aria-hidden="true">→</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="journal-editor-pick" href="#section-archive">
+                          <span class="pick-num">02</span>
+                          <span class="pick-body">
+                            <span class="pick-kicker">INGREDIENT · 5 min</span>
+                            <span class="pick-title">샌달우드, 그 깊은 울림의 역사</span>
+                            <span class="pick-reason">호주 배치 변화가 시즌 블렌드에 미친 영향</span>
+                          </span>
+                          <span class="pick-cue" aria-hidden="true">→</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="journal-editor-pick" href="#section-archive">
+                          <span class="pick-num">03</span>
+                          <span class="pick-body">
+                            <span class="pick-kicker">LAB · 6 min</span>
+                            <span class="pick-title">숙성의 시간, 2주의 침묵</span>
+                            <span class="pick-reason">병입 후 2주 간 향 프로파일 변화 관찰 기록</span>
+                          </span>
+                          <span class="pick-cue" aria-hidden="true">→</span>
+                        </a>
+                      </li>
+                    </ol>
+                  </section>
+
+                  <!-- Facts (expanded) -->
+                  <dl class="journal-editor-facts">
+                    <div>
+                      <dt>편집 방향</dt>
+                      <dd>Context-first Storytelling</dd>
+                    </div>
+                    <div>
+                      <dt>수록 편수</dt>
+                      <dd>Feature 2 · Archive 6 · Path 3 = <strong>11편</strong></dd>
+                    </div>
+                    <div>
+                      <dt>예상 읽기 시간</dt>
+                      <dd>전체 <strong>55분</strong> · 낱편 평균 5분</dd>
+                    </div>
+                    <div>
+                      <dt>추천 독자</dt>
+                      <dd>첫 르라보 구매 고민 중 · 원료 디테일 선호</dd>
+                    </div>
+                    <div>
+                      <dt>다음 호</dt>
+                      <dd>VOL. 43 · 2026 Summer — <em>"체온과 향의 관계"</em></dd>
+                    </div>
+                    <div>
+                      <dt>발행 예정</dt>
+                      <dd>
+                        <time datetime="2026-06-01">2026. 06. 01</time> ·
+                        <a href="#journal-cta-title" class="journal-editor-facts-link">알림 받기 →</a>
+                      </dd>
+                    </div>
+                  </dl>
+
+                  <!-- Signature (upgraded) -->
+                  <div class="journal-editor-signature">
+                    <div class="journal-editor-signoff">
+                      <span class="journal-editor-signoff-script">Editorial Lead</span>
+                      <span class="journal-editor-signoff-name">하나 김 · Hana Kim</span>
+                      <span class="journal-editor-signoff-role">Editor-in-Chief · 2024년 3월 취임 · 총 18호 편집</span>
+                    </div>
+                    <div class="journal-editor-signoff-date">
+                      <span class="journal-editor-signoff-date-label">Published</span>
+                      <time datetime="2026-04-01">April 01, 2026</time>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ================================== RELATED TOPICS ================================================= -->
+      <section class="section journal journal-related" aria-labelledby="journal-related-title">
+        <div class="container">
+          <div class="section-content">
+            <div class="section-head section-head-center">
+              <p class="section-eyebrow">Keep Reading</p>
+              <h2 id="journal-related-title" class="section-title">이 호에 이어 읽으면 좋은 페이지</h2>
+              <p class="section-desc">저널에서 얻은 맥락을 원료·컬렉션·취향 탐색기로 자연스럽게 이어가세요.</p>
+            </div>
+            <div class="section-body">
+              <ul class="journal-related-grid">
+                <li>
+                  <a class="journal-related-link" href="ingredient.html" aria-label="원료 데이터베이스 열기, 6가지 시그니처 원료 탐색">
+                    <figure class="journal-related-media">
+                      <img src="./images/common/샌달우드.jpg" alt="원료 데이터베이스 연결용 샌달우드 텍스처 이미지" width="480" height="320" loading="lazy" decoding="async" />
+                      <span class="journal-related-type" aria-hidden="true">Database</span>
+                      <span class="journal-related-badge" aria-hidden="true">
+                        <span class="badge-num">6</span>
+                        <span class="badge-unit">Ingredients</span>
+                      </span>
+                    </figure>
+                    <div class="journal-related-body">
+                      <span class="journal-related-kicker">
+                        <span class="kicker-dot" aria-hidden="true"></span>
+                        Ingredient · Data Tool
+                      </span>
+                      <span class="journal-related-title">원료 데이터베이스 열기</span>
+                      <span class="journal-related-desc">산지·수확·배치 이력을 확인하고 저널 기사의 맥락을 보강합니다.</span>
+                      <ul class="journal-related-tags" aria-label="주요 원료">
+                        <li>Santal 33</li>
+                        <li>Rose 31</li>
+                        <li>Bergamot 22</li>
+                      </ul>
+                      <div class="journal-related-foot">
+                        <span class="journal-related-bridge">
+                          <span class="bridge-label">From this issue</span>
+                          <span class="bridge-link">Archive · INGREDIENT 기사</span>
+                        </span>
+                        <span class="journal-related-cue" aria-hidden="true">→</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="journal-related-link" href="finder.html" aria-label="향 찾기 퀴즈 시작하기, 4단계 약 2분 소요">
+                    <figure class="journal-related-media">
+                      <img src="./images/common/나만의향.jpg" alt="취향 탐색기 연결용 퍼스널 향 선택 이미지" width="480" height="320" loading="lazy" decoding="async" />
+                      <span class="journal-related-type" aria-hidden="true">Interactive</span>
+                      <span class="journal-related-badge" aria-hidden="true">
+                        <span class="badge-num">4</span>
+                        <span class="badge-unit">Step Quiz</span>
+                      </span>
+                    </figure>
+                    <div class="journal-related-body">
+                      <span class="journal-related-kicker">
+                        <span class="kicker-dot" aria-hidden="true"></span>
+                        Finder · Personalization
+                      </span>
+                      <span class="journal-related-title">취향 좌표 세팅하기</span>
+                      <span class="journal-related-desc">4단계 선택으로 이번 호 추천 향이 본인에게 어떻게 매칭되는지 확인합니다.</span>
+                      <ul class="journal-related-tags" aria-label="탐색 축">
+                        <li>Mood</li>
+                        <li>Scene</li>
+                        <li>Season</li>
+                        <li>Intensity</li>
+                      </ul>
+                      <div class="journal-related-foot">
+                        <span class="journal-related-bridge">
+                          <span class="bridge-label">약 2분 소요</span>
+                          <span class="bridge-link">Editor's Note · Picks 연결</span>
+                        </span>
+                        <span class="journal-related-cue" aria-hidden="true">→</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="journal-related-link" href="shop.html" aria-label="전체 컬렉션 비교, 12종 시그니처 향">
+                    <figure class="journal-related-media">
+                      <img src="./images/common/베스트향수.jpg" alt="컬렉션 비교 연결용 베스트 프래그런스 이미지" width="480" height="320" loading="lazy" decoding="async" />
+                      <span class="journal-related-type" aria-hidden="true">Catalog</span>
+                      <span class="journal-related-badge" aria-hidden="true">
+                        <span class="badge-num">12</span>
+                        <span class="badge-unit">Signatures</span>
+                      </span>
+                    </figure>
+                    <div class="journal-related-body">
+                      <span class="journal-related-kicker">
+                        <span class="kicker-dot" aria-hidden="true"></span>
+                        Collection · Catalog
+                      </span>
+                      <span class="journal-related-title">전체 컬렉션 비교</span>
+                      <span class="journal-related-desc">12종 시그니처 향의 농도·상황·리뷰를 한눈에 비교하고 선택을 마무리합니다.</span>
+                      <ul class="journal-related-tags" aria-label="필터 축">
+                        <li>Woody</li>
+                        <li>Floral</li>
+                        <li>Citrus</li>
+                        <li>Gourmand</li>
+                      </ul>
+                      <div class="journal-related-foot">
+                        <span class="journal-related-bridge">
+                          <span class="bridge-label">최종 선택 단계</span>
+                          <span class="bridge-link">Reading Path · STEP 03 연결</span>
+                        </span>
+                        <span class="journal-related-cue" aria-hidden="true">→</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ================================================= CTA=========================================================== -->
+      <section class="section final journal-final" aria-labelledby="journal-cta-title">
         <div class="container">
           <div class="section-content section-content-narrow">
             <div class="section-head section-head-center">
               <p class="section-eyebrow">Stay Subscribed</p>
               <h2 id="journal-cta-title" class="section-title">새로운 기록을 가장 먼저</h2>
-              <p class="section-desc">계절의 향과 연구소 이야기를 메일로 받아보세요</p>
+              <p class="section-desc">계절의 향과 연구소 이야기를 <strong>매월 1일</strong> 이메일로 받아보세요. 광고성 발송 없이 에디토리얼만 전달됩니다.</p>
             </div>
             <div class="section-body final-body">
-              <div class="final-cta-group">
-                <a href="login.html" class="btn btn-primary">Subscribe</a>
-                <a href="ingredient.html" class="btn btn-ghost">View Ingredients</a>
+              <form class="journal-subscribe-form" id="journal-subscribe-form" novalidate aria-label="저널 뉴스레터 구독">
+                <label class="sr-only" for="journal-subscribe-email">이메일 주소</label>
+                <input type="email" id="journal-subscribe-email" class="journal-subscribe-input" placeholder="name@example.com" autocomplete="email" inputmode="email" required aria-required="true" aria-describedby="journal-subscribe-status journal-subscribe-hint" />
+                <button type="submit" class="btn btn-primary journal-subscribe-submit">Subscribe</button>
+              </form>
+              <p class="journal-subscribe-status" id="journal-subscribe-status" role="status" aria-live="polite"></p>
+              <p class="journal-subscribe-hint" id="journal-subscribe-hint">가입 즉시 지난 호 요약 PDF 발송 · 언제든 한 번의 클릭으로 해제 가능</p>
+              <ul class="final-trust" aria-label="저널 구독 혜택">
+                <li>월간 원료 리포트 요약 제공</li>
+                <li>신규 아카이브 <strong>7일</strong> 우선 열람</li>
+                <li>취향 기반 읽기 큐레이션</li>
+                <li>연구소 이벤트 초대 우선권</li>
+              </ul>
+              <div class="journal-past-issues" aria-label="지난 호 아카이브">
+                <p class="journal-past-issues-label">지난 호</p>
+                <ul class="journal-past-issues-list">
+                  <li>
+                    <span class="journal-past-issue is-upcoming" aria-disabled="true">
+                      <span class="journal-past-issue-text"><strong>VOL. 41</strong> · 2026 Winter — 잔향의 깊이</span>
+                      <span class="journal-past-issue-badge">준비 중</span>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="journal-past-issue is-upcoming" aria-disabled="true">
+                      <span class="journal-past-issue-text"><strong>VOL. 40</strong> · 2025 Autumn — 체온의 기록</span>
+                      <span class="journal-past-issue-badge">준비 중</span>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="journal-past-issue is-upcoming" aria-disabled="true">
+                      <span class="journal-past-issue-text"><strong>VOL. 39</strong> · 2025 Summer — 여름의 투명함</span>
+                      <span class="journal-past-issue-badge">준비 중</span>
+                    </span>
+                  </li>
+                </ul>
+                <p class="journal-past-issues-note">지난 호 아카이브는 VOL. 43부터 순차적으로 공개됩니다.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
     </main>
-    <!-- Footer injected by layout-system.js -->
+    <!-- ==================================================== Footer injected by layout-system.js ======================================= -->
   </div>
   <script src="./scripts/global.js"></script>
+  <script src="./scripts/journal.js"></script>
 </body>
 
 </html>

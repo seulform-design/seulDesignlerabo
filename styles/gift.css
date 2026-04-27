@@ -1,11 +1,1118 @@
 /* =========================================================
    LE LABO · gift.css
-   The Gift page reuses .page-header, .section.gift,
-   .pillar-card, .product-card, .gift-body, .gift-grid,
-   .gift-card, .gift-form, .gift-preview (all shared).
-   Only the B2B corporate row needs a small utility.
+   Page-specific spacing and card rhythm tuning
    ========================================================= */
 
-.bg-soft {
-  background: var(--color-surface-soft);
+.page-gift .section {
+  padding-block: clamp(64px, 9vw, 108px);
+}
+
+.page-gift .section-content {
+  gap: 28px;
+}
+
+.page-gift .section-head + .section-body {
+  margin-top: 8px;
+}
+
+.page-gift .card-grid {
+  gap: clamp(16px, 2.2vw, 28px);
+}
+
+.page-gift .card {
+  height: 100%;
+}
+
+.page-gift .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ============================================================
+   Gift Snapshot — KPI grid (dl/dt/dd)
+   ============================================================ */
+.gift-snapshot .gift-kpi-grid {
+  margin: 0;
+}
+
+.gift-snapshot .gift-kpi-grid .card-body {
+  gap: 6px;
+}
+
+.gift-kpi-label {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.gift-kpi-value {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  font-family: var(--font-family-display, inherit);
+  font-size: clamp(28px, 3.6vw, 40px);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.gift-kpi-unit {
+  font-size: 0.55em;
+  font-weight: 500;
+  opacity: 0.65;
+  letter-spacing: 0.02em;
+}
+
+.gift-kpi-delta {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  line-height: 1;
+  white-space: nowrap;
+  align-self: center;
+}
+
+.gift-kpi-delta.is-up {
+  color: #1f7a4a;
+  background: rgba(31, 122, 74, 0.1);
+}
+
+.gift-kpi-delta.is-down {
+  color: #a63b2f;
+  background: rgba(166, 59, 47, 0.1);
+}
+
+/* "Down is positive" — e.g., shorter lead time or lower return rate */
+.gift-kpi-delta.is-down.is-positive {
+  color: #1f7a4a;
+  background: rgba(31, 122, 74, 0.1);
+}
+
+.gift-snapshot .card-meta {
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0.7;
+}
+
+/* ============================================================
+   Signature Services — Pillar overlay (01 LABEL · 02 WRAP · 03 NOTE)
+   Fixed overlay (always legible) with hover depth + corner crosshair
+   ============================================================ */
+.gift-pillar-grid > li {
+  list-style: none;
+}
+
+.gift-pillar-card {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.gift-pillar-media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  padding: 0;
+  overflow: hidden;
+  background: #0f1614;
+}
+
+.gift-pillar-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease;
+  filter: brightness(0.94) saturate(0.95);
+}
+
+/* Permanent gradient for legibility; hover strengthens it. */
+.gift-pillar-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(10, 16, 14, 0) 35%, rgba(10, 16, 14, 0.75) 100%),
+    linear-gradient(180deg, rgba(10, 16, 14, 0.18) 0%, rgba(10, 16, 14, 0) 30%);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Corner crosshair — laboratory mark */
+.gift-pillar-corner {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 22px;
+  height: 22px;
+  z-index: 3;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.gift-pillar-corner::before,
+.gift-pillar-corner::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.gift-pillar-corner::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.gift-pillar-corner::after {
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+/* Overlay content block — anchored bottom-left */
+.gift-pillar-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 14px;
+  row-gap: 4px;
+  align-items: center;
+  padding: 20px 22px 22px;
+  color: #fff;
+}
+
+/* STEP number — display italic, spans the left column across both rows */
+.gift-pillar-overlay .pillar-step {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  font-family: var(--font-family-display, Georgia, serif);
+  font-style: italic;
+  font-size: clamp(48px, 6vw, 64px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  font-weight: 400;
+  align-self: end;
+}
+
+/* Hairline divider between number and label */
+.gift-pillar-divider {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  width: 32px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.7);
+  align-self: end;
+  margin-bottom: 6px;
+  transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* LABEL — uppercase spaced */
+.gift-pillar-overlay .pillar-label {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+/* Sub-tag — serif italic, appears on hover to keep baseline calm */
+.gift-pillar-tag {
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  font-family: var(--font-family-display, Georgia, serif);
+  font-style: italic;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Hover / focus interaction */
+.gift-pillar-card:hover .gift-pillar-media img,
+.gift-pillar-card:focus-within .gift-pillar-media img {
+  transform: scale(1.05);
+  filter: brightness(0.82) saturate(1.02);
+}
+
+.gift-pillar-card:hover .gift-pillar-media::after,
+.gift-pillar-card:focus-within .gift-pillar-media::after {
+  opacity: 1.08;
+}
+
+.gift-pillar-card:hover .gift-pillar-divider,
+.gift-pillar-card:focus-within .gift-pillar-divider {
+  width: 56px;
+}
+
+.gift-pillar-card:hover .gift-pillar-tag,
+.gift-pillar-card:focus-within .gift-pillar-tag {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gift-pillar-card:hover .gift-pillar-corner,
+.gift-pillar-card:focus-within .gift-pillar-corner {
+  opacity: 1;
+}
+
+/* Staged reveal timing across the 3 cards */
+.gift-pillar-grid > li:nth-child(1) .gift-pillar-tag { transition-delay: 0ms; }
+.gift-pillar-grid > li:nth-child(2) .gift-pillar-tag { transition-delay: 40ms; }
+.gift-pillar-grid > li:nth-child(3) .gift-pillar-tag { transition-delay: 80ms; }
+
+/* ============================================================
+   Product card rank variants (Curated Sets)
+   ============================================================ */
+.card-rank-alt {
+  background: #b76e56 !important;
+  color: #fff !important;
+}
+
+.card-rank-limited {
+  background: #1a2421 !important;
+  color: #fff !important;
+}
+
+.page-gift #curated-sets .card-desc,
+.page-gift .gift-corporate .card-desc {
+  min-height: 72px;
+}
+
+/* ============================================================
+   Gift Flow — duration chip
+   ============================================================ */
+.gift-flow .process-grid .card-body {
+  min-height: 200px;
+}
+
+.gift-flow .card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0;
+}
+
+.process-duration {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(26, 36, 33, 0.08);
+  color: var(--color-primary, #1a2421);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.process-note {
+  font-size: 12px;
+  opacity: 0.65;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   Custom Label Form — counter, clear button, input wrap
+   ============================================================ */
+.gift-label-section .gift-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-12);
+  align-items: stretch;
+}
+
+.gift-input-wrap {
+  position: relative;
+  flex: 1 1 240px;
+  display: flex;
+  align-items: center;
+}
+
+.gift-input-wrap input {
+  width: 100%;
+  padding-right: 36px;
+}
+
+.gift-clear-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.6);
+  transition: background 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.gift-clear-btn:hover,
+.gift-clear-btn:focus-visible {
+  background: rgba(0, 0, 0, 0.16);
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.gift-clear-btn[hidden] {
+  display: none;
+}
+
+.gift-label-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.gift-label-hint {
+  margin: 0;
+  flex: 1 1 auto;
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0.7;
+}
+
+.gift-label-counter {
+  margin: 0;
+  flex: 0 0 auto;
+  font-family: var(--font-family-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted, #666);
+  font-variant-numeric: tabular-nums;
+}
+
+.gift-label-counter.is-near {
+  color: #a63b2f;
+}
+
+/* ============================================================
+   Corporate Gifting — B2B service block
+   ============================================================ */
+.gift-corporate .section-body {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 4vw, 56px);
+}
+
+/* ---------- Trust Bar ---------- */
+.gift-corporate-trust {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin: 0;
+  padding: 22px 0;
+  list-style: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.gift-corporate-trust li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  padding: 0 8px;
+  position: relative;
+}
+
+.gift-corporate-trust li + li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14%;
+  bottom: 14%;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.gift-corporate-trust .trust-num {
+  font-family: var(--font-family-display, Georgia, serif);
+  font-style: italic;
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1;
+  color: var(--color-primary, #1a2421);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.gift-corporate-trust .trust-cap {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.58);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* ---------- Service Cards ---------- */
+.gift-corporate-grid {
+  align-items: stretch;
+}
+
+.gift-corporate-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.gift-corporate-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.gift-corporate-card .card-body {
+  flex: 1;
+  padding: clamp(20px, 2.2vw, 28px);
+  gap: 14px;
+}
+
+/* ---------- Media (shared overlay system) ---------- */
+.gift-corporate-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #0f1614;
+  padding: 0;
+}
+
+.gift-corporate-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease;
+}
+
+.gift-corporate-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 16, 14, 0) 45%, rgba(10, 16, 14, 0.72) 100%);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.gift-corporate-card:hover .gift-corporate-media img,
+.gift-corporate-card:focus-within .gift-corporate-media img {
+  transform: scale(1.04);
+}
+
+/* VIP variant — slightly darker base to evoke exclusivity */
+.gift-corporate-media-vip::after {
+  background: linear-gradient(180deg, rgba(15, 22, 20, 0.2) 0%, rgba(15, 22, 20, 0.82) 100%);
+}
+
+.gift-corporate-media-vip img {
+  filter: brightness(0.92) saturate(0.92);
+}
+
+/* ---------- Tag (top-left) ---------- */
+.gift-corporate-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--color-primary, #1a2421);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  line-height: 1;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.gift-corporate-tag-vip {
+  background: var(--color-primary, #1a2421);
+  color: #fff;
+}
+
+/* ---------- Overlay caption (bottom-left) ---------- */
+.gift-corporate-overlay {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 16px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+
+.gift-corporate-overlay-vip {
+  align-items: center;
+}
+
+.gift-corporate-symbol {
+  font-size: 22px;
+  line-height: 1;
+  color: #fff;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+.gift-corporate-caption {
+  font-family: var(--font-family-display, Georgia, serif);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.94);
+  line-height: 1.3;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Specs table ---------- */
+.gift-corporate-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 6px 0 4px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.gift-corporate-specs > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 12px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.015);
+  min-width: 0;
+}
+
+.gift-corporate-specs dt {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.gift-corporate-specs dd {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary, #1a2421);
+  line-height: 1.35;
+  letter-spacing: 0.005em;
+}
+
+/* ---------- Action stack ---------- */
+.gift-corporate-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 20px;
+  margin-top: 6px;
+}
+
+.gift-corporate-actions .btn-primary {
+  min-width: 180px;
+}
+
+.gift-corporate-sublink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: rgba(0, 0, 0, 0.68);
+  transition: color 0.2s ease;
+}
+
+.gift-corporate-sublink:hover,
+.gift-corporate-sublink:focus-visible {
+  color: var(--color-primary, #1a2421);
+}
+
+.gift-corporate-sublink svg {
+  flex: 0 0 auto;
+  opacity: 0.7;
+}
+
+.gift-corporate-hours {
+  opacity: 0.55;
+  font-weight: 400;
+}
+
+/* ---------- B2B Process Strip ---------- */
+.gift-corporate-process {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--color-surface-soft, #f7f5f0);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.gift-corporate-process li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 18px;
+  position: relative;
+}
+
+.gift-corporate-process li + li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18%;
+  bottom: 18%;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.corp-process-num {
+  font-family: var(--font-family-display, Georgia, serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.38);
+  letter-spacing: -0.01em;
+}
+
+.corp-process-name {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-primary, #1a2421);
+  line-height: 1.2;
+}
+
+.corp-process-sub {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Final CTA Bar ---------- */
+.gift-corporate-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+  padding: clamp(24px, 3vw, 36px) clamp(24px, 3vw, 40px);
+  background: var(--color-primary, #1a2421);
+  color: #fff;
+  border-radius: 4px;
+}
+
+.gift-corporate-cta-copy {
+  flex: 1 1 300px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gift-corporate-cta .section-eyebrow {
+  color: rgba(255, 255, 255, 0.66);
+  margin: 0;
+}
+
+.gift-corporate-cta-title {
+  margin: 0;
+  font-family: var(--font-family-display, Georgia, serif);
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.3;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.gift-corporate-cta-desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.gift-corporate-cta-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex: 0 0 auto;
+}
+
+.gift-corporate-cta-actions .btn-primary {
+  background: #fff;
+  color: var(--color-primary, #1a2421);
+  border-color: #fff;
+}
+
+.gift-corporate-cta-actions .btn-primary:hover,
+.gift-corporate-cta-actions .btn-primary:focus-visible {
+  background: transparent;
+  color: #fff;
+}
+
+.gift-corporate-cta-actions .btn-secondary {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.gift-corporate-cta-actions .btn-secondary:hover,
+.gift-corporate-cta-actions .btn-secondary:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+/* ============================================================
+   FAQ — chevron icon, animated reveal
+   ============================================================ */
+.gift-faq .gift-faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+.gift-faq .gift-faq-item {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px 18px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gift-faq .gift-faq-item:hover,
+.gift-faq .gift-faq-item[open] {
+  border-color: rgba(0, 0, 0, 0.24);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.gift-faq .gift-faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 1.45;
+  list-style: none;
+}
+
+.gift-faq .gift-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.gift-faq-q {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.gift-faq-icon {
+  flex: 0 0 auto;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+.gift-faq-icon::before,
+.gift-faq-icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 1.5px;
+  background: var(--color-primary, #1a2421);
+  transform: translate(-50%, -50%);
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
+}
+
+.gift-faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.gift-faq-item[open] .gift-faq-icon::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+  opacity: 0;
+}
+
+.gift-faq .gift-faq-item p {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.78);
+  line-height: 1.65;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1024px) {
+  .page-gift .section {
+    padding-block: clamp(56px, 8vw, 84px);
+  }
+
+  .page-gift #curated-sets .card-desc,
+  .page-gift .gift-corporate .card-desc,
+  .gift-flow .process-grid .card-body {
+    min-height: 0;
+  }
+
+  .gift-kpi-value {
+    font-size: clamp(26px, 5vw, 34px);
+  }
+
+  .gift-pillar-media {
+    aspect-ratio: 3 / 2;
+  }
+
+  /* On touch devices hover is unreliable — show the tag by default */
+  .gift-pillar-tag {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .gift-pillar-divider {
+    width: 48px;
+  }
+
+  /* Corporate — tablet layout */
+  .gift-corporate-trust {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+
+  .gift-corporate-trust li:nth-child(2)::before {
+    display: none;
+  }
+
+  .gift-corporate-trust li:nth-child(3),
+  .gift-corporate-trust li:nth-child(4) {
+    padding-top: 18px;
+    margin-top: 18px;
+  }
+
+  .gift-corporate-trust li:nth-child(3)::before,
+  .gift-corporate-trust li:nth-child(4)::before {
+    top: -1px;
+    bottom: auto;
+    left: 12%;
+    right: 12%;
+    width: auto;
+    height: 1px;
+  }
+
+  .gift-corporate-process {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gift-corporate-process li:nth-child(3)::before,
+  .gift-corporate-process li:nth-child(4)::before {
+    left: 0;
+    top: 0;
+    bottom: auto;
+    width: 100%;
+    height: 1px;
+  }
+}
+
+@media (max-width: 767px) {
+  .gift-label-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .gift-corporate-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gift-faq .gift-faq-item {
+    padding: 12px 14px;
+  }
+
+  .gift-kpi-delta {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .gift-flow .card-meta {
+    gap: 6px 8px;
+  }
+
+  .gift-pillar-media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .gift-pillar-overlay {
+    padding: 16px 18px 18px;
+    column-gap: 12px;
+  }
+
+  .gift-pillar-overlay .pillar-step {
+    font-size: clamp(40px, 12vw, 52px);
+  }
+
+  .gift-pillar-overlay .pillar-label {
+    font-size: 12px;
+    letter-spacing: 0.22em;
+  }
+
+  .gift-pillar-tag {
+    font-size: 11px;
+    margin-top: 6px;
+    padding-top: 8px;
+  }
+
+  .gift-pillar-corner {
+    top: 12px;
+    left: 12px;
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Corporate — mobile */
+  .gift-corporate-trust {
+    grid-template-columns: 1fr 1fr;
+    padding: 16px 0;
+  }
+
+  .gift-corporate-trust .trust-num {
+    font-size: 22px;
+  }
+
+  .gift-corporate-trust .trust-cap {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .gift-corporate-specs {
+    grid-template-columns: 1fr;
+  }
+
+  .gift-corporate-specs > div {
+    padding: 10px 14px;
+  }
+
+  .gift-corporate-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .gift-corporate-actions .btn-primary {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .gift-corporate-process {
+    grid-template-columns: 1fr;
+  }
+
+  .gift-corporate-process li {
+    padding: 14px 18px;
+  }
+
+  .gift-corporate-process li + li::before {
+    left: 18px;
+    right: 18px;
+    top: 0;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+
+  .gift-corporate-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 22px;
+  }
+
+  .gift-corporate-cta-actions {
+    width: 100%;
+  }
+
+  .gift-corporate-cta-actions .btn-primary,
+  .gift-corporate-cta-actions .btn-secondary {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gift-faq .gift-faq-item,
+  .gift-faq-icon::before,
+  .gift-faq-icon::after,
+  .gift-clear-btn,
+  .gift-pillar-media img,
+  .gift-pillar-media::after,
+  .gift-pillar-divider,
+  .gift-pillar-tag,
+  .gift-pillar-corner,
+  .gift-corporate-card,
+  .gift-corporate-media img,
+  .gift-corporate-media::after,
+  .gift-corporate-sublink {
+    transition: none;
+  }
+
+  .gift-pillar-tag {
+    opacity: 1;
+    transform: none;
+  }
 }

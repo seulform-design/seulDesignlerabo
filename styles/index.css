@@ -1,8 +1,5 @@
-/* Shared Chrome (Moved to common.css) */
-
-/* ============================================================
-   Hero — Full-bleed image + centered text overlay
-   ============================================================ */
+/* index.css */
+/* ========================================hero========================================================== */
 .hero {
   position: relative;
   min-height: calc(100vh - var(--header-height) - var(--announcement-height));
@@ -71,13 +68,14 @@
 .hero-head {
   align-items: center;
   text-align: center;
-  max-width: 820px;
+  max-width: 880px;
   margin: 0 auto;
-  gap: 18px;                            /* loosen eyebrow → title → desc rhythm */
+  gap: var(--space-24);  /* loosen eyebrow → title → desc rhythm */
 }
 
 .hero-eyebrow {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.78);
+  letter-spacing: 0.32em;
 }
 
 .hero-title {
@@ -94,8 +92,48 @@
 .hero-cta-group {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-24);
+  gap: var(--space-16);
   justify-content: center;
+}
+
+.hero-cta-group .btn {
+  min-width: 200px;
+}
+
+.hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-40);
+  margin-top: var(--space-40);
+  padding-top: var(--space-32);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.78);
+  list-style: none;
+}
+
+.hero-trust li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-8);
+}
+
+.hero-trust strong {
+  color: var(--color-white);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+@media (max-width: 640px) {
+  .hero-trust {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-12);
+  }
 }
 
 /* CTA on dark background variant */
@@ -141,8 +179,8 @@
 
 .hero-scroll-label {
   font-size: var(--font-label);
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
 }
 
@@ -189,9 +227,7 @@
   background: var(--color-surface-soft);
 }
 
-/* ============================================================
-   Index Alignment System — section-level alignment consistency
-   ============================================================ */
+/* ============================================================Index Alignment System — section-level alignment consistency=========================================================== */
 .page-index {
   --index-head-max: 720px;
 }
@@ -237,6 +273,423 @@
   align-items: center;
 }
 
+/* ============================================================
+  Index-wide Card Scale System
+  ============================================================ */
+.page-index .card-grid-2 > .card,
+.page-index .comparison-grid > .card {
+  min-height: clamp(400px, 32vw, 520px);
+}
+
+.page-index .card-grid-3 > .card,
+.page-index .gift-grid > .card {
+  min-height: clamp(340px, 28vw, 460px);
+}
+
+.page-index .card-grid-4 > .card,
+.page-index .finder-step-grid > .card {
+  min-height: clamp(300px, 22vw, 390px);
+}
+
+.page-index .pillar-grid > li > .card {
+  min-height: clamp(340px, 26vw, 430px);
+}
+
+.page-index .process-grid > li > .card {
+  min-height: clamp(360px, 28vw, 460px);
+}
+
+/* Typographic rhythm baseline across index cards */
+.page-index {
+  --copy-gap-tight: 8px;
+  --copy-gap-base: 10px;
+  --copy-gap-loose: 12px;
+}
+
+.page-index .card-body {
+  gap: var(--copy-gap-base);
+}
+
+.page-index .card-body .card-title,
+.page-index .card-body .card-desc,
+.page-index .card-body .card-meta {
+  margin: 0;
+}
+
+.page-index .card-body .card-title {
+  line-height: 1.35;
+  letter-spacing: 0.008em;
+  text-wrap: balance;
+}
+
+.page-index .card-body .card-desc {
+  line-height: 1.6;
+}
+
+.page-index .card-body .card-meta {
+  line-height: 1.45;
+}
+
+/* Micro rhythm between copy blocks */
+.page-index .card-body > .card-title + .card-desc {
+  margin-top: 2px;
+}
+
+.page-index .card-body > .card-desc + .card-meta {
+  margin-top: 2px;
+}
+
+.page-index .card-body > .card-meta + .card-action {
+  margin-top: var(--copy-gap-base);
+}
+
+/* In explanatory cards, card-desc should not stretch and create visual dead space */
+.page-index .brand-statement .card-desc,
+.page-index .scent-depth .card-desc,
+.page-index .selection-summary .card-desc,
+.page-index .why-this .card-desc,
+.page-index .ingredient .card-desc,
+.page-index .process .card-desc,
+.page-index .personal .card-desc {
+  flex: initial;
+}
+
+/* Section-specific copy cadence */
+.page-index .quick-entry .card-body,
+.page-index .trending .card-body,
+.page-index .cross-category .card-body,
+.page-index .journal .card-body,
+.page-index .comparison .card-body {
+  gap: var(--copy-gap-base);
+}
+
+.page-index .brand-statement .card-body,
+.page-index .scent-depth .card-body,
+.page-index .selection-summary .card-body,
+.page-index .finder-step .card-body,
+.page-index .personal .card-body {
+  gap: var(--copy-gap-tight);
+}
+
+.page-index .why-this .card-body,
+.page-index .ingredient .card-body,
+.page-index .process .card-body {
+  gap: var(--copy-gap-loose);
+}
+
+/* Section-level cadence: tighten card-to-card rhythm consistently */
+.page-index .quick-entry .card-grid,
+.page-index .trending .card-grid,
+.page-index .cross-category .card-grid,
+.page-index .journal .card-grid,
+.page-index .pillar-grid,
+.page-index .scent-depth .card-grid,
+.page-index #why-grid,
+.page-index .summary-card-list,
+.page-index .process-grid,
+.page-index .comparison-grid {
+  row-gap: var(--space-20);
+  column-gap: var(--space-20);
+}
+
+/* Keep heading block and card deck spacing balanced */
+.page-index .quick-entry .section-body,
+.page-index .trending .section-body,
+.page-index .cross-category .section-body,
+.page-index .journal .section-body,
+.page-index .brand-statement .section-body,
+.page-index .scent-depth .section-body,
+.page-index .why-this .section-body,
+.page-index .process .section-body,
+.page-index .comparison .section-body {
+  gap: var(--space-24);
+}
+
+/* Keep multi-card sections aligned even with varying copy length */
+.quick-entry .card-desc,
+.trending .card-desc,
+.cross-category .card-desc,
+.journal .card-desc,
+.why-this .card-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Fine-tuned copy density by section */
+.quick-entry .card-desc {
+  -webkit-line-clamp: 2;
+}
+
+.trending .card-desc,
+.cross-category .card-desc {
+  -webkit-line-clamp: 3;
+}
+
+.journal .card-desc {
+  -webkit-line-clamp: 2;
+}
+
+.why-this .card-desc {
+  -webkit-line-clamp: 3;
+}
+
+.quick-entry .card-meta,
+.trending .card-meta,
+.cross-category .card-meta,
+.journal .card-meta {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.quick-entry .card-meta {
+  -webkit-line-clamp: 1;
+}
+
+.trending .card-meta,
+.cross-category .card-meta {
+  -webkit-line-clamp: 2;
+}
+
+.journal .card-meta {
+  -webkit-line-clamp: 1;
+}
+
+/* Harmonize title rhythm in product-like cards */
+.quick-entry .card-title,
+.trending .card-title,
+.cross-category .card-title,
+.journal .card-title,
+.why-this .card-title,
+.selection-summary .card-title,
+.comparison .card-title {
+  margin-bottom: 2px;
+}
+
+/* Prevent overly long measure in dense cards */
+.quick-entry .card-desc,
+.journal .card-desc {
+  max-width: 30ch;
+}
+
+.trending .card-desc,
+.cross-category .card-desc,
+.why-this .card-desc {
+  max-width: 36ch;
+}
+
+/* Action anchoring precision */
+.quick-entry .card-action,
+.journal .card-action {
+  margin-top: var(--space-8);
+}
+
+.trending .card-action,
+.cross-category .card-action,
+.why-this .card-action {
+  margin-top: var(--space-10);
+}
+
+/* Trending only: premium product card rhythm */
+.trending .trending-card .card-body {
+  gap: var(--space-12);
+}
+
+.trending .trending-card .product-head {
+  gap: var(--space-12);
+  margin-bottom: 6px;
+}
+
+.trending .trending-card .card-title {
+  -webkit-line-clamp: 1;
+  min-height: 1.35em;
+}
+
+.trending .trending-card .card-desc {
+  max-width: 34ch;
+  line-height: 1.66;
+  -webkit-line-clamp: 3;
+  margin-top: 6px;
+}
+
+.trending .trending-card .card-meta {
+  line-height: 1.55;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  -webkit-line-clamp: initial;
+  margin-top: 6px;
+}
+
+.trending .trending-card .card-meta .meta-item {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.trending .trending-card .card-meta .meta-item:not(:last-child)::after {
+  content: "·";
+  margin-left: 12px;
+  color: var(--color-line-strong);
+}
+
+.trending .trending-card .card-action {
+  margin-top: var(--space-10);
+}
+
+/* Product-style cards — match trending rhythm (Quick · Cross · Journal) */
+.quick-entry .quick-card .card-body,
+.cross-category .cross-card .card-body,
+.journal .journal-card .card-body {
+  gap: var(--space-12);
+}
+
+.quick-entry .quick-card .product-head,
+.cross-category .cross-card .product-head,
+.journal .journal-card .product-head {
+  gap: var(--space-12);
+  margin-bottom: 6px;
+}
+
+.quick-entry .quick-card .card-title,
+.cross-category .cross-card .card-title,
+.journal .journal-card .card-title {
+  -webkit-line-clamp: 1;
+  min-height: 1.35em;
+}
+
+.quick-entry .quick-card .card-desc,
+.cross-category .cross-card .card-desc,
+.journal .journal-card .card-desc {
+  line-height: 1.66;
+  margin-top: 6px;
+}
+
+.quick-entry .quick-card .card-meta,
+.cross-category .cross-card .card-meta,
+.journal .journal-card .card-meta {
+  line-height: 1.55;
+  margin-top: 6px;
+}
+
+.quick-entry .quick-card .card-action,
+.cross-category .cross-card .card-action,
+.journal .journal-card .card-action {
+  margin-top: var(--space-10);
+}
+
+/* Tighten copy spacing for sections that feel too airy */
+.quick-entry .quick-card .card-body,
+.scent-depth .card .card-body,
+.selection-summary .summary-card .card-body,
+.comparison .compare-card .card-body {
+  gap: var(--space-8);
+}
+
+.quick-entry .quick-card .card-desc,
+.scent-depth .card .card-desc,
+.selection-summary .summary-card .card-desc,
+.comparison .compare-card .card-desc {
+  line-height: 1.52;
+  margin-top: 2px;
+}
+
+.quick-entry .quick-card .card-meta,
+.scent-depth .card .card-meta,
+.selection-summary .summary-card .card-meta,
+.comparison .compare-card .card-meta {
+  line-height: 1.38;
+  margin-top: 2px;
+}
+
+.selection-summary .summary-card .card-title,
+.comparison .compare-card .card-title,
+.scent-depth .card .card-title,
+.quick-entry .quick-card .card-title {
+  margin-bottom: 0;
+}
+
+/* Card surface polish — 4 focused sections only */
+.selection-summary .summary-card,
+.scent-depth .card,
+.quick-entry .quick-card,
+.comparison .compare-card {
+  border-color: rgba(26, 36, 33, 0.12);
+  box-shadow: 0 1px 0 rgba(26, 36, 33, 0.04);
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.selection-summary .summary-card:hover,
+.scent-depth .card:hover,
+.quick-entry .quick-card:hover,
+.comparison .compare-card:hover {
+  border-color: var(--color-line-strong);
+  box-shadow: 0 20px 40px rgba(26, 36, 33, 0.06);
+  transform: translateY(-2px);
+}
+
+.selection-summary .summary-card:focus-within,
+.scent-depth .card:focus-within,
+.quick-entry .quick-card:focus-within,
+.comparison .compare-card:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(26, 36, 33, 0.06), 0 12px 28px rgba(26, 36, 33, 0.06);
+}
+
+.selection-summary .summary-card .card-body,
+.scent-depth .card .card-body,
+.quick-entry .quick-card .card-body,
+.comparison .compare-card .card-body {
+  padding-top: calc(var(--card-padding) - 2px);
+  padding-bottom: calc(var(--card-padding) - 2px);
+}
+
+.selection-summary .summary-card .card-title,
+.scent-depth .card .card-title,
+.quick-entry .quick-card .card-title,
+.comparison .compare-card .card-title {
+  letter-spacing: -0.005em;
+}
+
+.selection-summary .summary-card .card-meta,
+.scent-depth .card .card-meta,
+.quick-entry .quick-card .card-meta,
+.comparison .compare-card .card-meta {
+  letter-spacing: 0.04em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selection-summary .summary-card,
+  .scent-depth .card,
+  .quick-entry .quick-card,
+  .comparison .compare-card {
+    transition: none;
+  }
+
+  .selection-summary .summary-card:hover,
+  .scent-depth .card:hover,
+  .quick-entry .quick-card:hover,
+  .comparison .compare-card:hover {
+    transform: none;
+    box-shadow: 0 1px 0 rgba(26, 36, 33, 0.04);
+  }
+}
+
+/* Improve keyboard visibility for interactive card controls */
+.page-index .card .btn:focus-visible,
+.page-index .card .text-link:focus-visible,
+.page-index .card button:focus-visible,
+.page-index .card a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 @media (max-width: 767px) {
   .page-index .section-head.section-head-center {
     margin-left: 0;
@@ -247,14 +700,164 @@
 }
 
 /* ============================================================
-   Product Grid — 상품/카테고리 카드 섹션 (Quick Entry · Trending · Cross Category)
-   --container 1280 적용으로 content 1200 — 별도 max-width 불필요
-   Header · Footer · Sticky 모두 1200 동일 폭으로 정렬 완성
-   ============================================================ */
+  Product Grid — 상품/카테고리 카드 섹션 (Quick Entry · Trending · Cross Category)
+  --container 1280 적용으로 content 1200 — 별도 max-width 불필요
+  Header · Footer · Sticky 모두 1200 동일 폭으로 정렬 완성
+  ============================================================ */
 
 /* ============================================================
-   Quick Entry — 이미지 위 카테고리 오버레이 (카드 상단 밀도 강화)
-   ============================================================ */
+  Quick Entry — 이미지 위 카테고리 오버레이 (카드 상단 밀도 강화)
+  ============================================================ */
+.scent-depth .card-media-note,
+.selection-summary .card-media-note,
+.why-this .card-media-note,
+.comparison .card-media-note,
+.ingredient .card-media-note,
+.process .card-media-note,
+.gift .card-media-note,
+.personal .card-media-note {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border-bottom: 0;
+}
+
+.scent-depth .card-media-note img,
+.selection-summary .card-media-note img,
+.why-this .card-media-note img,
+.comparison .card-media-note img,
+.ingredient .card-media-note img,
+.process .card-media-note img,
+.gift .card-media-note img,
+.personal .card-media-note img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.scent-depth .card-media-note::after,
+.selection-summary .card-media-note::after,
+.why-this .card-media-note::after,
+.comparison .card-media-note::after,
+.ingredient .card-media-note::after,
+.process .card-media-note::after,
+.gift .card-media-note::after,
+.personal .card-media-note::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.28) 0%, rgba(0, 0, 0, 0.62) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.scent-depth .card-media-note > :not(img),
+.selection-summary .card-media-note > :not(img),
+.why-this .card-media-note > :not(img),
+.comparison .card-media-note > :not(img),
+.ingredient .card-media-note > :not(img),
+.process .card-media-note > :not(img),
+.gift .card-media-note > :not(img),
+.personal .card-media-note > :not(img) {
+  position: relative;
+  z-index: 2;
+}
+
+.scent-depth .card-media-note span,
+.selection-summary .card-media-note span,
+.why-this .card-media-note span,
+.comparison .card-media-note span,
+.ingredient .card-media-note span,
+.process .card-media-note span,
+.gift .card-media-note span,
+.personal .card-media-note span {
+  color: var(--color-white);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* Show overlay/text on hover for key image sections */
+.scent-depth .card-media-note::after,
+.selection-summary .card-media-note::after,
+.why-this .card-media-note::after,
+.ingredient .card-media-note::after,
+.personal .card-media-note::after {
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.scent-depth .card-media-note::after {
+  background: linear-gradient(180deg, rgba(15, 24, 22, 0.1) 0%, rgba(15, 24, 22, 0.48) 100%);
+}
+
+.selection-summary .card-media-note::after {
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0.09) 0%, rgba(20, 20, 20, 0.44) 100%);
+}
+
+.why-this .card-media-note::after {
+  background: linear-gradient(180deg, rgba(18, 22, 30, 0.14) 0%, rgba(18, 22, 30, 0.54) 100%);
+}
+
+.ingredient .card-media-note::after {
+  background: linear-gradient(180deg, rgba(28, 22, 16, 0.1) 0%, rgba(28, 22, 16, 0.5) 100%);
+}
+
+.personal .card-media-note::after {
+  background: linear-gradient(180deg, rgba(16, 24, 18, 0.12) 0%, rgba(16, 24, 18, 0.52) 100%);
+}
+
+.scent-depth .card-media-note > :not(img),
+.selection-summary .card-media-note > :not(img),
+.why-this .card-media-note > :not(img),
+.ingredient .card-media-note > :not(img),
+.personal .card-media-note > :not(img) {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.scent-depth .card:hover .card-media-note::after,
+.selection-summary .card:hover .card-media-note::after,
+.why-this .card:hover .card-media-note::after,
+.ingredient .card:hover .card-media-note::after,
+.personal .card:hover .card-media-note::after,
+.scent-depth .card:focus-within .card-media-note::after,
+.selection-summary .card:focus-within .card-media-note::after,
+.why-this .card:focus-within .card-media-note::after,
+.ingredient .card:focus-within .card-media-note::after,
+.personal .card:focus-within .card-media-note::after {
+  opacity: 1;
+}
+
+.scent-depth .card:hover .card-media-note img,
+.selection-summary .card:hover .card-media-note img,
+.why-this .card:hover .card-media-note img,
+.ingredient .card:hover .card-media-note img,
+.personal .card:hover .card-media-note img,
+.scent-depth .card:focus-within .card-media-note img,
+.selection-summary .card:focus-within .card-media-note img,
+.why-this .card:focus-within .card-media-note img,
+.ingredient .card:focus-within .card-media-note img,
+.personal .card:focus-within .card-media-note img {
+  transform: scale(1.04);
+}
+
+.scent-depth .card:hover .card-media-note > :not(img),
+.selection-summary .card:hover .card-media-note > :not(img),
+.why-this .card:hover .card-media-note > :not(img),
+.ingredient .card:hover .card-media-note > :not(img),
+.personal .card:hover .card-media-note > :not(img),
+.scent-depth .card:focus-within .card-media-note > :not(img),
+.selection-summary .card:focus-within .card-media-note > :not(img),
+.why-this .card:focus-within .card-media-note > :not(img),
+.ingredient .card:focus-within .card-media-note > :not(img),
+.personal .card:focus-within .card-media-note > :not(img) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .quick-card .card-media {
   position: relative;
 }
@@ -280,8 +883,8 @@
 }
 
 /* ============================================================
-   Scent Depth — 밀도 시각화 배너 (5-segment 바 + 카테고리 단어)
-   ============================================================ */
+  Scent Depth — 밀도 시각화 배너 (5-segment 바 + 카테고리 단어)
+  ============================================================ */
 .scent-depth .card {
   text-align: center;
 }
@@ -298,7 +901,9 @@
 .density-banner {
   flex-direction: column;
   gap: var(--space-12);
-  padding: var(--space-20) var(--space-16);
+  padding: var(--space-16);
+  justify-content: flex-end;
+  align-items: flex-start;
 }
 
 .density-chart {
@@ -322,10 +927,10 @@
 
 .density-word {
   font-size: var(--font-label);
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 /* 4열 좁은 카드에 16/9 banner는 과도한 공백을 만든다. 평평한 태그 스트립 비율로 교정 */
@@ -333,18 +938,22 @@
 .summary-card .card-media-note,
 .finder-step .card-media-note,
 .personal .card-media-note {
-  aspect-ratio: 3 / 1;
-  padding: var(--space-12) var(--space-16);
+  aspect-ratio: 4 / 3;
+  padding: var(--space-16);
   font-size: var(--font-caption);
   letter-spacing: 0.18em;
+}
+
+.scent-depth .card-grid {
+  gap: var(--space-20);
 }
 
 /* Summary card 배너: 카드 타이틀과 중복되던 단어 대신 step 번호 */
 .summary-index {
   font-family: var(--font-family-display);
   font-style: italic;
-  font-size: 20px;
-  letter-spacing: 0.02em;
+  font-size: 22px;
+  letter-spacing: -0.01em;
   color: var(--color-primary);
   line-height: 1;
 }
@@ -355,9 +964,33 @@
 }
 
 .finder-step-media {
+  position: relative;
+  overflow: hidden;
   flex-direction: column;
   gap: var(--space-4);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.finder-step-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.finder-step-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.52) 100%);
+  z-index: 1;
+}
+
+.finder-step-media > :not(img) {
+  position: relative;
+  z-index: 2;
 }
 
 .finder-step-index {
@@ -365,17 +998,17 @@
   font-style: italic;
   font-size: 20px;
   line-height: 1;
-  color: var(--color-primary);
+  color: var(--color-white);
   letter-spacing: 0.02em;
   transition: color 0.3s ease;
 }
 
 .finder-step-label {
   font-size: var(--font-label);
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.9);
   transition: color 0.3s ease;
 }
 
@@ -433,35 +1066,123 @@
 }
 
 .brand-statement .pillar-card .card-body {
+  display: flex;
+  justify-content: center;
   align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-24) var(--space-20);
+  text-align: center;
 }
 
 .brand-statement .pillar-card .card-media-note {
+  position: relative;
+  overflow: hidden;
   flex-direction: column;
   gap: var(--space-8);
-  aspect-ratio: 21 / 9;
+  aspect-ratio: 16 / 9;
+  padding: var(--space-16);
+}
+
+.brand-statement .pillar-card .card-media-note img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.28s ease;
+}
+
+.brand-statement .pillar-card .card-media-note::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 22, 20, 0.12) 0%, rgba(15, 22, 20, 0.5) 100%);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.brand-statement .pillar-card .card-media-note > :not(img) {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.brand-statement .pillar-card:hover .card-media-note::after,
+.brand-statement .pillar-card:focus-within .card-media-note::after {
+  opacity: 1;
+}
+
+.brand-statement .pillar-card:hover .card-media-note img,
+.brand-statement .pillar-card:focus-within .card-media-note img {
+  transform: scale(1.04);
+}
+
+.brand-statement .pillar-card:hover .card-media-note > :not(img),
+.brand-statement .pillar-card:focus-within .card-media-note > :not(img) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.brand-statement .pillar-card .card-media-note .pillar-step,
+.brand-statement .pillar-card .card-media-note .pillar-label {
+  color: var(--color-white);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.brand-statement .section-body {
+  gap: var(--space-24);
+}
+
+.brand-statement .pillar-grid {
+  gap: var(--space-20);
+}
+
+.brand-statement .pillar-card .card-title,
+.brand-statement .pillar-card .card-desc,
+.brand-statement .pillar-card .card-meta {
+  margin: 0;
+}
+
+.brand-statement .pillar-card .card-title {
+  line-height: 1.35;
+}
+
+.brand-statement .pillar-card .card-desc {
+  max-width: 32ch;
+  line-height: 1.7;
+  color: var(--color-text-sub);
+}
+
+.brand-statement .pillar-card .card-meta {
+  font-size: var(--font-caption);
+  letter-spacing: 0.04em;
 }
 
 .pillar-step {
   font-family: var(--font-family-display);
   font-style: italic;
-  font-size: 28px;
+  font-size: 32px;
   line-height: 1;
   color: var(--color-primary);
-  letter-spacing: 0;
+  letter-spacing: -0.02em;
 }
 
 .pillar-label {
   font-size: var(--font-label);
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
 
 /* ============================================================
-   Filter / Sort (취향의 밀도) — 섹션 내부 수직 리듬 정렬
-   ============================================================ */
+  Filter / Sort (취향의 밀도) — 섹션 내부 수직 리듬 정렬
+  ============================================================ */
 .filter-sort .section-body {
   gap: var(--space-24);
 }
@@ -480,8 +1201,8 @@
   align-items: baseline;
   gap: var(--space-8);
   font-size: var(--font-caption);
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   color: var(--color-text-muted);
   text-transform: uppercase;
 }
@@ -490,10 +1211,10 @@
   color: var(--color-primary);
   font-family: var(--font-family-display);
   font-style: italic;
-  font-weight: 700;
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 22px;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: -0.01em;
 }
 
 .filter-reset {
@@ -503,8 +1224,8 @@
   gap: 6px;
   padding: 0 var(--space-4);
   font-size: var(--font-caption);
-  font-weight: 700;
-  letter-spacing: 0.2em;
+  font-weight: 600;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--color-primary);
   background: transparent;
@@ -647,6 +1368,11 @@
   gap: var(--grid-gap);
 }
 
+.finder-step-grid .finder-step .finder-step-media {
+  aspect-ratio: 4 / 3;
+  padding: var(--space-16);
+}
+
 .finder-options {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -710,9 +1436,9 @@
 }
 
 /* ============================================================
-   State Alert — Empty/Error 상태의 경고/안내 박스
-   좌측 인디케이터 바 + 아이콘 + 레이블 + 메시지 구조
-   ============================================================ */
+  State Alert — Empty/Error 상태의 경고/안내 박스
+  좌측 인디케이터 바 + 아이콘 + 레이블 + 메시지 구조
+  ============================================================ */
 .state-alert {
   display: flex;
   align-items: flex-start;
@@ -799,8 +1525,15 @@
 /* Why This — numbered reasons */
 .why-card .card-media-note {
   flex-direction: column;
-  gap: var(--space-8);
-  aspect-ratio: 21 / 9;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: var(--space-6);
+  aspect-ratio: 4 / 3;
+  padding: var(--space-16);
+}
+
+#why-grid {
+  gap: var(--space-20);
 }
 
 .why-index {
@@ -868,8 +1601,8 @@
 }
 
 /* ============================================================
-   Product Head — 제목 + 가격 한 줄 (Trending / Cross Category 공용)
-   ============================================================ */
+  Product Head — 제목 + 가격 한 줄 (Trending / Cross Category 공용)
+  ============================================================ */
 .product-head {
   display: flex;
   justify-content: space-between;
@@ -880,16 +1613,16 @@
 .product-price {
   font-family: var(--font-family-display);
   font-style: italic;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1;
   color: var(--color-primary);
   white-space: nowrap;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
 }
 
 /* ============================================================
-   Cross Category — 카테고리 태그 (BODY/HOME/TRAVEL)
-   ============================================================ */
+  Cross Category — 카테고리 태그 (BODY/HOME/TRAVEL)
+  ============================================================ */
 .cross-card .card-media {
   position: relative;
 }
@@ -902,12 +1635,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 6px 12px;
+  padding: 7px 14px;
   background: var(--color-primary);
   color: var(--color-white);
   font-size: var(--font-label);
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   border-radius: var(--radius-sm);
 }
@@ -940,6 +1673,7 @@
 .process-grid {
   counter-reset: process;
   position: relative;
+  align-items: stretch;
 }
 
 .process-grid > li {
@@ -950,48 +1684,113 @@
 
 .process-grid > li > .card {
   flex: 1;
+  min-height: 100%;
 }
 
-.process-grid > li + li::before {
-  content: "→";
-  position: absolute;
-  top: 20%;
-  left: calc(var(--grid-gap) * -0.5);
-  transform: translate(-50%, -50%);
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-family-display);
-  font-style: italic;
-  font-size: 16px;
-  color: var(--color-primary);
-  background: var(--color-bg);
-  border-radius: 50%;
-}
 
 .process-media {
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: var(--space-4);
-  aspect-ratio: 3 / 1;
-  padding: var(--space-12) var(--space-16);
+  aspect-ratio: 1 / 1;
+  padding: var(--space-16);
 }
 
 .process-step {
   font-family: var(--font-family-display);
   font-style: italic;
-  font-size: 22px;
+  font-size: clamp(20px, 2.2vw, 28px);
+  letter-spacing: -0.02em;
   line-height: 1;
-  color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .process-label {
   font-size: var(--font-label);
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Process cards use line-art assets: keep the full artwork visible. */
+.process .card-media-note img {
+  object-fit: contain;
+  object-position: center;
+  padding: 8%;
+  background: var(--color-surface-soft);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Process: reveal guide overlay only on interaction */
+.process .card-media-note > :not(img) {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.process .card-media-note::after {
+  display: block;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.58) 100%);
+}
+
+/* Step-specific overlay tuning for a clearer narrative rhythm. */
+.process-grid > li:nth-child(1) .card-media-note::after {
+  background: linear-gradient(180deg, rgba(15, 25, 20, 0.12) 0%, rgba(15, 25, 20, 0.52) 100%);
+}
+
+.process-grid > li:nth-child(2) .card-media-note::after {
+  background: linear-gradient(180deg, rgba(24, 30, 28, 0.16) 0%, rgba(24, 30, 28, 0.58) 100%);
+}
+
+.process-grid > li:nth-child(3) .card-media-note::after {
+  background: linear-gradient(180deg, rgba(28, 24, 20, 0.2) 0%, rgba(28, 24, 20, 0.62) 100%);
+}
+
+.process-grid > li:nth-child(4) .card-media-note::after {
+  background: linear-gradient(180deg, rgba(20, 22, 28, 0.2) 0%, rgba(20, 22, 28, 0.64) 100%);
+}
+
+.process .card:hover .card-media-note::after,
+.process .card:focus-within .card-media-note::after {
+  opacity: 1;
+}
+
+.process .card:hover .card-media-note > :not(img),
+.process .card:focus-within .card-media-note > :not(img) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slightly staged reveal timing for a more polished feel. */
+.process-grid > li:nth-child(1) .card-media-note > :not(img) { transition-delay: 0ms; }
+.process-grid > li:nth-child(2) .card-media-note > :not(img) { transition-delay: 20ms; }
+.process-grid > li:nth-child(3) .card-media-note > :not(img) { transition-delay: 40ms; }
+.process-grid > li:nth-child(4) .card-media-note > :not(img) { transition-delay: 60ms; }
+
+.process .card:hover .card-media-note img,
+.process .card:focus-within .card-media-note img {
+  transform: scale(1.03);
+}
+
+/* Keep process card body rhythm tighter and more editorial. */
+.process .card-body {
+  gap: var(--space-10);
+}
+
+.process .card-title {
+  letter-spacing: 0.01em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process .card-media-note img,
+  .process .card-media-note::after,
+  .process .card-media-note > :not(img) {
+    transition: none;
+  }
 }
 
 /* Comparison */
@@ -1004,9 +1803,32 @@
 }
 
 #comparison-grid .card-media-note {
-  aspect-ratio: 3 / 1;
-  padding: var(--space-16) var(--space-24);
-  letter-spacing: 0.2em;
+  aspect-ratio: 1 / 1;
+  padding: var(--space-16);
+  letter-spacing: 0.18em;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+#comparison-grid .card-media-note > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-primary);
+  text-shadow: none;
+}
+
+.compare-card-primary .card-media-note > span {
+  background: var(--color-primary);
+  color: var(--color-white);
 }
 
 .compare-card-primary,
@@ -1016,7 +1838,7 @@
 }
 
 .compare-card-primary .card-media-note {
-  background: var(--color-primary);
+  background: transparent;
   color: var(--color-white);
 }
 
@@ -1036,9 +1858,9 @@
   border: 1px solid var(--color-line-strong);
   font-family: var(--font-family-display);
   font-style: italic;
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.08em;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: -0.01em;
   color: var(--color-primary);
 }
 
@@ -1063,8 +1885,27 @@
 
 /* Gift 카드는 800 풀너비이므로 summary-card 3/1 대신 더 flat한 5/1로 조정 */
 .gift-card .card-media-note {
-  aspect-ratio: 5 / 1;
+  aspect-ratio: 16 / 9;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: var(--space-20);
   letter-spacing: 0.22em;
+}
+
+.gift-card .card-media-note > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-primary);
+  text-shadow: none;
 }
 
 .summary-card-list .summary-card {
@@ -1103,11 +1944,103 @@
 }
 
 /* ============================================================
-   Summary Section — "나만의 향기 공식"
-   Progress indicator + 4-card reveal grid
-   ============================================================ */
+  Summary Section — "나만의 향기 공식"
+  Progress indicator + 4-card reveal grid
+  ============================================================ */
+/* 타이틀 | 결과셋 | 카드 — section-head-gap 대비 추가로 촘촘 */
+.page-index .selection-summary .section-content {
+  gap: calc(var(--section-head-gap) - 20px);
+}
+
+.selection-summary .section-head {
+  gap: var(--space-16);
+}
+
+.selection-summary .section-head .section-title {
+  margin-top: 2px;
+  letter-spacing: 0.006em;
+}
+
+.selection-summary .section-head .section-desc {
+  margin-top: 2px;
+  max-width: 52ch;
+  line-height: 1.58;
+}
+
+/* 결과셋(pill): 가로만 중앙, 상하 간격은 위 section-content gap에 맡김 */
+.selection-summary .summary-progress-slot {
+  padding: 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.selection-summary .summary-progress {
+  margin: 0;
+}
+
 .selection-summary .section-body {
-  gap: var(--space-40);                       /* was 24 — luxury breathing between indicator and cards */
+  gap: 0;
+}
+
+.page-index .selection-summary .summary-card-list {
+  gap: var(--space-16);
+  row-gap: var(--space-16);
+  column-gap: var(--space-16);
+}
+
+.page-index .selection-summary .summary-card .card-media-note {
+  aspect-ratio: 4 / 3;
+  padding: var(--space-16);
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.page-index .selection-summary .summary-card .card-body {
+  gap: var(--space-8);
+  align-items: flex-start;
+  text-align: left;
+  padding-top: calc(var(--card-padding) - 4px);
+  padding-bottom: calc(var(--card-padding) - 4px);
+}
+
+.page-index .selection-summary .summary-card .card-title {
+  font-size: calc(var(--font-card) - 1px);
+  letter-spacing: 0.01em;
+}
+
+.page-index .selection-summary .summary-card .card-desc {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 1.52;
+  min-height: auto;
+}
+
+.page-index .selection-summary .summary-card .card-meta {
+  margin-top: 2px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.page-index .selection-summary .summary-card .summary-index {
+  position: absolute;
+  top: var(--space-12);
+  left: var(--space-12);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-primary);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  text-shadow: none;
 }
 
 .summary-progress {
@@ -1115,9 +2048,9 @@
   flex-direction: column;
   align-items: center;
   align-self: center;
-  gap: var(--space-8);                        /* was 6 — tighter micro-rhythm */
-  min-width: 240px;                           /* stabilise width across 0/4 → 4/4 */
-  padding: 16px 32px;                         /* was 12 24 — more presence */
+  gap: var(--space-6);
+  min-width: 260px;
+  padding: 14px 28px;
   border: 1px solid var(--color-line-strong);
   border-radius: 28px;                        /* was pill(100) — balanced for 2 lines */
   background: var(--color-surface);
@@ -1222,11 +2155,11 @@
   text-align: center;
   color: var(--color-primary);
   font-size: var(--font-card);
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.28em;
   font-family: var(--font-family-mono);
   text-transform: uppercase;
-  padding: var(--space-32) var(--space-24);
+  padding: var(--space-40) var(--space-32);
   background: #fdfbf7;
   border: 1px solid var(--color-line-strong);
   border-radius: 0;
@@ -1237,9 +2170,17 @@
   text-shadow: 0 0 1px rgba(26, 36, 33, 0.18);
 }
 
+.gift-label-hint {
+  margin-top: var(--space-8);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+
 /* =========================================================
-   에디토리얼 레이아웃 볼륨 제어 (와이드 스크린 팽창 방지)
-   ========================================================= */
+  에디토리얼 레이아웃 볼륨 제어 (와이드 스크린 팽창 방지)
+  ========================================================= */
 /* 2열 기획 카드 그룹 (선명한 확신, 숲의 잔향) */
 .comparison .section-content,
 .ingredient .section-content {
@@ -1259,21 +2200,29 @@
   color: rgba(255, 255, 255, .82);
 }
 
+.final .section-eyebrow {
+  letter-spacing: 0.32em;
+}
+
 .final-body {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-40);
-  max-width: 680px;
+  gap: var(--space-48);
+  max-width: 720px;
   margin: 0 auto;
 }
 
 .final-cta-group {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-24);
+  gap: var(--space-16);
   justify-content: center;
+}
+
+.final-cta-group .btn {
+  min-width: 200px;
 }
 
 .btn-ghost {
@@ -1291,16 +2240,16 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--space-12) var(--space-32);
-  padding-top: var(--space-24);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  gap: var(--space-12) var(--space-40);
+  padding-top: var(--space-32);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   width: 100%;
 }
 
 .final-trust li {
   font-size: var(--font-caption);
   color: rgba(255, 255, 255, 0.72);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
 }
 
 /* Footer */

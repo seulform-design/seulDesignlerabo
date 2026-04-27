@@ -95,7 +95,24 @@
 
             const path = (window.location.pathname || '').toLowerCase();
             const isMainPage = path.endsWith('/index.html') || path === '/' || path.endsWith('/');
+            const isShopPage = path.endsWith('/shop.html');
             const logoTag = isMainPage ? 'h1' : 'div';
+            const shopGnb = `
+                <li class="gnb-item"><a href="shop.html">SHOP</a></li>
+                <li class="gnb-item"><a href="ingredient.html">BOTANICAL</a></li>
+                <li class="gnb-item"><a href="index.html#lab">LAB</a></li>
+                <li class="gnb-item"><a href="journal.html">JOURNAL</a></li>
+                <li class="gnb-item"><a href="gift.html">GIFT</a></li>
+                <li class="gnb-item"><a href="cart.html">CART</a></li>
+            `;
+            const defaultGnb = `
+                <li class="gnb-item"><a href="shop.html">SHOP</a></li>
+                <li class="gnb-item"><a href="finder.html">SCENT FINDER</a></li>
+                <li class="gnb-item"><a href="ingredient.html">INGREDIENT</a></li>
+                <li class="gnb-item"><a href="journal.html">JOURNAL</a></li>
+                <li class="gnb-item"><a href="gift.html">GIFT</a></li>
+            `;
+            const gnbItems = isShopPage ? shopGnb : defaultGnb;
 
             main.insertAdjacentHTML('beforebegin', `
                 <header class="header" id="top" role="banner">
@@ -104,11 +121,7 @@
                             <${logoTag} class="logo"><a href="index.html" aria-label="LE LABO 홈으로 이동">LE LABO</a></${logoTag}>
                             <nav class="gnb" aria-label="메인 메뉴">
                                 <ul class="gnb-list">
-                                    <li class="gnb-item"><a href="shop.html">SHOP</a></li>
-                                    <li class="gnb-item"><a href="finder.html">SCENT FINDER</a></li>
-                                    <li class="gnb-item"><a href="ingredient.html">INGREDIENT</a></li>
-                                    <li class="gnb-item"><a href="journal.html">JOURNAL</a></li>
-                                    <li class="gnb-item"><a href="gift.html">GIFT</a></li>
+                                    ${gnbItems}
                                 </ul>
                             </nav>
                             <div class="header-actions">

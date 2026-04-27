@@ -1,8 +1,912 @@
 /* =========================================================
-   LE LABO · ingredient.css
-   The Ingredient page is built entirely from common.css and
-   index.css primitives (.page-header, .section.ingredient,
-   .card-media-note.ingredient-note, .ingredient-symbol,
-   .ingredient-label, .pillar-card, .process-card, .final).
-   No page-specific styles are required here.
-   ========================================================= */
+  LE LABO · ingredient.css
+  Page-specific spacing and card rhythm tuning
+  ========================================================= */
+
+.page-ingredient .section {
+  padding-block: clamp(64px, 9vw, 112px);
+}
+
+.page-ingredient .section-content {
+  gap: 28px;
+}
+
+.page-ingredient .section-head + .section-body {
+  margin-top: 8px;
+}
+
+.page-ingredient .card-grid {
+  gap: clamp(16px, 2.2vw, 28px);
+}
+
+.page-ingredient .quality-snapshot + .section,
+.page-ingredient .ingredient-standards + .section {
+  padding-top: clamp(48px, 6.5vw, 84px);
+}
+
+.page-ingredient .card {
+  height: 100%;
+}
+
+.page-ingredient .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ============================================================
+   Quality Snapshot — KPI cards (dl/dt/dd with trend chip)
+   ============================================================ */
+.quality-snapshot .ingredient-kpi-grid {
+  margin: 0;
+}
+
+.quality-snapshot .ingredient-kpi-grid .card-body {
+  gap: 6px;
+}
+
+.ingredient-kpi-card {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ingredient-kpi-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  opacity: 0.85;
+}
+
+.ingredient-kpi-card[data-trend="up"]::before {
+  background: var(--color-accent, #5b6b40);
+}
+
+.ingredient-kpi-card[data-trend="flat"]::before {
+  background: var(--color-text-muted, #888);
+  opacity: 0.5;
+}
+
+.ingredient-kpi-card[data-trend="down"]::before {
+  background: #b14a42;
+}
+
+.ingredient-kpi-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.ingredient-kpi-label {
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.72;
+  line-height: 1.4;
+}
+
+.ingredient-kpi-value {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  font-family: var(--font-family-display, Georgia, serif);
+  font-size: clamp(28px, 3.6vw, 38px);
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.ingredient-kpi-unit {
+  font-family: var(--font-family-sans);
+  font-size: 0.55em;
+  font-weight: 600;
+  opacity: 0.65;
+  letter-spacing: 0.02em;
+}
+
+.ingredient-kpi-delta {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  line-height: 1;
+  white-space: nowrap;
+  align-self: center;
+}
+
+.ingredient-kpi-delta.is-up {
+  color: var(--color-accent, #5b6b40);
+  background: rgba(91, 107, 64, 0.1);
+}
+
+.ingredient-kpi-delta.is-flat {
+  color: var(--color-text-muted);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.ingredient-kpi-delta.is-down {
+  color: #b14a42;
+  background: rgba(177, 74, 66, 0.1);
+}
+
+.quality-snapshot .card-meta {
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0.72;
+}
+
+/* ============================================================
+   Note Pyramid — Overlay with duration
+   ============================================================ */
+.ingredient-pyramid-card {
+  overflow: hidden;
+}
+
+.ingredient-pyramid-media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  padding: 0;
+  background: #0f1614;
+}
+
+.ingredient-pyramid-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ingredient-pyramid-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(10, 16, 14, 0) 30%, rgba(10, 16, 14, 0.78) 100%);
+  pointer-events: none;
+}
+
+.ingredient-pyramid-card:hover .ingredient-pyramid-media img {
+  transform: scale(1.04);
+}
+
+.ingredient-pyramid-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 22px;
+  color: #fff;
+}
+
+.ingredient-pyramid-overlay .ingredient-symbol {
+  grid-column: 1 / 2;
+  font-size: clamp(32px, 4vw, 44px);
+  line-height: 1;
+  color: #fff;
+  font-weight: 300;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ingredient-pyramid-overlay .ingredient-label {
+  grid-column: 2 / 3;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.ingredient-pyramid-duration {
+  grid-column: 3 / 4;
+  font-family: var(--font-family-display, Georgia, serif);
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.92);
+  white-space: nowrap;
+}
+
+/* Layer-tinted gradient for narrative rhythm */
+.ingredient-pyramid-card[data-layer="top"] .ingredient-pyramid-media::after {
+  background: linear-gradient(180deg, rgba(20, 30, 25, 0) 30%, rgba(20, 30, 25, 0.7) 100%);
+}
+
+.ingredient-pyramid-card[data-layer="middle"] .ingredient-pyramid-media::after {
+  background: linear-gradient(180deg, rgba(28, 22, 26, 0) 30%, rgba(28, 22, 26, 0.74) 100%);
+}
+
+.ingredient-pyramid-card[data-layer="base"] .ingredient-pyramid-media::after {
+  background: linear-gradient(180deg, rgba(20, 16, 12, 0) 30%, rgba(20, 16, 12, 0.82) 100%);
+}
+
+/* ============================================================
+   Sourcing Principles (separated from Key Ingredients)
+   ============================================================ */
+.ingredient-principles-section .ingredient-insight-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ingredient-principles-section .ingredient-insight-grid > li {
+  list-style: none;
+  display: flex;
+}
+
+.ingredient-principles-section .ingredient-insight-grid > li > .card {
+  flex: 1;
+}
+
+.ingredient-insight-card {
+  position: relative;
+}
+
+.ingredient-insight-num {
+  font-family: var(--font-family-display, Georgia, serif);
+  font-style: italic;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--color-accent, #5b6b40);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-8);
+}
+
+.ingredient-principles-section .ingredient-insight-grid .card-desc {
+  min-height: 68px;
+}
+
+/* ============================================================
+   Key Ingredients — Anchor cards (rich)
+   ============================================================ */
+.key-ingredients-section .section-body {
+  display: grid;
+  gap: clamp(18px, 2.4vw, 30px);
+}
+
+.ingredient-anchor-grid {
+  align-items: stretch;
+}
+
+.ingredient-anchor-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ingredient-anchor-card:hover {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+}
+
+.ingredient-anchor-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  padding: 0;
+}
+
+.ingredient-anchor-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ingredient-anchor-card:hover .ingredient-anchor-media img {
+  transform: scale(1.04);
+}
+
+.ingredient-anchor-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.94);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: var(--color-primary, #1a2421);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.ingredient-anchor-card[data-tone="woody"] .ingredient-anchor-tag { color: #5b3a1f; }
+.ingredient-anchor-card[data-tone="citrus"] .ingredient-anchor-tag { color: #826b22; }
+.ingredient-anchor-card[data-tone="floral"] .ingredient-anchor-tag { color: #8a3050; }
+.ingredient-anchor-card[data-tone="smoky"] .ingredient-anchor-tag { color: #2d3a32; }
+
+.ingredient-anchor-batch {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(15, 22, 20, 0.78);
+  color: #fff;
+  font-family: var(--font-family-mono, monospace);
+  line-height: 1;
+}
+
+.batch-key {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.batch-val {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #fff;
+}
+
+.ingredient-anchor-card .card-body {
+  padding: clamp(20px, 2.4vw, 28px);
+  gap: 12px;
+}
+
+.ingredient-anchor-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ingredient-anchor-binom {
+  font-family: var(--font-family-display, Georgia, serif);
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: -0.005em;
+  color: var(--color-text-muted);
+}
+
+.ingredient-anchor-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 6px 0 4px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.ingredient-anchor-specs > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 12px;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.014);
+  min-width: 0;
+}
+
+.ingredient-anchor-specs dt {
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.ingredient-anchor-specs dd {
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--color-primary, #1a2421);
+  line-height: 1.35;
+}
+
+.key-ingredients-section .ingredient-spec {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: 8px 0 0;
+  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================
+   Forest Matrix — Real comparison table with bars
+   ============================================================ */
+.forest-matrix-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+.forest-matrix-table-wrap:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.forest-matrix-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+}
+
+.forest-matrix-table thead {
+  background: rgba(0, 0, 0, 0.025);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.forest-matrix-table th,
+.forest-matrix-table td {
+  padding: 14px 18px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 13px;
+}
+
+.forest-matrix-table thead th {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.forest-matrix-table tbody tr {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  transition: background 0.2s ease;
+}
+
+.forest-matrix-table tbody tr:first-child {
+  border-top: none;
+}
+
+.forest-matrix-table tbody tr:hover {
+  background: rgba(0, 0, 0, 0.018);
+}
+
+.forest-matrix-table tbody th[scope="row"] {
+  font-weight: 700;
+  color: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.matrix-name {
+  font-size: 14px;
+  letter-spacing: 0.005em;
+}
+
+.matrix-binom {
+  font-family: var(--font-family-display, Georgia, serif);
+  font-style: italic;
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  letter-spacing: 0.005em;
+}
+
+.matrix-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 130px;
+}
+
+.bar-track {
+  flex: 1;
+  height: 5px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-fill {
+  display: block;
+  height: 100%;
+  width: var(--score, 0%);
+  background: var(--color-primary, #1a2421);
+  border-radius: 999px;
+  transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.forest-matrix-table tr[data-tone="woody"] .bar-fill { background: #5b3a1f; }
+.forest-matrix-table tr[data-tone="citrus"] .bar-fill { background: #b48a2c; }
+.forest-matrix-table tr[data-tone="floral"] .bar-fill { background: #b35a78; }
+.forest-matrix-table tr[data-tone="smoky"] .bar-fill { background: #3a4a40; }
+
+.bar-num {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-primary);
+  white-space: nowrap;
+  min-width: 36px;
+  text-align: right;
+}
+
+.matrix-season {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.season-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.35);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.season-pill.is-on {
+  background: var(--color-primary, #1a2421);
+  color: #fff;
+}
+
+.matrix-context {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.forest-matrix-foot {
+  margin: 14px 0 0;
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   Sourcing Process (shared with global) — duration chip
+   ============================================================ */
+.page-ingredient .process-grid .card-body {
+  min-height: 200px;
+}
+
+.ingredient-process .card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0;
+}
+
+.ingredient-process .process-duration {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(26, 36, 33, 0.08);
+  color: var(--color-primary, #1a2421);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.ingredient-process .process-note {
+  font-size: 12px;
+  opacity: 0.65;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   Ingredient Standards — quantitative cards
+   ============================================================ */
+.ingredient-standard-card {
+  position: relative;
+}
+
+.standard-num {
+  display: block;
+  font-family: var(--font-family-display, Georgia, serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--color-accent, #5b6b40);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.ingredient-standards .ingredient-standard-card .card-desc {
+  min-height: 72px;
+}
+
+.standard-stat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 4px 0 6px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.standard-stat > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 12px;
+  position: relative;
+}
+
+.standard-stat > div + div::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.standard-stat dt {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  line-height: 1.2;
+}
+
+.standard-stat dd {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: var(--font-family-display, Georgia, serif);
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-accent, #5b6b40);
+  line-height: 1;
+}
+
+.standard-stat .stat-suffix {
+  font-family: var(--font-family-sans);
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   FAQ — chevron icon (gift parity)
+   ============================================================ */
+.ingredient-faq .ingredient-faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+.ingredient-faq .ingredient-faq-item {
+  border: 1px solid var(--color-line);
+  border-radius: 0;
+  background: #fff;
+  padding: var(--space-20) var(--space-24);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ingredient-faq .ingredient-faq-item:hover,
+.ingredient-faq .ingredient-faq-item[open] {
+  border-color: var(--color-line-strong);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
+}
+
+.ingredient-faq .ingredient-faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.45;
+  list-style: none;
+  color: var(--color-primary);
+}
+
+.ingredient-faq .ingredient-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.ingredient-faq-q {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ingredient-faq-icon {
+  flex: 0 0 auto;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+.ingredient-faq-icon::before,
+.ingredient-faq-icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 1.5px;
+  background: var(--color-primary, #1a2421);
+  transform: translate(-50%, -50%);
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease;
+}
+
+.ingredient-faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.ingredient-faq-item[open] .ingredient-faq-icon::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+  opacity: 0;
+}
+
+.ingredient-faq .ingredient-faq-item p {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.78);
+  line-height: 1.65;
+}
+
+/* ============================================================
+   Final CTA — White theme override (page-ingredient .section.final)
+   ============================================================ */
+.page-ingredient .section.ingredient-final {
+  background: var(--color-white);
+  color: var(--color-primary);
+}
+
+.page-ingredient .section.ingredient-final .section-eyebrow {
+  color: var(--color-text-muted);
+}
+
+.page-ingredient .section.ingredient-final .section-title {
+  color: var(--color-primary);
+}
+
+.page-ingredient .section.ingredient-final .section-desc {
+  color: var(--color-text-sub);
+}
+
+.page-ingredient .section.ingredient-final .final-trust {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+.page-ingredient .section.ingredient-final .final-trust li {
+  color: var(--color-text-sub);
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1024px) {
+  .page-ingredient .section {
+    padding-block: clamp(56px, 8vw, 84px);
+  }
+
+  .page-ingredient .process-grid .card-body {
+    min-height: 0;
+  }
+
+  .ingredient-standards .ingredient-standard-card .card-desc {
+    min-height: 0;
+  }
+
+  .ingredient-principles-section .ingredient-insight-grid .card-desc {
+    min-height: 0;
+  }
+
+  .ingredient-pyramid-media {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 767px) {
+  .ingredient-anchor-specs {
+    grid-template-columns: 1fr;
+  }
+
+  .ingredient-anchor-media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .ingredient-anchor-batch {
+    bottom: 10px;
+    right: 10px;
+    padding: 5px 8px;
+  }
+
+  .ingredient-pyramid-overlay {
+    padding: 16px 18px;
+    column-gap: 10px;
+  }
+
+  .ingredient-pyramid-duration {
+    font-size: 11px;
+  }
+
+  .standard-stat {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .standard-stat > div + div::before {
+    display: none;
+  }
+
+  .standard-stat > div + div {
+    border-top: 1px dashed rgba(0, 0, 0, 0.08);
+    padding-top: 8px;
+  }
+
+  .forest-matrix-table th,
+  .forest-matrix-table td {
+    padding: 10px 14px;
+  }
+
+  .ingredient-faq .ingredient-faq-item {
+    padding: 12px 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ingredient-pyramid-media img,
+  .ingredient-anchor-media img,
+  .bar-fill,
+  .ingredient-faq .ingredient-faq-item,
+  .ingredient-faq-icon::before,
+  .ingredient-faq-icon::after {
+    transition: none;
+  }
+}

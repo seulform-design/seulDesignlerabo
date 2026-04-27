@@ -17,10 +17,13 @@ class ShopSystem {
             productGrid: document.getElementById('shop-product-grid'),
             productCards: Array.from(document.querySelectorAll('#shop-product-grid .product-card')),
             totalCount: document.getElementById('shop-count'),
+            resultCountStrong: document.querySelector('#shop-result-count strong'),
+            resultCountTotal: document.querySelector('#shop-result-count span'),
             activeFilterCount: document.getElementById('shop-filter-count'),
             resetButton: document.getElementById('shop-filter-reset'),
             emptyState: document.getElementById('shop-empty'),
-            loadMoreButton: document.getElementById('shop-load-more')
+            loadMoreButton: document.getElementById('shop-load-more'),
+            loadProgress: document.getElementById('shop-load-progress')
         };
 
         this.initialOrder = new Map();
@@ -111,6 +114,16 @@ class ShopSystem {
             return sorted;
         }
 
+        if (this.state.sort === 'price-asc') {
+            sorted.sort((a, b) => Number(a.dataset.price || 0) - Number(b.dataset.price || 0));
+            return sorted;
+        }
+
+        if (this.state.sort === 'price-desc') {
+            sorted.sort((a, b) => Number(b.dataset.price || 0) - Number(a.dataset.price || 0));
+            return sorted;
+        }
+
         sorted.sort((a, b) => (this.initialOrder.get(a) || 0) - (this.initialOrder.get(b) || 0));
         return sorted;
     }
@@ -131,8 +144,18 @@ class ShopSystem {
             if (shouldShow) card.classList.add('is-visible');
         });
 
+        const shownCount = Math.min(this.state.visibleCount, filtered.length);
+
         if (this.elements.totalCount) {
             this.elements.totalCount.textContent = String(filtered.length);
+        }
+
+        if (this.elements.resultCountStrong) {
+            this.elements.resultCountStrong.textContent = String(shownCount);
+        }
+
+        if (this.elements.resultCountTotal) {
+            this.elements.resultCountTotal.textContent = String(filtered.length);
         }
 
         if (this.elements.activeFilterCount) {
@@ -146,13 +169,24 @@ class ShopSystem {
 
         if (this.elements.loadMoreButton) {
             const canLoadMore = filtered.length > this.state.visibleCount;
+            const loadMoreWrap = this.elements.loadMoreButton.closest('.shop-load-more');
+            if (loadMoreWrap) {
+                loadMoreWrap.dataset.state = canLoadMore ? 'ready' : 'complete';
+            }
+
             this.elements.loadMoreButton.hidden = !canLoadMore;
+            this.elements.loadMoreButton.disabled = !canLoadMore;
+            this.elements.loadMoreButton.setAttribute('aria-disabled', String(!canLoadMore));
             if (canLoadMore) {
                 const remaining = filtered.length - this.state.visibleCount;
                 this.elements.loadMoreButton.textContent = `Load More (${Math.min(remaining, 4)})`;
             } else {
-                this.elements.loadMoreButton.textContent = 'Load More';
+                this.elements.loadMoreButton.textContent = 'All Scents Shown';
             }
+        }
+
+        if (this.elements.loadProgress) {
+            this.elements.loadProgress.innerHTML = `<strong>${shownCount}</strong> of ${filtered.length} scents shown${filtered.length === shownCount ? ' · 모든 향을 확인하셨습니다' : ' · 더 보기를 눌러 계속 확인하세요'}`;
         }
     }
 }

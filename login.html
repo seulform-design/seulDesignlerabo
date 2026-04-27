@@ -4,9 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="르라보 로그인 - 당신의 향기를 관리하세요.">
+  <meta name="description" content="르라보 로그인 - 당신의 향기 주문, 위시리스트, 구독 혜택을 관리하세요.">
   <meta name="theme-color" content="#1a2421">
   <meta name="format-detection" content="telephone=no">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="author" content="LE LABO Forest Laboratory">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="LE LABO">
+  <meta property="og:title" content="Sign In · LE LABO">
   <title>Login | LE LABO · Forest Laboratory</title>
   <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/common.css">
@@ -19,38 +25,43 @@
 <body class="page-login">
   <div id="wrap">
     <a href="#main-content" class="skip-nav">본문 바로가기</a>
-    <!-- Header & Announcement Bar injected by layout-system.js -->
+    <!-- ===================================== Header & Announcement Bar injected by layout-system.js ======================== -->
     <main id="main-content">
       <section class="login-layout" aria-labelledby="login-title">
-        <!-- VISUAL SIDE -->
+        <!-- =============================== VISUAL SIDE =========================================================== -->
         <aside class="login-visual" aria-hidden="true">
+          <img class="login-visual-bg" src="./images/product/hero_bg.png" alt="르라보 숲 연구소 무드를 담은 로그인 배경 이미지" decoding="async" />
           <div class="login-quote">
             <p class="quote-text">"Quietly the best perfume I own."</p>
             <p class="quote-author">— Hana, Tokyo</p>
           </div>
           <p class="login-visual-tag">BOTANICAL · LAB</p>
         </aside>
-        <!-- FORM SIDE -->
+        <!-- ========================================== FORM SIDE ============================================================= -->
         <div class="login-main">
           <div class="login-box">
             <h1 class="login-title" id="login-title">Welcome back</h1>
-            <p class="login-subtitle">Sign in to track orders, save scents, and pick up where you left off.</p>
-            <form class="login-form" action="index.html">
+            <p class="login-subtitle">주문 조회, 위시리스트, 개인화 추천을 한 곳에서 이어가세요.</p>
+            <form class="login-form" action="index.html" method="post" novalidate>
               <div class="form-group">
                 <label class="sr-only" for="login-email">이메일 주소</label>
-                <input type="email" id="login-email" class="login-input" placeholder="Email address" autocomplete="email" required />
+                <input type="email" id="login-email" name="email" class="login-input" placeholder="Email address" autocomplete="email" inputmode="email" required aria-required="true" />
               </div>
               <div class="form-group">
                 <label class="sr-only" for="login-password">비밀번호</label>
-                <input type="password" id="login-password" class="login-input" placeholder="Password" autocomplete="current-password" required />
-                <a href="login.html" class="forgot-link">Forgot password?</a>
+                <input type="password" id="login-password" name="password" class="login-input" placeholder="Password (8자 이상)" autocomplete="current-password" minlength="8" required aria-required="true" />
+                <a href="checkout.html" class="forgot-link" aria-label="비밀번호 찾기 페이지로 이동">Forgot password?</a>
               </div>
+              <label class="login-remember" for="login-remember">
+                <input type="checkbox" id="login-remember" name="remember" />
+                <span>이 기기 로그인 유지 · 공용 기기에서는 해제 권장</span>
+              </label>
               <button type="submit" class="btn btn-primary login-btn">Sign In →</button>
             </form>
             <div class="login-divider">or</div>
             <div class="social-btns">
-              <button type="button" class="social-btn">Continue with Apple</button>
-              <button type="button" class="social-btn">Continue with Google</button>
+              <button type="button" class="social-btn" aria-label="Apple 계정으로 로그인">Continue with Apple</button>
+              <button type="button" class="social-btn" aria-label="Google 계정으로 로그인">Continue with Google</button>
             </div>
             <div class="login-footer-links">
               <p>New here? <a href="finder.html">Create an account →</a></p>
@@ -60,12 +71,12 @@
                 <a href="shop.html">비회원으로 구매 →</a>
               </div>
             </div>
-            <p class="login-ssl-note">🔒 로그인 정보는 SSL 256bit로 암호화됩니다. 제3자와 공유되지 않습니다.</p>
+            <p class="login-ssl-note" aria-label="보안 안내">🔒 로그인 정보는 SSL 256bit로 암호화되며, 비밀번호는 해시(bcrypt)로 저장되어 제3자와 공유되지 않습니다.</p>
           </div>
         </div>
       </section>
     </main>
-    <!-- Footer injected by layout-system.js -->
+    <!-- =================================================== Footer injected by layout-system.js ==================================-->
   </div>
   <script src="./scripts/global.js"></script>
 </body>

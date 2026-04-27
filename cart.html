@@ -6,6 +6,11 @@
   <meta name="description" content="르라보 장바구니 - 선택한 향과 구성품을 확인하고 결제를 준비하세요.">
   <meta name="theme-color" content="#1a2421">
   <meta name="format-detection" content="telephone=no">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="author" content="LE LABO Forest Laboratory">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="LE LABO">
+  <meta property="og:title" content="Shopping Selection · LE LABO">
   <title>Cart | LE LABO · Forest Laboratory</title>
   <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/common.css">
@@ -19,14 +24,29 @@
     <a href="#main-content" class="skip-nav">본문 바로가기</a>
     <!-- Header & Announcement Bar injected by layout-system.js -->
     <main id="main-content">
-      <!-- PAGE HEADER -->
+      <!--========================================================== BREADCRUMB======================================== -->
+      <nav class="breadcrumb container" aria-label="경로 탐색">
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Fragrance</a></li>
+          <li aria-current="page">Cart</li>
+        </ol>
+      </nav>
+      <!--======================================================= PAGE HEADER=================================== -->
       <header class="page-header">
         <div class="container">
-          <p class="section-eyebrow">Checkout Phase 01</p>
+          <p class="section-eyebrow">Checkout Phase 01 · Cart</p>
           <h1 class="page-title">Shopping Selection</h1>
-          <div class="cart-shipping-meter">
-            <p class="cart-shipping-tip"><strong>₩43,000</strong> until complimentary shipping</p>
-            <div class="cart-progress-bar">
+          <p class="section-desc">선택한 향의 용량과 라벨을 최종 확인한 뒤 결제 단계로 이동하세요.</p>
+          <ol class="checkout-steps cart-steps" aria-label="체크아웃 진행 단계">
+            <li class="step is-active"><span class="step-num">01</span> Cart</li>
+            <li class="step"><span class="step-num">02</span> Shipping & Info</li>
+            <li class="step"><span class="step-num">03</span> Payment</li>
+            <li class="step"><span class="step-num">04</span> Confirmation</li>
+          </ol>
+          <div class="cart-shipping-meter" aria-label="무료 배송까지 남은 금액">
+            <p class="cart-shipping-tip"><strong>₩43,000</strong> 추가 시 무료 배송이 적용됩니다.</p>
+            <div class="cart-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="91" aria-label="무료 배송 달성 진행도">
               <div class="cart-progress-fill"></div>
             </div>
           </div>
@@ -34,13 +54,13 @@
       </header>
       <div class="container">
         <div class="cart-layout">
-          <!-- CART ITEMS -->
+          <!--======================================================== CART ITEMS============================================== -->
           <div class="cart-left">
             <div class="cart-items">
               <!-- Item 1 -->
               <article class="cart-item">
                 <div class="cart-item-img">
-                  <img src="./img/product-bergamot-50.jpg" alt="Bergamot 22" />
+                  <img src="./images/common/베이1111.jpg" alt="Bergamot 22" />
                 </div>
                 <div class="cart-item-info">
                   <div class="cart-item-head">
@@ -64,10 +84,10 @@
                   </div>
                 </div>
               </article>
-              <!-- Item 2 -->
+              <!--======================================================== Item 2================================================ -->
               <article class="cart-item">
                 <div class="cart-item-img">
-                  <img src="./img/product-cedar-50.jpg" alt="Cedar 11" />
+                  <img src="./images/common/나무향.jpg" alt="Cedar 11" />
                 </div>
                 <div class="cart-item-info">
                   <div class="cart-item-head">
@@ -93,9 +113,17 @@
               </article>
             </div>
           </div>
-          <!-- SUMMARY -->
-          <aside class="cart-summary">
-            <h2 class="summary-title">Selection Summary</h2>
+          <!--========================================================== SUMMARY====================================================== -->
+          <aside class="cart-summary" aria-labelledby="cart-summary-title">
+            <h2 class="summary-title" id="cart-summary-title">Selection Summary</h2>
+            <form class="cart-promo" aria-label="프로모션 코드 적용">
+              <label class="cart-promo-label" for="cart-promo-input">Promotion Code</label>
+              <div class="cart-promo-row">
+                <input type="text" id="cart-promo-input" placeholder="코드 입력" autocomplete="off" />
+                <button type="submit" class="btn btn-secondary cart-promo-apply">Apply</button>
+              </div>
+              <p class="cart-promo-hint">첫 구매 코드 <strong>FIRSTLAB10</strong> · 샘플 2종 무료 동봉 중</p>
+            </form>
             <div class="summary-row">
               <span>Subtotal</span>
               <span>₩ 416,000</span>
@@ -112,18 +140,16 @@
               <span>Estimated Total</span>
               <span>₩ 457,600</span>
             </div>
-            <a href="checkout.html" class="btn btn-primary checkout-btn">Proceed to Checkout</a>
-            <div class="trust-badges">
-              <div class="badge-item">
-                256-bit SSL Secure Transaction
-              </div>
-              <div class="badge-item">
-                14-day Hassle-free Returns
-              </div>
+            <p class="cart-delivery-eta">예상 수령 · 영업일 기준 2-3일 이내 (04/26 ~ 04/29)</p>
+            <a href="checkout.html" class="btn btn-primary checkout-btn" aria-label="총 결제금액 45만 7600원으로 결제 진행">Proceed to Checkout</a>
+            <div class="trust-badges" aria-label="결제 및 반품 보장">
+              <div class="badge-item">256-bit SSL Secure Transaction</div>
+              <div class="badge-item">30-day Hassle-free Returns</div>
+              <div class="badge-item">동일 계열 샘플 2종 무료 동봉</div>
             </div>
           </aside>
         </div>
-        <!-- RECOMMENDATIONS -->
+        <!--============================================================== RECOMMENDATIONS======================================== -->
         <section class="section cross-category cart-related" aria-labelledby="cart-related-title">
           <div class="section-content">
             <div class="section-head">
@@ -136,7 +162,7 @@
                 <article class="card product-card cross-card">
                   <div class="card-media">
                     <span class="cross-category-tag">HOME</span>
-                    <img src="./img/product-santal-candle.jpg" alt="Santal 26 Candle 제품 이미지" loading="lazy" decoding="async" />
+                    <img src="./images/common/CADE 26-1.jpg" alt="Santal 26 Candle 제품 이미지" loading="lazy" decoding="async" />
                   </div>
                   <div class="card-body">
                     <div class="product-head">
@@ -146,14 +172,14 @@
                     <p class="card-desc">공간의 분위기를 결정짓는 상징적인 우디 향</p>
                     <p class="card-meta">Interior · 245g</p>
                     <div class="card-action">
-                      <button type="button" class="btn btn-secondary">Quick Add</button>
+                      <a href="detail.html" class="btn btn-secondary" aria-label="Santal 26 Candle 상세 보기">View Product</a>
                     </div>
                   </div>
                 </article>
                 <article class="card product-card cross-card">
                   <div class="card-media">
                     <span class="cross-category-tag">BODY</span>
-                    <img src="./img/product-body-lotion.jpg" alt="Hand & Body Lotion 제품 이미지" loading="lazy" decoding="async" />
+                    <img src="./images/common/BODY CREAM-1.jpg" alt="Hand & Body Lotion 제품 이미지" loading="lazy" decoding="async" />
                   </div>
                   <div class="card-body">
                     <div class="product-head">
@@ -163,14 +189,14 @@
                     <p class="card-desc">향의 지속력을 높여주는 섬세한 보습 레이어링</p>
                     <p class="card-meta">Body Care · 237ml</p>
                     <div class="card-action">
-                      <button type="button" class="btn btn-secondary">Quick Add</button>
+                      <a href="detail.html" class="btn btn-secondary" aria-label="Hand and Body Lotion 상세 보기">View Product</a>
                     </div>
                   </div>
                 </article>
                 <article class="card product-card cross-card">
                   <div class="card-media">
                     <span class="cross-category-tag">DISCOVERY</span>
-                    <img src="./img/product-discovery.jpg" alt="Discovery Set 제품 이미지" loading="lazy" decoding="async" />
+                    <img src="./images/common/기프트상품.png" alt="Discovery Set 제품 이미지" loading="lazy" decoding="async" />
                   </div>
                   <div class="card-body">
                     <div class="product-head">
@@ -180,7 +206,7 @@
                     <p class="card-desc">6가지 아이코닉한 향을 탐험하는 여정</p>
                     <p class="card-meta">Miniature · 6 × 5ml</p>
                     <div class="card-action">
-                      <button type="button" class="btn btn-secondary">Quick Add</button>
+                      <a href="detail.html" class="btn btn-secondary" aria-label="Discovery Set 상세 보기">View Product</a>
                     </div>
                   </div>
                 </article>
@@ -190,9 +216,10 @@
         </section>
       </div>
     </main>
-    <!-- Footer injected by layout-system.js -->
+    <!--============================================= Footer injected by layout-system.js====================================== -->
   </div>
   <script src="./scripts/global.js"></script>
+  <script src="./scripts/cart.js"></script>
 </body>
 
 </html>

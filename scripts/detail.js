@@ -28,13 +28,15 @@ function initGallery() {
       this.classList.add('is-active');
 
       // Swap image with smooth opacity transition
-      const newSrc = this.querySelector('img').src;
+      const thumbnailImg = this.querySelector('img');
+      const newSrc = thumbnailImg?.src;
+      if (!newSrc) return;
       
       mainImage.style.opacity = '0';
       setTimeout(() => {
         mainImage.src = newSrc;
         mainImage.style.opacity = '1';
-      }, 200); // 200ms matches CSS transition if added
+      }, 200);
     });
   });
 
@@ -50,13 +52,6 @@ function initSizeSelector() {
   const sizeButtons = document.querySelectorAll('.btn-size');
   const priceDisplay = document.querySelector('.detail-info .detail-price');
   const stickyPrice = document.getElementById('sticky-price');
-  
-  // Le Labo typical pricing mockup
-  const pricing = {
-    '15ml': '₩115,000',
-    '50ml': '₩210,000',
-    '100ml': '₩310,000'
-  };
 
   if (sizeButtons.length === 0 || !priceDisplay) return;
 
@@ -66,15 +61,16 @@ function initSizeSelector() {
       sizeButtons.forEach(b => b.setAttribute('aria-checked', 'false'));
       this.setAttribute('aria-checked', 'true');
 
-      // Get selected size text
-      const selectedSize = this.textContent.trim().toLowerCase();
-      
-      // Update Prices if match found in dictionary
-      if (pricing[selectedSize]) {
-        priceDisplay.textContent = pricing[selectedSize];
-        if (stickyPrice) {
-          stickyPrice.textContent = pricing[selectedSize];
-        }
+      // Use markup as source of truth (data-size + data-price)
+      const size = this.dataset.size;
+      const price = this.dataset.price;
+      if (!size || !price) return;
+
+      const formattedPrice = `₩${Number(price).toLocaleString('ko-KR')}`;
+      const unit = `${size}ml`;
+      priceDisplay.innerHTML = `${formattedPrice} <span class="detail-price-unit">/ ${unit}</span>`;
+      if (stickyPrice) {
+        stickyPrice.textContent = formattedPrice;
       }
     });
   });
@@ -93,7 +89,8 @@ function initGiftCustomizer() {
   const defaultText = 'add label msg';
 
   giftInput.addEventListener('input', function () {
-    const value = this.value.trim();
+    const value = this.value.replace(/\s+/g, ' ').trim().slice(0, 24);
+    this.value = value;
     if (value.length > 0) {
       giftPreviewText.textContent = `for ${value}`;
       giftPreviewText.style.color = 'var(--color-primary)';

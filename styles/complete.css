@@ -38,12 +38,12 @@
 
 .order-summary-title {
   font-size: var(--font-caption);
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--color-primary);
   padding-bottom: var(--space-16);
-  margin-bottom: var(--space-24);
+  margin-bottom: var(--space-32);
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -56,9 +56,25 @@
 .order-row {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: var(--space-16);
   font-size: 13px;
+}
+
+.order-item-main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  min-width: 0;
+}
+
+.order-item-thumb {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-line);
 }
 
 .order-item-name {
@@ -84,15 +100,16 @@
 .total-label {
   font-family: var(--font-family-display);
   font-style: italic;
-  font-size: 16px;
+  font-size: 18px;
+  letter-spacing: -0.01em;
   color: var(--color-primary);
 }
 
 .total-value {
-  font-weight: 700;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 20px;
   color: var(--color-primary);
-  letter-spacing: 0.02em;
+  letter-spacing: -0.005em;
 }
 
 /* Delivery Tracking ------------------------------------------- */
@@ -105,8 +122,8 @@
 
 .delivery-title {
   font-size: var(--font-caption);
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--color-primary);
   margin-bottom: var(--space-40);
@@ -117,6 +134,19 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
   position: relative;
+  padding: 0;
+  list-style: none;
+}
+
+.tracking-timeline::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: 12.5%;
+  width: 75%;
+  height: 2px;
+  background: var(--color-line);
+  z-index: 0;
 }
 
 .tracking-line {
@@ -127,6 +157,29 @@
   height: 2px;
   background: var(--color-line);
   z-index: 0;
+}
+
+.step-time {
+  font-size: 10px;
+  font-family: var(--font-family-mono);
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.tracking-step.is-complete .step-time {
+  color: var(--color-text-sub);
+}
+
+.tracking-step[aria-current="step"] .step-dot {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(201, 138, 83, 0.18);
+}
+
+.tracking-step[aria-current="step"] .step-label {
+  color: var(--color-primary);
+  font-weight: 600;
 }
 
 .tracking-step {
@@ -156,7 +209,7 @@
 .step-label {
   font-size: var(--font-caption);
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-text-muted);
   transition: color 0.3s ease;
@@ -164,7 +217,109 @@
 
 .tracking-step.is-complete .step-label {
   color: var(--color-primary);
-  font-weight: 700;
+  font-weight: 600;
+}
+
+/* Delivery tracking identifier --------------------------------- */
+.delivery-tracking-id {
+  font-size: 12px;
+  font-family: var(--font-family-mono);
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-32);
+  text-transform: uppercase;
+}
+
+.delivery-tracking-link {
+  margin-left: var(--space-8);
+}
+
+/* Order steps (progress strip on header) ----------------------- */
+.order-steps {
+  margin-top: var(--space-32);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-24);
+  padding: 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.order-steps .step {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  color: var(--color-text-muted);
+}
+
+.order-steps .step.is-complete {
+  color: var(--color-text-sub);
+}
+
+.order-steps .step.is-active {
+  color: var(--color-primary);
+}
+
+.order-steps .step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 10px;
+}
+
+/* Next steps guidance after tracking --------------------------- */
+.order-next {
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-line);
+  padding: var(--space-40) var(--space-48);
+  margin-bottom: var(--space-48);
+}
+
+.order-next-title {
+  font-family: var(--font-family-display);
+  font-style: italic;
+  font-size: 22px;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: var(--color-primary);
+  margin-bottom: var(--space-24);
+}
+
+.order-next-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: 0;
+}
+
+.order-next-list li {
+  padding-left: var(--space-24);
+  position: relative;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-text-sub);
+  letter-spacing: 0.005em;
+}
+
+.order-next-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.order-next-list strong {
+  color: var(--color-primary);
+  font-weight: 600;
 }
 
 /* Action row --------------------------------------------------- */
@@ -173,7 +328,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-24);
-  margin-top: var(--space-64);
+  margin-top: var(--space-80);
 }
 
 /* Responsive --------------------------------------------------- */
@@ -196,6 +351,7 @@
     gap: var(--space-16);
   }
 
+  .tracking-timeline::before,
   .tracking-line {
     top: 0;
     left: 11px;
@@ -207,5 +363,9 @@
     flex-direction: row;
     align-items: center;
     gap: var(--space-16);
+  }
+
+  .order-next {
+    padding: var(--space-24) var(--space-20);
   }
 }

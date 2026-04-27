@@ -6,6 +6,12 @@
   <meta name="description" content="르라보 체크아웃 - 배송지와 결제 정보를 입력하고 주문을 완료하세요.">
   <meta name="theme-color" content="#1a2421">
   <meta name="format-detection" content="telephone=no">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta name="author" content="LE LABO Forest Laboratory">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="LE LABO">
+  <meta property="og:title" content="Secure Checkout · LE LABO">
   <title>Checkout | LE LABO · Forest Laboratory</title>
   <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/common.css">
@@ -18,13 +24,14 @@
 <body class="page-checkout">
   <div id="wrap">
     <a href="#main-content" class="skip-nav">본문 바로가기</a>
-    <!-- Header & Announcement Bar injected by layout-system.js -->
+    <!-- ======================================Header & Announcement Bar injected by layout-system.js========================== -->
     <main id="main-content">
-      <!-- PAGE HEADER -->
+      <!--========================================= PAGE HEADER ====================================================== -->
       <header class="page-header">
         <div class="container">
           <p class="section-eyebrow">Checkout Phase 02</p>
           <h1 class="page-title">Transaction Details</h1>
+          <p class="checkout-reassurance">입력된 정보는 암호화되어 안전하게 처리되며, 결제 전 최종 검토가 가능합니다.</p>
           <div class="checkout-steps">
             <div class="step"><span class="step-num">01</span> Cart</div>
             <div class="step is-active"><span class="step-num">02</span> Shipping & Information</div>
@@ -36,95 +43,161 @@
       <div class="container">
         <div class="checkout-layout">
           <div class="checkout-main">
-            <!-- EXPRESS CHECKOUT -->
+            <!--============================================= EXPRESS CHECKOUT ========================================================== -->
             <div class="express-checkout">
               <p class="express-title">Fast Lane Checkout</p>
+              <p class="express-helper">Complete your order in one step.</p>
               <div class="express-btns">
                 <button type="button" class="btn btn-secondary btn-pay-kakao">KakaoPay</button>
                 <button type="button" class="btn btn-secondary btn-pay-apple">Apple Pay</button>
-                <button type="button" class="btn btn-secondary">Naver Pay</button>
+                <button type="button" class="btn btn-secondary btn-pay-naver">Naver Pay</button>
               </div>
             </div>
             <div class="checkout-divider">
               <span>OR CONTINUE WITH MANUAL DETAILS</span>
             </div>
             <form action="order-complete.html" class="checkout-form">
-              <!-- CONTACT -->
-              <section class="checkout-section">
-                <h2 class="checkout-section-title">01. Contact Information</h2>
+              <!--====================================== CONTACT =================================================================== -->
+              <section class="checkout-section" aria-labelledby="checkout-contact-title">
+                <h2 class="checkout-section-title" id="checkout-contact-title">01. Contact Information</h2>
+                <p class="checkout-section-hint">주문 확인과 배송 단계 알림이 전달됩니다. 고객 센터 안내 외 마케팅에는 사용되지 않습니다.</p>
                 <div class="form-grid">
                   <div class="form-group">
-                    <label class="input-label" for="checkout-email">Email Address</label>
-                    <input type="email" id="checkout-email" placeholder="email@example.com" required />
+                    <label class="input-label" for="checkout-email">Email Address <span class="required-mark" aria-hidden="true">*</span></label>
+                    <input type="email" id="checkout-email" name="email" placeholder="email@example.com" autocomplete="email" inputmode="email" required aria-required="true" />
                   </div>
                   <div class="form-group">
-                    <label class="input-label" for="checkout-phone">Mobile Number</label>
-                    <input type="tel" id="checkout-phone" placeholder="010-0000-0000" required />
+                    <label class="input-label" for="checkout-phone">Mobile Number <span class="required-mark" aria-hidden="true">*</span></label>
+                    <input type="tel" id="checkout-phone" name="phone" placeholder="010-0000-0000" autocomplete="tel" inputmode="tel" pattern="[0-9\-]{9,15}" required aria-required="true" />
                   </div>
                 </div>
+                <label class="check-inline" for="order-updates">
+                  <input type="checkbox" id="order-updates" name="order-updates" />
+                  <span>주문 및 배송 업데이트를 이메일로 받기 (선택)</span>
+                </label>
               </section>
-              <!-- SHIPPING -->
-              <section class="checkout-section">
-                <h2 class="checkout-section-title">02. Shipping Destination</h2>
+              <!-- ======================================== SHIPPING ================================================================= -->
+              <section class="checkout-section" aria-labelledby="checkout-shipping-title">
+                <h2 class="checkout-section-title" id="checkout-shipping-title">02. Shipping Destination</h2>
+                <p class="checkout-section-hint">입력된 배송지는 주문 확정 후 24시간 이내에 한해 수정 가능합니다.</p>
                 <div class="form-group">
-                  <label class="input-label" for="ship-name">Receiver Full Name</label>
-                  <input type="text" id="ship-name" required />
+                  <label class="input-label" for="ship-name">Receiver Full Name <span class="required-mark" aria-hidden="true">*</span></label>
+                  <input type="text" id="ship-name" name="ship-name" autocomplete="name" required aria-required="true" />
                 </div>
                 <div class="form-group">
-                  <label class="input-label" for="ship-addr">Street Address</label>
-                  <input type="text" id="ship-addr" required />
+                  <label class="input-label" for="ship-addr">Street Address <span class="required-mark" aria-hidden="true">*</span></label>
+                  <div class="address-assist-row">
+                    <input type="text" id="ship-addr" name="ship-addr" placeholder="Street / Building / Apt" autocomplete="street-address" required aria-required="true" />
+                    <button type="button" class="btn btn-secondary address-assist-btn" id="address-assist-btn" aria-label="주소 검색 보조 창 열기">Find Address</button>
+                  </div>
                 </div>
                 <div class="grid-2">
                   <div class="form-group">
-                    <label class="input-label" for="ship-city">City / District</label>
-                    <input type="text" id="ship-city" required />
+                    <label class="input-label" for="ship-city">City / District <span class="required-mark" aria-hidden="true">*</span></label>
+                    <input type="text" id="ship-city" name="ship-city" autocomplete="address-level2" required aria-required="true" />
                   </div>
                   <div class="form-group">
-                    <label class="input-label" for="ship-zip">Postal Code</label>
-                    <input type="text" id="ship-zip" required />
+                    <label class="input-label" for="ship-zip">Postal Code <span class="required-mark" aria-hidden="true">*</span></label>
+                    <input type="text" id="ship-zip" name="ship-zip" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5,6}" required aria-required="true" />
                   </div>
                 </div>
-              </section>
-              <!-- PAYMENT -->
-              <section class="checkout-section">
-                <h2 class="checkout-section-title">03. Secure Payment</h2>
+                <div class="shipping-methods" role="radiogroup" aria-label="배송 방식 선택">
+                  <button type="button" class="shipping-method is-selected" data-shipping-method="standard" aria-pressed="true" aria-label="기본 배송 · 영업일 기준 2-3일 무료">
+                    <strong>Standard</strong>
+                    <span>2-3 business days · Complimentary</span>
+                  </button>
+                  <button type="button" class="shipping-method" data-shipping-method="express" aria-pressed="false" aria-label="익일 발송 · 추가 요금 8천원">
+                    <strong>Express</strong>
+                    <span>Next day dispatch · ₩8,000</span>
+                  </button>
+                </div>
                 <div class="form-group">
-                  <label class="input-label" for="card-num">Card Number</label>
-                  <input type="text" id="card-num" placeholder="0000 0000 0000 0000" required />
+                  <label class="input-label" for="delivery-note">Delivery Note <span class="checkout-optional">(선택)</span></label>
+                  <textarea id="delivery-note" name="delivery-note" rows="3" maxlength="160" placeholder="예: 부재 시 경비실에 맡겨주세요." aria-describedby="delivery-note-help"></textarea>
+                  <p class="checkout-helper" id="delivery-note-help">최대 160자 · 개인정보를 포함하지 마세요.</p>
+                </div>
+              </section>
+              <!-- =============================================== PAYMENT =============================================== -->
+              <section class="checkout-section" aria-labelledby="checkout-payment-title">
+                <h2 class="checkout-section-title" id="checkout-payment-title">03. Secure Payment</h2>
+                <p class="checkout-section-hint">결제 정보는 카드사로 직접 전달되며, 르라보 서버에는 저장되지 않습니다.</p>
+                <div class="form-group">
+                  <label class="input-label" for="card-num">Card Number <span class="required-mark" aria-hidden="true">*</span></label>
+                  <p class="card-brand-hint" id="card-brand-hint">Supported: Visa · MasterCard · AMEX · JCB</p>
+                  <input type="text" id="card-num" name="card-num" placeholder="0000 0000 0000 0000" autocomplete="cc-number" inputmode="numeric" pattern="[0-9 ]{13,19}" required aria-required="true" aria-describedby="card-brand-hint" />
                 </div>
                 <div class="grid-2">
                   <div class="form-group">
-                    <label class="input-label" for="card-date">Expiry (MM/YY)</label>
-                    <input type="text" id="card-date" placeholder="MM / YY" required />
+                    <label class="input-label" for="card-date">Expiry (MM/YY) <span class="required-mark" aria-hidden="true">*</span></label>
+                    <input type="text" id="card-date" name="card-date" placeholder="MM / YY" autocomplete="cc-exp" inputmode="numeric" pattern="(0[1-9]|1[0-2]) ?/ ?\d{2}" required aria-required="true" />
                   </div>
                   <div class="form-group">
-                    <label class="input-label" for="card-cvv">CVV</label>
-                    <input type="text" id="card-cvv" placeholder="123" required />
+                    <label class="input-label" for="card-cvv">CVV <span class="required-mark" aria-hidden="true">*</span></label>
+                    <input type="text" id="card-cvv" name="card-cvv" placeholder="123" autocomplete="cc-csc" inputmode="numeric" pattern="[0-9]{3,4}" maxlength="4" required aria-required="true" />
                   </div>
                 </div>
+                <label class="check-inline" for="billing-same">
+                  <input type="checkbox" id="billing-same" name="billing-same" checked />
+                  <span>청구지가 배송지와 동일합니다</span>
+                </label>
+                <div class="secure-row" aria-label="결제 보안 보장">
+                  <span>256-bit SSL encrypted payment</span>
+                  <span>Tokenized card processing</span>
+                  <span>PCI DSS Level 1 certified</span>
+                </div>
               </section>
-              <button type="submit" class="btn btn-primary checkout-submit-btn">Authorize Payment · ₩ 457,600</button>
+              <section class="checkout-confidence">
+                <h2 class="checkout-section-title">Order Confidence</h2>
+                <ul class="confidence-list">
+                  <li>Complimentary shipping included</li>
+                  <li>Secure encrypted payment</li>
+                  <li>Careful packaging with sample inclusion</li>
+                  <li>Easy order review before final confirmation</li>
+                </ul>
+              </section>
+              <div class="checkout-submit-wrap">
+                <button type="submit" class="btn btn-primary checkout-submit-btn" aria-label="총 결제금액 45만 7600원 결제 승인">Authorize Payment · ₩ 457,600</button>
+                <p class="checkout-legal">By continuing, you agree to the Terms, Privacy Policy, and final order review before confirmation.</p>
+              </div>
             </form>
           </div>
-          <!-- SIDEBAR -->
+          <!-- ================================================ SIDEBAR =================================================== -->
           <aside class="checkout-sidebar">
             <h2 class="summary-title">Selection Review</h2>
+            <div class="sidebar-actions">
+              <a href="cart.html" class="text-link">Edit Cart</a>
+              <button type="button" class="text-link" id="promo-toggle" aria-expanded="false" aria-controls="promo-code-wrap">Apply Code</button>
+            </div>
+            <div class="promo-code-wrap" id="promo-code-wrap" hidden>
+              <label class="input-label" for="promo-code-input">Promo Code</label>
+              <div class="promo-inline">
+                <input type="text" id="promo-code-input" placeholder="Enter code" />
+                <button type="button" class="btn btn-secondary promo-apply-btn">Apply</button>
+              </div>
+            </div>
             <div class="checkout-items">
               <div class="checkout-item">
                 <div class="checkout-item-main">
-                  <span class="checkout-item-name">Bergamot 22</span>
-                  <span class="checkout-item-meta">50ml · Qty 1</span>
+                  <img class="checkout-item-thumb" src="./images/common/베이1111.jpg" alt="Bergamot 22 제품 썸네일" width="44" height="44" loading="lazy" decoding="async" />
+                  <div class="checkout-item-text">
+                    <span class="checkout-item-name">Bergamot 22</span>
+                    <span class="checkout-item-meta">50ml · Qty 1</span>
+                  </div>
                 </div>
                 <span class="checkout-item-price">₩ 198,000</span>
               </div>
               <div class="checkout-item">
                 <div class="checkout-item-main">
-                  <span class="checkout-item-name">Cedar 11</span>
-                  <span class="checkout-item-meta">50ml · Qty 1</span>
+                  <img class="checkout-item-thumb" src="./images/common/나무향.jpg" alt="Cedar 11 제품 썸네일" width="44" height="44" loading="lazy" decoding="async" />
+                  <div class="checkout-item-text">
+                    <span class="checkout-item-name">Cedar 11</span>
+                    <span class="checkout-item-meta">50ml · Qty 1</span>
+                  </div>
                 </div>
                 <span class="checkout-item-price">₩ 218,000</span>
               </div>
             </div>
+            <p class="checkout-gift-label" id="checkout-gift-label" hidden>Gift Label · LE LABO / YOUR NAME</p>
             
             <div class="checkout-summary-calc">
               <div class="summary-row">
@@ -144,6 +217,15 @@
                 <span>₩ 457,600</span>
               </div>
             </div>
+            <div class="checkout-delivery">
+              <p class="delivery-label">Expected Delivery</p>
+              <p class="delivery-date">Standard · 2-3 business days</p>
+            </div>
+            <ul class="checkout-microtrust">
+              <li>Gift-ready wrapping available</li>
+              <li>2 complimentary samples included</li>
+              <li>Protective laboratory packaging</li>
+            </ul>
             <div class="checkout-trust">
               <p>Your transaction is encrypted with 256-bit SSL technology. By placing this order, you agree to our Terms of Service.</p>
             </div>
@@ -151,8 +233,9 @@
         </div>
       </div>
     </main>
-    <!-- Footer injected by layout-system.js -->
+    <!-- ============================================== Footer injected by layout-system.js ============================================== -->
   </div>
   <script src="./scripts/global.js"></script>
+  <script src="./scripts/checkout.js"></script>
 </body>
 </html>

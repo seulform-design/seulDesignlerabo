@@ -6,10 +6,10 @@
   const state = { scent: "", situation: "", season: "", mood: "", current: null };
 
   const productDb = [
-    { id: "santal-33", name: "Santal 33", scent: "woody", situation: "night", season: "winter", mood: "deep", notes: "Sandalwood / Cedar / Leather", usage: "Night / Winter", batch: "24W", image: "./img/p1.jpg", price: "₩210,000" },
-    { id: "rose-31", name: "Rose 31", scent: "floral", situation: "daily", season: "spring", mood: "calm", notes: "Rose / Cumin / Musk", usage: "Daily / Spring", batch: "31R", image: "./img/p2.jpg", price: "₩190,000" },
-    { id: "another-13", name: "Another 13", scent: "citrus", situation: "office", season: "summer", mood: "fresh", notes: "Pear / Ambrox / Moss", usage: "Office / Summer", batch: "13A", image: "./img/p3.jpg", price: "₩180,000" },
-    { id: "the-noir-29", name: "The Noir 29", scent: "smoky", situation: "date", season: "fall", mood: "warm", notes: "Tea / Fig / Tobacco", usage: "Date / Fall", batch: "29N", image: "./img/p1.jpg", price: "₩205,000" }
+    { id: "santal-33", name: "Santal 33", scent: "woody", situation: "night", season: "winter", mood: "deep", notes: "Sandalwood / Cedar / Leather", usage: "Night / Winter", batch: "24W", image: "./images/common/santal33.png", price: "₩210,000" },
+    { id: "rose-31", name: "Rose 31", scent: "floral", situation: "daily", season: "spring", mood: "calm", notes: "Rose / Cumin / Musk", usage: "Daily / Spring", batch: "31R", image: "./images/common/rose11.png", price: "₩190,000" },
+    { id: "another-13", name: "Another 13", scent: "citrus", situation: "office", season: "summer", mood: "fresh", notes: "Pear / Ambrox / Moss", usage: "Office / Summer", batch: "13A", image: "./images/common/an13.png", price: "₩180,000" },
+    { id: "the-noir-29", name: "The Noir 29", scent: "smoky", situation: "date", season: "fall", mood: "warm", notes: "Tea / Fig / Tobacco", usage: "Date / Fall", batch: "29N", image: "./images/common/noir29.png", price: "₩205,000" }
   ];
 
   // ------------------------------------------------------------
@@ -49,7 +49,34 @@
     1: "다음 단계 — 사용 상황을 선택하세요.",
     2: "절반 완료 — 계절감을 선택하세요.",
     3: "마지막 단계 — 무드를 선택하면 추천이 생성됩니다.",
-    4: "모든 단계 완료. 추천을 확인할 준비가 되었습니다."
+    4: "모든 단계 완료. 추천 결과와 근거를 함께 확인하세요."
+  };
+
+  const finderStepImages = {
+    scent: {
+      woody: "./images/common/DryWoody.png",
+      floral: "./images/common/Soft Floral.png",
+      citrus: "./images/common/Fresh Citrus.png",
+      smoky: "./images/common/Smoky Woody.png"
+    },
+    situation: {
+      daily: "./images/common/situation1.jpg",
+      office: "./images/common/situation2.jpg",
+      date: "./images/common/situation3.jpg",
+      night: "./images/common/situation4.jpg"
+    },
+    season: {
+      spring: "./images/common/Spring.jpg",
+      summer: "./images/common/summer.jpg",
+      fall: "./images/common/Fall.jpg",
+      winter: "./images/common/winter.jpg"
+    },
+    mood: {
+      warm: "./images/common/mood1.jpg",
+      fresh: "./images/common/mood2.jpg",
+      calm: "./images/common/mood3.jpg",
+      deep: "./images/common/mood4.jpg"
+    }
   };
 
   // ------------------------------------------------------------
@@ -89,15 +116,17 @@
   // UI Render Helpers
   // ------------------------------------------------------------
   const setUiState = (key) => {
-    finderWrap.dataset.state = key;
-    emptyUi.hidden = key !== "empty";
-    loadingUi.hidden = key !== "loading";
-    errorUi.hidden = key !== "error";
-    resultList.hidden = key !== "result";
-    if (recommendBtn) recommendBtn.disabled = key === "loading";
+    const normalized = key === "idle" ? "empty" : key;
+    finderWrap.dataset.state = normalized;
+    emptyUi.hidden = normalized !== "empty";
+    loadingUi.hidden = normalized !== "loading";
+    errorUi.hidden = normalized !== "error";
+    resultList.hidden = normalized !== "result";
+    if (recommendBtn) recommendBtn.disabled = normalized === "loading";
   };
 
   const updateSummary = () => {
+    if (!summaryGrid) return;
     ["scent", "situation", "season", "mood"].forEach((key) => {
       const card = summaryGrid.querySelector(`[data-key="${key}"] .card-desc`);
       if (card) {
@@ -110,6 +139,7 @@
 
   const updateProgress = () => {
     const done = requiredKeys.filter((k) => state[k]).length;
+    const complete = done === 4;
     progressEl.textContent = `Step ${done} / 4`;
     progressBox.setAttribute("aria-valuenow", String(done));
     progressBar.style.width = `${(done / 4) * 100}%`;
@@ -120,7 +150,7 @@
         ? "공식이 완성되었습니다. 추천을 확인하세요."
         : "4개 항목을 모두 선택하면 공식이 완성됩니다.";
     }
-    if (summaryProgressEl) summaryProgressEl.dataset.complete = String(done === 4);
+    if (summaryProgressEl) summaryProgressEl.dataset.complete = String(complete);
     if (filterCountEl) filterCountEl.textContent = String(done);
   };
 
@@ -143,6 +173,22 @@
     });
   };
 
+  const updateFinderStepImage = (step, value) => {
+    if (!step || !value) return;
+    const src = finderStepImages[step]?.[value];
+    if (!src) return;
+    const card = document.querySelector(`.finder-step[data-finder-step="${step}"]`);
+    const image = card?.querySelector(".finder-step-media img");
+    if (image) image.src = src;
+  };
+
+  const syncFinderStepImages = () => {
+    requiredKeys.forEach((step) => {
+      if (!state[step]) return;
+      updateFinderStepImage(step, state[step]);
+    });
+  };
+
   // Apply a single option selection in a step.
   const selectOption = (button) => {
     const step = button.dataset.step;
@@ -158,6 +204,7 @@
 
     syncFilterChips(step, value);
     syncStepCardState();
+    updateFinderStepImage(step, value);
 
     updateSummary();
     updateProgress();
@@ -195,7 +242,10 @@
       const usage = (item.usage || "").replace(/\s*\/\s*/g, " · ");
       return `
       <article class="card">
-        <div class="card-media card-media-note">REC 0${index + 1}</div>
+        <div class="card-media card-media-note">
+          <span>REC 0${index + 1}</span>
+          <img src="${item.image}" alt="${item.name} 추천 이미지" loading="lazy" decoding="async" />
+        </div>
         <div class="card-body">
           <h3 class="card-title">${item.name}</h3>
           <p class="card-desc">${item.notes}</p>
@@ -211,12 +261,24 @@
     const whyCards = document.querySelectorAll("#why-grid .card");
     if (!product) return;
     const matchScore = scoreProduct(product);
+    const confidence = Math.round((matchScore / 12) * 100);
+    const usage = (product.usage || "").replace(/\s*\/\s*/g, " · ");
 
     // DOM이 존재하는 경우에만 텍스트를 업데이트하도록 안전망(Null Safe) 처리
     if (whyCards.length >= 3) {
-      whyCards[0].querySelector(".card-desc").textContent = `${formatValue(state.scent)} 계열과 ${product.notes.split(" / ")[0]} 노트가 선호 축과 맞습니다.`;
-      whyCards[1].querySelector(".card-desc").textContent = `${formatValue(state.situation)} 상황에서 ${product.usage} 사용성이 안정적입니다.`;
-      whyCards[2].querySelector(".card-desc").textContent = `${formatValue(state.season)} / ${formatValue(state.mood)} 조합에 맞춘 배치 ${product.batch} 프로파일입니다. (Match ${matchScore}/12)`;
+      whyCards[0].querySelector(".card-desc").textContent = `${formatValue(state.scent)} 축과 ${product.notes.split(" / ")[0]} 노트의 결이 일치합니다. 노트 전개가 과하지 않아 첫 인상 대비 잔향 밸런스가 안정적입니다.`;
+      whyCards[1].querySelector(".card-desc").textContent = `${formatValue(state.situation)} 상황 기준으로 ${usage} 사용 패턴과 적합합니다. 외출/업무/모임 맥락에서 발향 강도 변동이 적은 편입니다.`;
+      whyCards[2].querySelector(".card-desc").textContent = `${formatValue(state.season)} · ${formatValue(state.mood)} 조합에 맞춘 배치 ${product.batch} 프로파일입니다. 추천 신뢰도 ${confidence}% (Match ${matchScore}/12).`;
+
+      const whyImages = [
+        product.image,
+        (secondProduct && secondProduct.image) || product.image,
+        "./images/common/manufacturing.jpg"
+      ];
+      whyCards.forEach((card, index) => {
+        const image = card.querySelector(".card-media img");
+        if (image && whyImages[index]) image.src = whyImages[index];
+      });
     }
 
     const setElText = (selector, text) => {
@@ -234,6 +296,11 @@
       setElText("#compare-right-desc", `${formatValue(secondProduct.scent)} · ${formatValue(secondProduct.mood)} · ${secondProduct.notes.split(" / ")[0]}`);
       setElText("#compare-right-meta", formatUsage(secondProduct.usage));
     }
+
+    const compareLeftImg = document.querySelector(".compare-card-primary .card-media img");
+    const compareRightImg = document.querySelector(".compare-card-alt .card-media img");
+    if (compareLeftImg) compareLeftImg.src = product.image;
+    if (compareRightImg && secondProduct) compareRightImg.src = secondProduct.image;
 
     if (stickyProduct) stickyProduct.textContent = product.name;
     if (stickyPrice) stickyPrice.textContent = product.price;
@@ -391,6 +458,10 @@
     setCurrentBtn.addEventListener("click", () => {
       const clTitle = document.querySelector("#compare-left-title");
       if (stickyProduct && clTitle) stickyProduct.textContent = clTitle.textContent;
+      if (setCurrentBtn) setCurrentBtn.textContent = "확정됨";
+      window.setTimeout(() => {
+        if (setCurrentBtn) setCurrentBtn.textContent = "이 향으로 확정";
+      }, 1200);
       saveState();
     });
   }
@@ -413,31 +484,6 @@
     });
   }
 
-  // Footer Newsletter 폼 제출 피드백 (기본 제출 방지 + 성공 메시지)
-  const newsletterForm = document.querySelector(".footer-news-form");
-  if (newsletterForm) {
-    newsletterForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const input = newsletterForm.querySelector('input[type="email"]');
-      const submit = newsletterForm.querySelector('button[type="submit"]');
-      const value = input?.value.trim();
-      if (!value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-        input?.focus();
-        return;
-      }
-      if (submit) {
-        const originalText = submit.textContent;
-        submit.textContent = "Subscribed ✓";
-        submit.disabled = true;
-        input.value = "";
-        window.setTimeout(() => {
-          submit.textContent = originalText;
-          submit.disabled = false;
-        }, 2400);
-      }
-    });
-  }
-
   // Announcement bar, mega menu, and Escape/outside-click behaviour are all
   // owned by layout-system.js — keep this file focused on the finder + sticky CTA.
 
@@ -451,7 +497,8 @@
   // One-Page ScrollSpy (GNB Active State)
   // ------------------------------------------------------------
   const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".gnb-item a");
+  const navLinks = Array.from(document.querySelectorAll(".gnb-item a"))
+    .filter((link) => (link.getAttribute("href") || "").startsWith("#"));
 
   const observerOptions = {
     root: null,
@@ -459,19 +506,21 @@
     threshold: 0
   };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute("id");
-        navLinks.forEach((link) => {
-          const href = link.getAttribute("href").replace("#", "");
-          link.classList.toggle("is-active", href === id);
-        });
-      }
-    });
-  }, observerOptions);
+  if (sections.length && navLinks.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+          navLinks.forEach((link) => {
+            const href = link.getAttribute("href").replace("#", "");
+            link.classList.toggle("is-active", href === id);
+          });
+        }
+      });
+    }, observerOptions);
 
-  sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => observer.observe(section));
+  }
 
   // ------------------------------------------------------------
   // Initial Boot: restore persisted state and paint UI.
@@ -489,6 +538,7 @@
     syncFilterChips(key, state[key]);
   });
   syncStepCardState();
+  syncFinderStepImages();
   if (state.current && stickyProduct) {
     stickyProduct.textContent = state.current.name;
     if (stickyPrice) stickyPrice.textContent = state.current.price;
